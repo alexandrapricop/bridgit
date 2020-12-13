@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1607808947 source:d:\facultate\introducere in programare\proiect\bridg-it\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+
+1607817679 source:d:\facultate\proiect\bridg-it\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+
