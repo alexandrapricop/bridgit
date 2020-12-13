@@ -5,6 +5,8 @@
 #define FUNDAL WHITE
 using namespace std;
 
+/* FISIER UPDATED */
+
 struct buton{
     int x1, y1, x2, y2, dx, dy;
     char text[30];
@@ -18,8 +20,7 @@ void mainmenu()
     clearviewport();
     setcolor(BLUE);
     settextstyle(TRIPLEX_FONT, HORIZ_DIR,8);
-    outtextxy(250, 150, "Bridg-It");
-
+    outtextxy(250, 150, "Bridg-It")
     int x,y;
     buton B1, B2, B3, B4, B5, B6;
 
