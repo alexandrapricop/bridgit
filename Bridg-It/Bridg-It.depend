@@ -14,3 +14,20 @@
 	<winbgim.h>
 	<graphics.h>
 
+1608161327 source:c:\users\alexa\c++\bridgit\bridg-it\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+	"variables.h"
+	"windows.h"
+	"navigation.h"
+
+1608160696 c:\users\alexa\c++\bridgit\bridg-it\menu.h
+
+1608165129 c:\users\alexa\c++\bridgit\bridg-it\variables.h
+
+1608165679 c:\users\alexa\c++\bridgit\bridg-it\windows.h
+
+1608165409 c:\users\alexa\c++\bridgit\bridg-it\navigation.h
+	<iostream>
+
