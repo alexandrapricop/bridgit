@@ -1,5 +1,5 @@
 
-    // ALL ROMANIAN FUNCTIONS
+    // WINDOWS IN ROMANIAN
 
 void start_romana()
 {
@@ -30,29 +30,48 @@ void info_romana()
 
     settextstyle(font, HORIZ_DIR,5);
     int left = (windowWidth - textwidth("Cum se joaca?"))/2;
-    outtextxy(left, 120, "Cum se joaca?");
+    outtextxy(left, 100, "Cum se joaca?");
+
+    left = (windowWidth - textwidth("Despre setarile jocului"))/2;
+    outtextxy(left, 380, "Despre setarile jocului");
 
     //ADD BUTTON BACK HOME
     settextstyle(font, HORIZ_DIR,3);
     //rectangle(1100, 20, 1100+10+textwidth("Home"), 20+10+textheight("Home"));
-    outtextxy(1150, 25, "Meniu");
+    outtextxy(1210 - textwidth("Pagina de pornire"), 25, "Pagina de pornire");
 
     //ADD CONTENT
     settextstyle(font, HORIZ_DIR,2);
-    left = (windowWidth - textwidth("Jucatorii fac cu randul pentru a construi un drum format din mai multe segmente"))/2;
-    outtextxy(left, 200, "Jucatorii fac cu randul pentru a construi un drum format din mai multe segmente");
+    left = (windowWidth - textwidth("Cei doi jucatori fac cu randul pentru a construi un drum format din mai multe segmente astfel"))/2;
+    outtextxy(left, 170, "Cei doi jucatori fac cu randul pentru a construi un drum format din mai multe segmente astfel");
 
-    left = (windowWidth - textwidth("astfel incat sa uneasca cele doua capete ale tablei de joc care sunt de culoarea sa."))/2;
-    outtextxy(left, 240, "astfel incat sa uneasca cele doua capete ale tablei de joc care sunt de culoarea sa.");
+    left = (windowWidth - textwidth("incat sa uneasca cele doua capete ale tablei de joc care sunt de culoarea sa."))/2;
+    outtextxy(left, 210, "incat sa uneasca cele doua capete ale tablei de joc care apartin culorii lor.");
 
-    left = (windowWidth - textwidth("Totodata, jucatorii trebuie sa aiba in vedere ce urmareste oponentul si sa se"))/2;
-    outtextxy(left, 280, "Totodata, jucatorii trebuie sa aiba in vedere ce urmareste oponentul si sa se");
+    left = (windowWidth - textwidth("Segmentele pot fi construite doar orizontal sau vertical si, odata ce exista un drum intre doua puncte"))/2;
+    outtextxy(left, 250, "Segmentele pot fi construite doar orizontal sau vertical si, odata ce exista un drum intre doua puncte");
 
-    left = (windowWidth - textwidth("blocheze unul pe celalalt pentru a se asigura ca vor castiga."))/2;
-    outtextxy(left, 320, "blocheze unul pe celalalt pentru a se asigura ca vor castiga.");
+    left = (windowWidth - textwidth("alaturate, celalalt jucator nu va putea construi o linie care sa interstecteze acel drum."))/2;
+    outtextxy(left, 290, "alaturate, celalalt jucator nu va putea construi o linie care sa interstecteze acel drum.");
 
-    left = (windowWidth - textwidth("Primul jucator care reuseste sa uneasca cele doua capete, castiga."))/2;
-    outtextxy(left, 360, "Primul jucator care reuseste sa uneasca cele doua capete, castiga.");
+    left = (windowWidth - textwidth("Primul jucator care reuseste sa uneasca cele doua capete de culoarea sa, castiga."))/2;
+    outtextxy(left, 330, "Primul jucator care reuseste sa uneasca cele doua capete de culoarea sa, castiga.");
+
+    left = (windowWidth - textwidth("In setari, jucatorii isi pot selecta preferintele legate de cine va face prima mutare, culori,"))/2;
+    outtextxy(left, 450, "In setari, jucatorii isi pot selecta preferintele legate de cine va face prima mutare, culori,");
+
+    left = (windowWidth - textwidth(" nivelul de dificultate al jocului (valabil numai in cazul in care se joaca impotriva calculatorului)"))/2;
+    outtextxy(left, 490, "nivelul de dificultate al jocului (valabil numai in cazul in care se joaca impotriva calculatorului)");
+
+    left = (windowWidth - textwidth("si dimesiunea tablei de joc, care indica numarul de buline care se vor regasi pe aceasta."))/2;
+    outtextxy(left, 530, "si dimesiunea tablei de joc, care indica numarul de buline care se vor regasi pe aceasta.");
+
+    left = (windowWidth - textwidth("Pe pagina de pornire se regasesc doua moduri de joc, iar in functie de care dintre acestea"))/2;
+    outtextxy(left, 570, "Pe pagina de pornire se regasesc doua moduri de joc, iar in functie de care dintre acestea");
+
+    left = (windowWidth - textwidth("este selectat, jucatorul va juca fie impotriva calculatorului, fie impreuna cu o alta persoana."))/2;
+    outtextxy(left, 610, "este selectat, jucatorul va juca fie impotriva calculatorului, fie impreuna cu o alta persoana.");
+
 }
 
 void language_romana()
@@ -61,7 +80,7 @@ void language_romana()
     language_default();
     //ADD BUTTON BACK HOME
     settextstyle(font, HORIZ_DIR,3);
-    outtextxy(1150, 25, "Meniu");
+    outtextxy(1210 - textwidth("Pagina de pornire"), 25, "Pagina de pornire");
 }
 
 void settings_romana()
@@ -77,18 +96,18 @@ void settings_romana()
     //ADD BUTTON BACK HOME
     settextstyle(font, HORIZ_DIR,3);
     //rectangle(1100, 20, 1100+10+textwidth("Home"), 20+10+textheight("Home"));
-    outtextxy(1150, 25, "Meniu");
+    outtextxy(1210 - textwidth("Pagina de pornire"), 25, "Pagina de pornire");
 
     // ADINA
     // ADD SETTINGS
 
     // ADD TEXT
     outtextxy(90, 300, "Selectati culoarea:");
-    outtextxy(90, 250, "Cine incepe?");
+    outtextxy(90, 250, "Selectati cine incepe primul:");
     outtextxy(90, 350, "Selectati dimensiunea tablei de joc:");
     outtextxy(90, 500, "Selectati nivelul calculatorului:");
-    outtextxy(420, 210, "Jucator 1");
-    outtextxy(760, 210, "Jucator 2");
+    outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100, 250, "Jucator 1");
+    outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100 + 100 + textwidth("Joueur 1"), 250, "Jucator 2");
     outtextxy(250, 390, "Mica: 3×4");
     outtextxy(250, 425, "Medie: 4×5");
     outtextxy(250, 460, "Mare: 5×6");
@@ -97,27 +116,29 @@ void settings_romana()
     outtextxy(250, 610, "Dificil");
 
     // SELECT COLOURS AND WHO BEGINS
-    rectangle(420 + textwidth("Jucator 1")/2 - 10, 250 + textheight("Cine incepe?")/2 - 10, 420 + textwidth("Jucator 1")/2 + 10, 250 + textheight("Cine incepe?")/2 + 10);
-    rectangle(760 + textwidth("Jucator 2")/2 - 10, 250 + textheight("Cine incepe?")/2 - 10, 760 + textwidth("Jucator 2")/2 + 10, 250 + textheight("Cine incepe?")/2 + 10);
 
-    setcolor(CYAN);
-    rectangle(420 + textwidth("Jucator 1")/2 - 20 - 5, 300 + textheight("Selectati culoarea:")/2 - 10, 420 + textwidth("Jucator 1")/2 - 5, 300 + textheight("Selectati culoarea:")/2 + 10);
-    rectangle(760 + textwidth("Jucator 2")/2 - 20 - 5, 300 + textheight("Selectati culoarea:")/2 - 10, 760 + textwidth("Jucator 2")/2 - 5, 300 + textheight("Selectati culoarea:")/2 + 10);
-    setfillstyle (SOLID_FILL, CYAN);
+    const int DELAY = 50;
+    int x, y, z, t;
 
-    setcolor(LIGHTMAGENTA );
-    rectangle(420 + textwidth("Jucator 1")/2 + 5, 300 + textheight("Selectati culoarea:")/2 - 10, 420 + textwidth("Jucator 1")/2 + 20 + 5, 300 + textheight("Selectati culoarea:")/2 + 10);
-    rectangle(760 + textwidth("Jucator 2")/2 + 5, 300 + textheight("Selectati culoarea:")/2 - 10, 760 + textwidth("Jucator 2")/2 + 20 + 5, 300 + textheight("Selectati culoarea:")/2 + 10);
-    setfillstyle(SOLID_FILL, LIGHTMAGENTA );
+    while (!ismouseclick(WM_LBUTTONDOWN))
+        delay(DELAY);
 
-    setcolor(LIGHTRED);
-    rectangle(420 + textwidth("Jucator 1")/2 - 20 - 20 - 5 - 10, 300 + textheight("Selectati culoarea:")/2 - 10, 420 + textwidth("Jucator 1")/2 - 20 - 5 - 10, 300 + textheight("Selectati culoarea:")/2 + 10);
-    rectangle(760 + textwidth("Jucator 2")/2 - 20 - 20 - 5 - 10, 300 + textheight("Selectati culoarea:")/2 - 10, 760 + textwidth("Jucator 2")/2 - 20 - 5 - 10, 300 + textheight("Selectati culoarea:")/2 + 10);
-    setfillstyle(SOLID_FILL, LIGHTRED);
+    getmouseclick(WM_LBUTTONDOWN, x, y);
+    getmouseclick(WM_LBUTTONDBLCLK, z, t); // DOUBLECLICK
 
-    setfillstyle(SOLID_FILL, YELLOW);
-    rectangle(420 + textwidth("Jucator 1")/2 + 5 + 20 +10, 300 + textheight("Selectati culoarea:")/2 - 10, 420 + textwidth("Jucator 1")/2 + 20 + 20 + 10 + 5, 300 + textheight("Selectati culoarea:")/2 + 10);
-    rectangle(760 + textwidth("Jucator 2")/2 + 5 + 20 +10, 300 + textheight("Selectati culoarea:")/2 - 10, 760 + textwidth("Jucator 2")/2 + 20 + 20 + 10 + 5, 300 + textheight("Selectati culoarea:")/2 + 10);
+    // BOLD WHEN PLAYER 1 IS CLICKED AND UNBOLD WHEN IS DOUBLECLICKED
+    if(x>=530 && x<=655 && y>=245 && y<=270 && currentWindow==12)
+    {
+        settextstyle(font, HORIZ_DIR, 4);
+        outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100, 250, "Jucator 1");
+    }
+
+    if(z>=530 && z<=655 && t>=245 && t<=270 && currentWindow==12)
+    {
+        settextstyle(font, HORIZ_DIR, 3);
+        outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100, 250, "Jucator 1");
+    }
+
+
 }
-
 

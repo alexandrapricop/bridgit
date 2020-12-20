@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-<<<<<<< HEAD
 // currentWindow - ENGLISH: 1-HOME, 2-INFO, 3-LANGUAGES, 4-SETTINGS
 // currentWindow - FRENCH: 5-HOME, 6-INFO, 7-LANGUAGES, 8-SETTINGS
 // currentWindow - ROMANA: 9-HOME, 10-INFO, 11-LANGUAGES, 12-SETTINGS
@@ -9,10 +8,6 @@ using namespace std;
 void when_left_click()
 {
     // ALEXANDRA
-=======
-void when_left_click()
-{
->>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
     const int DELAY = 50; // Milliseconds of delay between checks
     int x, y;
 
@@ -21,45 +16,28 @@ void when_left_click()
 
     getmouseclick(WM_LBUTTONDOWN, x, y);
 
-<<<<<<< HEAD
     // ENGLISH
     // NAVIGATES FROM HOME TO INFORMATION
     if(x>=20 && x<=95 && y>=20 && y<=53 && currentWindow==1)
     {
-=======
-    // NAVIGATES FROM HOME TO INFORMATION
-    if(x>=20 && x<=95 && y>=20 && y<=53 && currentWindow==1){
->>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
         info();
         currentWindow=2;
     }
 
-<<<<<<< HEAD
     // NAVIGATES FROM HOME TO LANGUAGES
     if(x>=20 && x<=190 && y>=55 && y<=88 && currentWindow==1)
     {
         language_english();
-=======
-
-    // NAVIGATES FROM HOME TO LANGUAGES
-    if(x>=20 && x<=190 && y>=55 && y<=88 && currentWindow==1){
-        language();
->>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
         currentWindow=3;
     }
 
     // NAVIGATES FROM HOME TO SETTINGS
-<<<<<<< HEAD
     if(x>=20 && x<=159 && y>=90 && y<=123 && currentWindow==1)
     {
-=======
-    if(x>=20 && x<=159 && y>=90 && y<=123 && currentWindow==1){
->>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
         settings();
         currentWindow=4;
     }
 
-<<<<<<< HEAD
     // NAVIGATES BACK TO HOME
     if(x>=1130 && x<=1250 && y>=20 && y<=53 && currentWindow>1 && currentWindow<5){
         start();
@@ -69,16 +47,10 @@ void when_left_click()
     // NAVIGATES BACK TO HOME IF ENGLISH IS SELECTED
     if(x>=560 && x<=720 && y>=240 && y<=270 && (currentWindow==3 || currentWindow==7 || currentWindow==11))
     {
-=======
-
-    // NAVIGATES BACK TO HOME
-    if(x>=1130 && x<=1250 && y>=20 && y<=53 && currentWindow>1){
->>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
         start();
         currentWindow=1;
     }
 
-<<<<<<< HEAD
     // ADINA
     // FRENCH
 
@@ -147,32 +119,32 @@ void when_left_click()
     }
 
     // NAVIGATES BACK TO HOME
-    if(x>=1130 && x<=1250 && y>=25 && y<=45 && currentWindow>9 && currentWindow<13)
+    if(x>=950 && x<=1210 && y>=25 && y<=45 && currentWindow>9 && currentWindow<13)
     {
         start_romana();
         currentWindow=9;
     }
 
-    // OPENS WINDOW FOR SINGLE-PLAYER MODE
+    // OPENS BOARD FOR ALL 3 LANGUAGES
+    // OPENS BOARD FOR SINGLE-PLAYER MODE
     if(x>=460 && x<=815 && y>=330 && y<=360 && (currentWindow==1 || currentWindow==5 || currentWindow==9))
+    {
         board();
+        currentWindow==14;
+    }
 
-    // OPENS WINDOW FOR TWO-PLAYERS MODE
+    // OPENS BOARD FOR TWO-PLAYERS MODE
     if(x>=420 && x<=855 && y>=405 && y<=435 && (currentWindow==1 || currentWindow==5 || currentWindow==9))
+    {
         board();
+        currentWindow==15;
+    }
 
     // EXIT
     if(x>=1150 && x<=1210 && y>=25 && y<=40 && (currentWindow==1 || currentWindow==5 || currentWindow==9) && ismouseclick(WM_LBUTTONDOWN))
-        closegraph();
+        closegraph(ALL_WINDOWS);
 
     cout << "Latest left click at: " << x << " " << y << endl;
 
 
-=======
-
-
-
-    cout << "Latest left click at: " << x << " " << y << endl;
-
->>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
 }

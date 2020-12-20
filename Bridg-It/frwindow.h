@@ -1,5 +1,5 @@
 
-    // ALL FRENCH FUNCTIONS
+    // WINDOWS IN FRENCH
 
 void start_francais()
 {
@@ -29,8 +29,8 @@ void info_francais()
     // ALEXANDRA
 
     settextstyle(font, HORIZ_DIR,5);
-    int left = (windowWidth - textwidth("How to play?"))/2;
-    outtextxy(left, 120, "How to play?");
+    int left = (windowWidth - textwidth("Comment jouer?"))/2;
+    outtextxy(left, 120, "Comment jouer?");
 
     //ADD BUTTON BACK HOME
     settextstyle(font, HORIZ_DIR,3);
@@ -39,20 +39,23 @@ void info_francais()
 
     //ADD CONTENT
     settextstyle(font, HORIZ_DIR,2);
-    left = (windowWidth - textwidth("A player draws a horizontal line connecting 2 dots of his color."))/2;
-    outtextxy(left, 200, "A player draws a horizontal line connecting 2 dots of his color.");
+    left = (windowWidth - textwidth("Les deux joueurs construisent à tour de rôle un chemin formait de plusieurs"))/2;
+    outtextxy(left, 200, "Les deux joueurs construisent à tour de rôle un chemin formait de plusieurs");
 
-    left = (windowWidth - textwidth("Then the other player does the same thing with 2 dots of his color."))/2;
-    outtextxy(left, 240, "Then the other player does the same thing with 2 dots of his color.");
+    left = (windowWidth - textwidth("segments, tel que les deux têtes du tableau qui ont la couleur qui ont choisi se réunissent."))/2;
+    outtextxy(left, 240, "segments, tel que les deux têtes du tableau qui ont la couleur qui ont choisi se réunissent.");
 
-    left = (windowWidth - textwidth("With the lines they draw, they must connect two opposite sides"))/2;
-    outtextxy(left, 280, "With the lines they draw, they must connect two opposite sides");
+    left = (windowWidth - textwidth("Les segments peuvent être construisent seulement horizontalement ou verticalement et,"))/2;
+    outtextxy(left, 280, "Les segments peuvent être construisent seulement horizontalement ou verticalement et,");
 
-    left = (windowWidth - textwidth("of the table."))/2;
-    outtextxy(left, 320, "of the table.");
+    left = (windowWidth - textwidth("le moment où il existe un chemin entre deux points adjacents, l'autre joueur"))/2;
+    outtextxy(left, 320, "le moment où il existe un chemin entre deux points adjacents, l'autre joueur");
 
-    left = (windowWidth - textwidth("The first player to succeed connecting the sides, wins."))/2;
-    outtextxy(left, 360, "The first player to succeed connecting the sides, wins.");
+    left = (windowWidth - textwidth("ne va pas pouvoir construire une ligne qui intersecte ce chemin."))/2;
+    outtextxy(left, 360, "ne va pas pouvoir construire une ligne qui intersecte ce chemin.");
+
+    left = (windowWidth - textwidth("Le premier joueur qui réussis à unir les deux têtes de sa couleur, gagnera."))/2;
+    outtextxy(left, 400, "Le premier joueur qui réussis à unir les deux têtes de sa couleur, gagnera.");
 }
 
 void language_francais()
@@ -86,11 +89,11 @@ void settings_francais()
 
     // ADD TEXT
     outtextxy(90, 300, "Choisissez la couleur:");
-    outtextxy(90, 250, "Qui commence le premier?");
+    outtextxy(90, 250, "Sélectez qui commence le premier:");
     outtextxy(90, 350, "Sélectez la dimension du tableau du jeu:");
     outtextxy(90, 500, "Sélectez le niveau du calculateur:");
-    outtextxy(420, 210, "Joueur 1");
-    outtextxy(760, 210, "Joueur 2");
+    outtextxy(90 + textwidth("Sélectez qui commence le premier:") + 100, 250, "Joueur 1");
+    outtextxy(90 + textwidth("Sélectez qui commence le premier:") + 100 + 100 + textwidth("Joueur 1"), 250, "Joueur 2");
     outtextxy(250, 390, "Petite: 3×4");
     outtextxy(250, 425, "Moyenne: 4×5");
     outtextxy(250, 460, "Grande: 5×6");
@@ -99,13 +102,6 @@ void settings_francais()
     outtextxy(250, 610, "Difficile");
 
     // SELECT COLOURS AND WHO BEGINS
-    rectangle(420 + textwidth("Joueur 1")/2 - 10, 250 + textheight("Qui commence le premier?")/2 - 10, 420 + textwidth("Joueur 1")/2 + 10, 250 + textheight("Qui commence le premier?")/2 + 10);
-    rectangle(760 + textwidth("Joueur 2")/2 - 10, 250 + textheight("Qui commence le premier?")/2 - 10, 760 + textwidth("Joueur 2")/2 + 10, 250 + textheight("Qui commence le premier?")/2 + 10);
-
-    setcolor(CYAN);
-    rectangle(420 + textwidth("Joueur 1")/2 - 20 - 5, 300 + textheight("Choisissez la couleur:")/2 - 10, 420 + textwidth("Joueur 1")/2 - 5, 300 + textheight("Choisissez la couleur:")/2 + 10);
-    rectangle(760 + textwidth("Joueur 2")/2 - 20 - 5, 300 + textheight("Choisissez la couleur:")/2 - 10, 760 + textwidth("Joueur 2")/2 - 5, 300 + textheight("Choisissez la couleur:")/2 + 10);
-    setfillstyle (SOLID_FILL, CYAN);
 
     setcolor(LIGHTMAGENTA );
     rectangle(420 + textwidth("Joueur 1")/2 + 5, 300 + textheight("Choisissez la couleur:")/2 - 10, 420 + textwidth("Joueur 1")/2 + 20 + 5, 300 + textheight("Choisissez la couleur:")/2 + 10);
@@ -123,4 +119,3 @@ void settings_francais()
 
 
 }
-
