@@ -3,8 +3,10 @@
 
 void start_romana()
 {
+
     // SETTINGS ROMANIAN
     // ADINA
+
     start_default();
     int left;
     outtextxy(25, 25, "Informatii");
@@ -22,11 +24,10 @@ void info_romana()
 {
 
     // INFORMATION IN FRENCH
-    // ADINA
+    // ALEXANDRA & ADINA
+
     clearviewport();
     setcolor(BLACK);
-
-    // ALEXANDRA
 
     settextstyle(font, HORIZ_DIR,5);
     int left = (windowWidth - textwidth("Cum se joaca?"))/2;
@@ -76,6 +77,7 @@ void info_romana()
 
 void language_romana()
 {
+
     // ALEXANDRA
     language_default();
     //ADD BUTTON BACK HOME
@@ -102,15 +104,17 @@ void settings_romana()
     // ADD SETTINGS
 
     // ADD TEXT
-    outtextxy(90, 300, "Selectati culoarea:");
-    outtextxy(90, 250, "Selectati cine incepe primul:");
+    outtextxy(90, 200, "Selectati cine incepe primul:");
+    outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100, 200, "Jucator 1");
+    outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100 + 100 + textwidth("Jucator 1"), 200, "Jucator 2");
+    outtextxy(90, 250, "Selectati culoarea:");
+    outtextxy(textwidth("Selectati culoarea:") + 90 + 50, 250, "Jucator 1");
+    outtextxy(textwidth("Selectati culoarea:") + 90 + 50, 300, "Jucator 2");
     outtextxy(90, 350, "Selectati dimensiunea tablei de joc:");
-    outtextxy(90, 500, "Selectati nivelul calculatorului:");
-    outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100, 250, "Jucator 1");
-    outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100 + 100 + textwidth("Joueur 1"), 250, "Jucator 2");
     outtextxy(250, 390, "Mica: 3×4");
     outtextxy(250, 425, "Medie: 4×5");
     outtextxy(250, 460, "Mare: 5×6");
+    outtextxy(90, 500, "Selectati nivelul calculatorului:");
     outtextxy(250, 540, "Usor");
     outtextxy(250, 575, "Mediu");
     outtextxy(250, 610, "Dificil");
@@ -138,7 +142,6 @@ void settings_romana()
         settextstyle(font, HORIZ_DIR, 3);
         outtextxy(90 + textwidth("Selectati cine incepe primul:") + 100, 250, "Jucator 1");
     }
-
 
 }
 

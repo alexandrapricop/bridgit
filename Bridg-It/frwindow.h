@@ -23,7 +23,7 @@ void info_francais()
 
     // INFORMATION IN FRENCH
     // ADINA
-    clearviewport();
+    readimagefile("D://Bridg-It.jpg", 0, 0, 1280, 720);
     setcolor(BLACK);
 
     // ALEXANDRA
@@ -88,12 +88,14 @@ void settings_francais()
     // ADD SETTINGS
 
     // ADD TEXT
-    outtextxy(90, 300, "Choisissez la couleur:");
-    outtextxy(90, 250, "Sélectez qui commence le premier:");
+    outtextxy(90, 200, "Sélectez qui commence le premier:");
+    outtextxy(90 + textwidth("Sélectez qui commence le premier:") + 100, 200, "Joueur 1");
+    outtextxy(90 + textwidth("Sélectez qui commence le premier:") + 100 + 100 + textwidth("Joueur 1"), 200, "Joueur 2");
+    outtextxy(90, 250, "Choisissez la couleur:");
+    outtextxy(textwidth("Choisissez la couleur:") + 90 + 50, 250, "Joeuer 1");
+    outtextxy(textwidth("Choisissez la couleur:") + 90 + 50, 300, "Joueur 2");
     outtextxy(90, 350, "Sélectez la dimension du tableau du jeu:");
     outtextxy(90, 500, "Sélectez le niveau du calculateur:");
-    outtextxy(90 + textwidth("Sélectez qui commence le premier:") + 100, 250, "Joueur 1");
-    outtextxy(90 + textwidth("Sélectez qui commence le premier:") + 100 + 100 + textwidth("Joueur 1"), 250, "Joueur 2");
     outtextxy(250, 390, "Petite: 3×4");
     outtextxy(250, 425, "Moyenne: 4×5");
     outtextxy(250, 460, "Grande: 5×6");
@@ -102,20 +104,5 @@ void settings_francais()
     outtextxy(250, 610, "Difficile");
 
     // SELECT COLOURS AND WHO BEGINS
-
-    setcolor(LIGHTMAGENTA );
-    rectangle(420 + textwidth("Joueur 1")/2 + 5, 300 + textheight("Choisissez la couleur:")/2 - 10, 420 + textwidth("Joueur 1")/2 + 20 + 5, 300 + textheight("Choisissez la couleur:")/2 + 10);
-    rectangle(760 + textwidth("Joueur 2")/2 + 5, 300 + textheight("Choisissez la couleur:")/2 - 10, 760 + textwidth("Joueur 2")/2 + 20 + 5, 300 + textheight("Choisissez la couleur:")/2 + 10);
-    setfillstyle(SOLID_FILL, LIGHTMAGENTA );
-
-    setcolor(LIGHTRED);
-    rectangle(420 + textwidth("Joueur 1")/2 - 20 - 20 - 5 - 10, 300 + textheight("Choisissez la couleur:")/2 - 10, 420 + textwidth("Joueur 1")/2 - 20 - 5 - 10, 300 + textheight("Choisissez la couleur:")/2 + 10);
-    rectangle(760 + textwidth("Joueur 2")/2 - 20 - 20 - 5 - 10, 300 + textheight("Choisissez la couleur:")/2 - 10, 760 + textwidth("Joueur 2")/2 - 20 - 5 - 10, 300 + textheight("Choisissez la couleur:")/2 + 10);
-    setfillstyle(SOLID_FILL, LIGHTRED);
-
-    setfillstyle(SOLID_FILL, YELLOW);
-    rectangle(420 + textwidth("Joueur 1")/2 + 5 + 20 +10, 300 + textheight("Choisissez la couleur:")/2 - 10, 420 + textwidth("Joueur 1")/2 + 20 + 20 + 10 + 5, 300 + textheight("Choisissez la couleur:")/2 + 10);
-    rectangle(760 + textwidth("Joeuer 2")/2 + 5 + 20 +10, 300 + textheight("Choisissez la couleur:")/2 - 10, 760 + textwidth("Joueur 2")/2 + 20 + 20 + 10 + 5, 300 + textheight("Choisissez la couleur:")/2 + 10);
-
 
 }

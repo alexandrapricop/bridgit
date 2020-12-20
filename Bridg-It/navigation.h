@@ -45,7 +45,7 @@ void when_left_click()
     }
 
     // NAVIGATES BACK TO HOME IF ENGLISH IS SELECTED
-    if(x>=560 && x<=720 && y>=240 && y<=270 && (currentWindow==3 || currentWindow==7 || currentWindow==11))
+    if(x>=560 && x<=720 && y>=310 && y<=340 && (currentWindow==3 || currentWindow==7 || currentWindow==11))
     {
         start();
         currentWindow=1;
@@ -55,7 +55,7 @@ void when_left_click()
     // FRENCH
 
     // NAVIGATES BACK TO HOME IF FRENCH IS SELECTED
-    if(x>=545 && x<=735 && y>=275 && y<=310 && (currentWindow==3 || currentWindow==7 || currentWindow==11 ))
+    if(x>=540 && x<=745 && y>=365 && y<=405 && (currentWindow==3 || currentWindow==7 || currentWindow==11 ))
     {
         start_francais();
         currentWindow=5;
@@ -91,7 +91,7 @@ void when_left_click()
 
     // ROMANIAN
     // NAVIGATES BACK TO HOME IF ROMANIAN IS SELECTED
-    if(x>=570 && x<=700 && y>=200 && y<=230 && (currentWindow==3 || currentWindow==7 || currentWindow==11))
+    if(x>=570 && x<=710 && y>=250 && y<=280 && (currentWindow==3 || currentWindow==7 || currentWindow==11))
     {
         start_romana();
         currentWindow=9;
@@ -141,8 +141,11 @@ void when_left_click()
     }
 
     // EXIT
-    if(x>=1150 && x<=1210 && y>=25 && y<=40 && (currentWindow==1 || currentWindow==5 || currentWindow==9) && ismouseclick(WM_LBUTTONDOWN))
-        closegraph(ALL_WINDOWS);
+    // if(x>=1140 && x<=1220 && y>=20 && y<=50 && (currentWindow==1 || currentWindow==5 || currentWindow==9) && !ismouseclick(WM_LBUTTONDOWN))
+    // {
+        // cleardevice();
+        // closegraph();
+    // }
 
     cout << "Latest left click at: " << x << " " << y << endl;
 

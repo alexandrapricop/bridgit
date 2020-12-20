@@ -5,13 +5,11 @@ void start_default() // AVAILBALE VOR ALL 3 LANGUAGES
 {
 
     // ADINA
-    setbkcolor(LIGHTGREEN);
+    setbkcolor(WHITE);
     clearviewport();
+    readimagefile("C://Users//user//bridgit//Background Title.jpg", 0, 0, 1280, 720);
     setcolor(BLACK);
-    settextstyle(font, HORIZ_DIR, 9);
     int left = (windowWidth - textwidth("Bridg-It"))/2;
-    outtextxy(left, 150, "Bridg-It");
-    setcolor(BLACK);
     settextstyle(font, HORIZ_DIR, 3);
     setfillstyle(EMPTY_FILL, BLACK);
 }
@@ -50,7 +48,10 @@ void info()
 
     settextstyle(font, HORIZ_DIR,5);
     int left = (windowWidth - textwidth("How to play?"))/2;
-    outtextxy(left, 120, "How to play?");
+    outtextxy(left, 100, "How to play?");
+
+    left = (windowWidth - textwidth("About game settings"))/2;
+    outtextxy(left, 380, "About game settings");
 
     //ADD BUTTON BACK HOME
     settextstyle(font, HORIZ_DIR,3);
@@ -60,19 +61,34 @@ void info()
     //ADD CONTENT
     settextstyle(font, HORIZ_DIR,2);
     left = (windowWidth - textwidth("Players have to take turns in order to build a continuous"))/2;
-    outtextxy(left, 200, "Players have to take turns in order to create a continuous path of bridges");
+    outtextxy(left, 170, "Players have to take turns in order to create a continuous");
 
     left = (windowWidth - textwidth("path of bridges from the entrance to the exit."))/2;
-    outtextxy(left, 240, "path of bridges from the entrance to the exit.");
+    outtextxy(left, 210, "path of bridges from the entrance to the exit.");
 
     left = (windowWidth - textwidth("Bridges can be built horizontally or verticallly and, once there is a path between"))/2;
-    outtextxy(left, 280, "Bridges can be built horizontally or verticallly and, once there is a path between");
+    outtextxy(left, 250, "Bridges can be built horizontally or verticallly and, once there is a path between");
 
-    left = (windowWidth - textwidth("two adjacent dots, the opponent can not build a bridge that cross that path"))/2;
-    outtextxy(left, 320, "two adjacent dots, the opponent can not build a bridge that cross that path");
+    left = (windowWidth - textwidth("two adjacent dots, the opponent can not build a bridge that cross that path."))/2;
+    outtextxy(left, 290, "two adjacent dots, the opponent can not build a bridge that cross that path.");
 
     left = (windowWidth - textwidth("The first player to succeed connecting the sides, wins."))/2;
-    outtextxy(left, 360, "The first player to succeed connecting the sides, wins.");
+    outtextxy(left, 330, "The first player to succeed connecting the sides, wins.");
+
+    left = (windowWidth - textwidth("In settings, players can select their preferences regarding the starting player, colours,"))/2;
+    outtextxy(left, 450, "In settings, players can select their preferences regarding the starting player, colours,");
+
+    left = (windowWidth - textwidth("game difficulty level (available only when single-player mode is chosen) and board"))/2;
+    outtextxy(left, 490, "game difficulty level (available only when single-player mode is chosen) and board");
+
+    left = (windowWidth - textwidth("dimension, which indicates the amount of dots that will be on the board."))/2;
+    outtextxy(left, 530, "dimension, which indicates the amount of dots that will be on the board.");
+
+    left = (windowWidth - textwidth("In the main menu there are two game modes in which the player will play either"))/2;
+    outtextxy(left, 570, "In the main menu there are two game modes in which the player will play either");
+
+    left = (windowWidth - textwidth("against the computer or with another person, depending on which game mode is selected."))/2;
+    outtextxy(left, 610, "against the computer or with another person, depending on which game mode is selected.");
 }
 
 void settings()
@@ -95,12 +111,14 @@ void settings()
     // ADD SETTINGS
 
     // ADD TEXT
-    outtextxy(90, 300, "Select a colour:");
-    outtextxy(90, 250, "Pick a starting player:");
+    outtextxy(90, 200, "Pick a starting player:");
+    outtextxy(90 + textwidth("Pick a starting player:") + 100, 200, "Player 1");
+    outtextxy(90 + textwidth("Pick a starting player:") + 100 + 100 + textwidth("Player 1"), 200, "Player 2");
+    outtextxy(90, 250, "Select a colour:");
+    outtextxy(textwidth("Select a colour:") + 90 + 50, 250, "Player 1");
+    outtextxy(textwidth("Select a colour:") + 90 + 50, 300, "Player 2");
     outtextxy(90, 350, "Select table dimension:");
     outtextxy(90, 500, "Select computer level:");
-    outtextxy(90 + textwidth("Pick a starting player:") + 100, 250, "Player 1");
-    outtextxy(90 + textwidth("Pick a starting player:") + 100 + 100 + textwidth("Player 1"), 250, "Player 2");
     outtextxy(250, 390, "Small: 3×4");
     outtextxy(250, 425, "Medium: 4×5");
     outtextxy(250, 460, "Large: 5×6");
@@ -109,32 +127,6 @@ void settings()
     outtextxy(250, 610, "Hard");
 
     // SELECT COLOURS AND WHO BEGINS
-
-
-    setcolor(CYAN);
-    rectangle(420 + textwidth("Player 1")/2 - 20 - 5, 300 + textheight("Select colour:")/2 - 10, 420 + textwidth("Player 1")/2 - 5, 300 + textheight("Select colour:")/2 + 10);
-    rectangle(760 + textwidth("Player 2")/2 - 20 - 5, 300 + textheight("Select colour:")/2 - 10, 760 + textwidth("Player 2")/2 - 5, 300 + textheight("Select colour:")/2 + 10);
-    setfillstyle (SOLID_FILL, CYAN);
-
-    setcolor(LIGHTMAGENTA );
-    rectangle(420 + textwidth("Player 1")/2 + 5, 300 + textheight("Select colour:")/2 - 10, 420 + textwidth("Player 1")/2 + 20 + 5, 300 + textheight("Select colour:")/2 + 10);
-    rectangle(760 + textwidth("Player 2")/2 + 5, 300 + textheight("Select colour:")/2 - 10, 760 + textwidth("Player 2")/2 + 20 + 5, 300 + textheight("Select colour:")/2 + 10);
-    setfillstyle(SOLID_FILL, LIGHTMAGENTA );
-
-    setcolor(LIGHTRED);
-    rectangle(420 + textwidth("Player 1")/2 - 20 - 20 - 5 - 10, 300 + textheight("Select colour:")/2 - 10, 420 + textwidth("Player 1")/2 - 20 - 5 - 10, 300 + textheight("Select colour:")/2 + 10);
-    rectangle(760 + textwidth("Player 2")/2 - 20 - 20 - 5 - 10, 300 + textheight("Select colour:")/2 - 10, 760 + textwidth("Player 2")/2 - 20 - 5 - 10, 300 + textheight("Select colour:")/2 + 10);
-    setfillstyle(SOLID_FILL, LIGHTRED);
-
-    setfillstyle(SOLID_FILL, YELLOW);
-    rectangle(420 + textwidth("Player 1")/2 + 5 + 20 +10, 300 + textheight("Select colour:")/2 - 10, 420 + textwidth("Player 1")/2 + 20 + 20 + 10 + 5, 300 + textheight("Select colour:")/2 + 10);
-    rectangle(760 + textwidth("Player 2")/2 + 5 + 20 +10, 300 + textheight("Select colour:")/2 - 10, 760 + textwidth("Player 2")/2 + 20 + 20 + 10 + 5, 300 + textheight("Select colour:")/2 + 10);
-
-    int x, y;
-    getmouseclick(WM_LBUTTONDOWN, x, y);
-
-    if(x>=420 + textwidth("Player 1")/2 - 10 && x<=420 + textwidth("Player 1")/2 + 10 && y>=250 + textheight("Who begins?")/2 - 10 && y<=250 + textheight("Who begins?")/2 + 10 && ismouseclick(WM_LBUTTONDOWN))
-       setfillstyle(SOLID_FILL, BLACK);
 }
 
 void language_default()
@@ -153,15 +145,13 @@ void language_default()
     //ADD CONTENT
     settextstyle(font, HORIZ_DIR,4);
     left = (windowWidth - textwidth("Romana"))/2;
-    outtextxy(left, 200, "Romana");
+    outtextxy(left, 250, "Romana");
 
     left = (windowWidth - textwidth("English"))/2;
-    outtextxy(left, 240, "English");
+    outtextxy(left, 310, "English");
 
     left = (windowWidth - textwidth("Française"))/2;
-    outtextxy(left, 280, "Française");
-
-
+    outtextxy(left, 370, "Française");
 }
 
 void language_english()

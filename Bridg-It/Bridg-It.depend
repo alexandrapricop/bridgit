@@ -69,12 +69,34 @@
 
 1608422503 d:\facultate\proiect\bridg-it\variables.h
 
-1608494661 d:\facultate\proiect\bridg-it\windows.h
+1608504660 d:\facultate\proiect\bridg-it\windows.h
 
-1608496395 d:\facultate\proiect\bridg-it\rowindow.h
+1608504200 d:\facultate\proiect\bridg-it\rowindow.h
 
-1608494864 d:\facultate\proiect\bridg-it\frwindow.h
+1608504200 d:\facultate\proiect\bridg-it\frwindow.h
 
 1608455987 d:\facultate\proiect\bridg-it\navigation.h
+	<iostream>
+
+1608454554 source:d:\proiect\bridg-it\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+	<ctime>
+	"variables.h"
+	"windows.h"
+	"rowindow.h"
+	"frwindow.h"
+	"navigation.h"
+
+1608422503 d:\proiect\bridg-it\variables.h
+
+1608508329 d:\proiect\bridg-it\windows.h
+
+1608507083 d:\proiect\bridg-it\rowindow.h
+
+1608507340 d:\proiect\bridg-it\frwindow.h
+
+1608508217 d:\proiect\bridg-it\navigation.h
 	<iostream>
 
