@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
     // DEFAULT WINDOWS + WINDOWS IN ENGLISH
 
 void start_default() // AVAILBALE VOR ALL 3 LANGUAGES
@@ -21,6 +22,18 @@ void start()
 
     // ADINA
     start_default();
+=======
+void start(){ // ADINA
+    setbkcolor(LIGHTGREEN);
+    clearviewport();
+    setcolor(BLACK);
+    settextstyle(font, HORIZ_DIR,9);
+    int left = (windowWidth - textwidth("Bridg-It"))/2;
+    outtextxy(left, 150, "Bridg-It");
+    setcolor(BLACK);
+    settextstyle(font, HORIZ_DIR,3);
+    setfillstyle(EMPTY_FILL, BLACK);
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
     //rectangle(20, 20, 20+10+textwidth("Info"), 20+10+textheight("Info"));
     //rectangle(20, 55, 20+10+textwidth("Language"), 55+10+textheight("Language"));
     //rectangle(20, 90, 20+10+textwidth("Settings"), 90+10+textheight("Settings"));
@@ -30,7 +43,11 @@ void start()
     outtextxy(25, 95, "Settings");
     outtextxy(1150, 25, "Exit");
     settextstyle(font, HORIZ_DIR,5);
+<<<<<<< HEAD
     int left = (windowWidth - textwidth("< Single Player >"))/2;
+=======
+    left = (windowWidth - textwidth("< Single Player >"))/2;
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
     outtextxy(left, 330, "< Single Player >");
     left = (windowWidth - textwidth("< Two Players >"))/2;
     outtextxy(left, 405, "< Two Players >");
@@ -39,9 +56,15 @@ void start()
 
 }
 
+<<<<<<< HEAD
 void info()
 {
 
+=======
+
+void info()
+{
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
     // ADINA
     clearviewport();
     setcolor(BLACK);
@@ -77,19 +100,27 @@ void info()
 
 void settings()
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
     // ALEXANDRA
     clearviewport();
     setcolor(BLACK);
 
     settextstyle(font, HORIZ_DIR,5);
     int left = (windowWidth - textwidth("Settings"))/2;
+<<<<<<< HEAD
     outtextxy(left, 110, "Settings");
+=======
+    outtextxy(left, 120, "Settings");
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
 
     //ADD BUTTON BACK HOME
     settextstyle(font, HORIZ_DIR,3);
     //rectangle(1100, 20, 1100+10+textwidth("Home"), 20+10+textheight("Home"));
     outtextxy(1150, 25, "Home");
+<<<<<<< HEAD
 
     // ADINA
     // ADD SETTINGS
@@ -142,14 +173,30 @@ void language_default()
 {
 
     // THE SAME FOR ALL 3 LANGUAGES
+=======
+}
+
+void language()
+{
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
     // ALEXANDRA
     clearviewport();
     setcolor(BLACK);
 
     //ADD TITLE
     settextstyle(font, HORIZ_DIR,5);
+<<<<<<< HEAD
     int left = (windowWidth - textwidth("Language/ Langue/ Limba"))/2;
     outtextxy(left, 120, "Language/ Langue/ Limba");
+=======
+    int left = (windowWidth - textwidth("Language"))/2;
+    outtextxy(left, 120, "Language");
+
+    //ADD BUTTON BACK HOME
+    settextstyle(font, HORIZ_DIR,3);
+    //rectangle(850, 20, 850+10+textwidth("Home"), 20+10+textheight("Home"));
+    outtextxy(1150, 25, "Home");
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
 
     //ADD CONTENT
     settextstyle(font, HORIZ_DIR,4);
@@ -159,12 +206,18 @@ void language_default()
     left = (windowWidth - textwidth("English"))/2;
     outtextxy(left, 240, "English");
 
+<<<<<<< HEAD
     left = (windowWidth - textwidth("Francaise"))/2;
     outtextxy(left, 280, "Francaise");
+=======
+    left = (windowWidth - textwidth("Française"))/2;
+    outtextxy(left, 280, "Française");
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
 
 
 }
 
+<<<<<<< HEAD
 void language_english()
 {
     language_default();
@@ -179,4 +232,6 @@ void board()
 }
 
 
+=======
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
 

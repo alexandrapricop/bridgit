@@ -9,10 +9,16 @@
 	<winbgim.h>
 	<graphics.h>
 
-1607877271 source:c:\users\user\bridgit\bridg-it\main.cpp
+1608423411 source:c:\users\user\bridgit\bridg-it\main.cpp
 	<iostream>
 	<winbgim.h>
 	<graphics.h>
+	"variables.h"
+	"windows.h"
+	"rowindow.h"
+	"frwindow.h"
+	"navigation.h"
+	"navigation.h"
 
 1608161327 source:c:\users\alexa\c++\bridgit\bridg-it\main.cpp
 	<iostream>
@@ -31,6 +37,8 @@
 1608165409 c:\users\alexa\c++\bridgit\bridg-it\navigation.h
 	<iostream>
 
+1608165409 D
+
 1608201651 source:c:\users\user\bridgit\bridgit\bridg-it\main.cpp
 	<iostream>
 	<winbgim.h>
@@ -44,5 +52,20 @@
 1608422853 c:\users\user\bridgit\bridgit\bridg-it\windows.h
 
 1608422853 c:\users\user\bridgit\bridgit\bridg-it\navigation.h
+	<iostream>
+
+1608422853 
+
+1608422853 6fafc80ed197ced277b93124287b098a987a1
+
+1608423411 c:\users\user\bridgit\bridg-it\variables.h
+
+1608423411 c:\users\user\bridgit\bridg-it\windows.h
+
+1608422853 c:\users\user\bridgit\bridg-it\rowindow.h
+
+1608422853 c:\users\user\bridgit\bridg-it\frwindow.h
+
+1608423411 c:\users\user\bridgit\bridg-it\navigation.h
 	<iostream>
 

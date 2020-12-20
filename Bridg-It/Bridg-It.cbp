@@ -35,11 +35,17 @@
 		<Unit filename="frwindow.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="navigation.h" />
+<<<<<<< HEAD
 		<Unit filename="rowindow.h" />
+=======
+>>>>>>> 40e6fafc80ed197ced277b93124287b098a987a1
 		<Unit filename="variables.h" />
 		<Unit filename="windows.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
