@@ -35,6 +35,7 @@ void start()
     //rectangle(325, 325, 325+10+textwidth("Single-player"), 325+10+textheight("Single-player"));
     //rectangle(325, 400, 325+10+textwidth("Single-player"), 400+10+textheight("Two-players"));
 
+
 }
 
 void info()
@@ -177,11 +178,79 @@ void timer()
 	}
 }
 
+void drawboard()
+{
+
+    // 0 - THERE IS NO DOT
+    // 1 - PLAYER 1 DOTS
+    // 2 - PLAYER 2 DOTS
+
+    int i,j, boardside=5;
+    int Board[20][20];
+    for(i=0; i<=2*boardside; i++)
+        for(j=0; j<=2*boardside; j++)
+            if((i%2==1) && (j%2==0))
+                Board[i][j]=1;
+            else
+                if((i%2==0) && (j%2==1))
+                    Board[i][j]=2;
+                else
+                    Board[i][j]=0;
+    for(i=0; i<=2*boardside; i++)
+        {
+          Board[0][i]=2;
+          Board[i][0]=1;
+          Board[2*boardside][i]=2;
+          Board[i][2*boardside]=1;
+        }
+
+}
+
 void board()
 {
+
+    // ALL THE FUNCTION RELATED TO THE PLAY WINDOW ARE INCLUDED
+    drawboard();
     clearviewport();
     timer();
 }
+
+void afisare()
+{
+
+    // ADINA
+    // AFISARE MATRICE
+
+    int i,j, boardside=5;
+    int Board[20][20];
+
+    for(i=0; i<=2*boardside; i++)
+        for(j=0; j<=2*boardside; j++)
+            if((i%2==1) && (j%2==0))
+                Board[i][j]=1;
+        else
+                if((i%2==0) && (j%2==1))
+                    Board[i][j]=2;
+                else
+                    Board[i][j]=0;
+    for(i=0; i<=2*boardside; i++)
+        {
+          Board[0][i]=2;
+          Board[i][0]=1;
+          Board[2*boardside][i]=2;
+          Board[i][2*boardside]=1;
+          Board[0][2*boardside]=1;
+        }
+    for(i=0; i<=2*boardside; i++)
+        {
+            for(j=0; j<=2*boardside; j++)
+            std::cout<<Board[i][j]<<' ';
+            std::cout<<"\n";
+        }
+    std::cout<<"\n";
+}
+
+
 
 
 

@@ -8,12 +8,11 @@
 #include "frwindow.h"
 #include "navigation.h"
 
-
 using namespace std;
-
 
 int main()
 {
+    afisare();
     initwindow(windowWidth, windowHeight);
     start();
 

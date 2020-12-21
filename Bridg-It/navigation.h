@@ -45,7 +45,7 @@ void when_left_click()
     }
 
     // NAVIGATES BACK TO HOME IF ENGLISH IS SELECTED
-    if(x>=560 && x<=720 && y>=310 && y<=340 && (currentWindow==3 || currentWindow==7 || currentWindow==11))
+    if(x>=560 && x<=720 && y>=310 && y<=350 && (currentWindow==3 || currentWindow==7 || currentWindow==11))
     {
         start();
         currentWindow=1;
@@ -76,14 +76,14 @@ void when_left_click()
     }
 
     // NAVIGATES FROM HOME TO SETTINGS
-    if(x>=20 && x<=130 && y>=95 && y<=115 && currentWindow==5)
+    if(x>=20 && x<=180 && y>=95 && y<=115 && currentWindow==5)
     {
         settings_francais();
         currentWindow=8;
     }
 
     // NAVIGATES BACK TO HOME
-    if(x>=1130 && x<=1250 && y>=20 && y<=53 && currentWindow>5 && currentWindow<9)
+    if(x>=995 && x<=1250 && y>=20 && y<=53 && currentWindow>5 && currentWindow<9)
     {
         start_francais();
         currentWindow=5;
@@ -127,17 +127,15 @@ void when_left_click()
 
     // OPENS BOARD FOR ALL 3 LANGUAGES
     // OPENS BOARD FOR SINGLE-PLAYER MODE
-    if(x>=460 && x<=815 && y>=330 && y<=360 && (currentWindow==1 || currentWindow==5 || currentWindow==9))
+    if(x>=460 && x<=815 && y>=330 && y<=360 && (currentWindow==1 || currentWindow==5 || currentWindow==9) && !ismouseclick(WM_LBUTTONDOWN))
     {
-        board();
-        currentWindow==14;
+       // currentWindow=14;
     }
 
     // OPENS BOARD FOR TWO-PLAYERS MODE
-    if(x>=420 && x<=855 && y>=405 && y<=435 && (currentWindow==1 || currentWindow==5 || currentWindow==9))
+    if(x>=420 && x<=855 && y>=405 && y<=435 && (currentWindow==1 || currentWindow==5 || currentWindow==9) )
     {
-        board();
-        currentWindow==15;
+       // currentWindow=15;
     }
 
     // EXIT
@@ -148,6 +146,5 @@ void when_left_click()
     // }
 
     cout << "Latest left click at: " << x << " " << y << endl;
-
 
 }
