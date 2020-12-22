@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1608641249 source:d:\proiect\bridgit_new\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+	<ctime>
+	<cstring>
+	"variables.h"
+	"windows.h"
+	"enwindows.h"
+	"rowindows.h"
+	"frwindows.h"
+	"navigation.h"
+
+1608642916 d:\proiect\bridgit_new\variables.h
+
+1608641306 d:\proiect\bridgit_new\enwindows.h
+
+1608635034 d:\proiect\bridgit_new\rowindows.h
+
+1608642335 d:\proiect\bridgit_new\frwindows.h
+
+1608641527 d:\proiect\bridgit_new\navigation.h
+
+1608643441 d:\proiect\bridgit_new\windows.h
+
+1608641249 source:c:\users\user\bridgit\bridgit_new\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+	<ctime>
+	<cstring>
+	"variables.h"
+	"windows.h"
+	"enwindows.h"
+	"rowindows.h"
+	"frwindows.h"
+	"navigation.h"
+
+1608642916 c:\users\user\bridgit\bridgit_new\variables.h
+
+1608643441 c:\users\user\bridgit\bridgit_new\windows.h
+
+1608641306 c:\users\user\bridgit\bridgit_new\enwindows.h
+
+1608635034 c:\users\user\bridgit\bridgit_new\rowindows.h
+
+1608642335 c:\users\user\bridgit\bridgit_new\frwindows.h
+
+1608641527 c:\users\user\bridgit\bridgit_new\navigation.h
+

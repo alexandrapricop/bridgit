@@ -2,19 +2,21 @@
 #include <winbgim.h>
 #include <graphics.h>
 #include <ctime>
+#include <cstring>
 #include "variables.h"
 #include "windows.h"
-#include "rowindow.h"
-#include "frwindow.h"
+#include "enwindows.h"
+#include "rowindows.h"
+#include "frwindows.h"
 #include "navigation.h"
 
 using namespace std;
 
 int main()
 {
-    afisare();
     initwindow(windowWidth, windowHeight);
-    start();
+    setbkcolor(WHITE);
+    menu_english();
 
     while(true){
         when_left_click();
