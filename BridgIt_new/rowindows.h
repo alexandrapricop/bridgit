@@ -1,11 +1,11 @@
 
-    // WINDOWS IN ROMANIAN
+    // FERESTRE IN ROMANA - INSERARE IMAGINI
     // ADINA
 
 void menu_romanian()
 {
 
-    // WINDOW FOR MAIN MENU
+    // PAGINA DE PORNIRE
 
     clearviewport();
     readimagefile("menu_romanian.jpg", 0, 0, windowWidth, windowHeight);
@@ -14,7 +14,7 @@ void menu_romanian()
 void info_romanian()
 {
 
-    // WINDOW FOR INFO
+    // INFO
 
     clearviewport();
     readimagefile("info_romanian.jpg", 0, 0, windowWidth, windowHeight);
@@ -24,16 +24,20 @@ void info_romanian()
 void language_romanian()
 {
 
-    // WINDOWS FOR LANGUAGES
+    // LIMBI
+    // DACA SELECTEZ LIMBILE DIN MENIU, ATUNCI ARE LOC DELAYUL
+    // DACA NU SI VREAU SA COMUT LIMBA, ATUNCI NU ARE LOC NICIUN DELAY, CI SE INSEREAZA IMAGINILE UNA PESTE ALTA SI SE ACTUALIZEAZA CURRENTWINDOW
 
-    clearviewport();
+    if(currentWindow==1 || currentWindow==6 || currentWindow==11)
+        clearviewport();
+
     readimagefile("language_romanian.jpg", 0, 0, windowWidth, windowHeight);
 }
 
 void settings_romanian()
 {
 
-    // WINDOW FOR SETTINGS
+    // SETARI
     clearviewport();
     readimagefile("settings_romanian.jpg", 0, 0, windowWidth, windowHeight);
 }
@@ -41,7 +45,7 @@ void settings_romanian()
 void aboutsettings_romanian()
 {
 
-    // WINDOW FOR MORE ABOUT SETTINGS
+    // MAI MULTE DESPRE SETARI
 
     clearviewport();
     readimagefile("aboutsettings_romanian.jpg", 0, 0, windowWidth, windowHeight);

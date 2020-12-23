@@ -2,7 +2,6 @@
 #include <winbgim.h>
 #include <graphics.h>
 #include <ctime>
-#include <cstring>
 #include "variables.h"
 #include "windows.h"
 #include "enwindows.h"

@@ -1,13 +1,12 @@
 
-    // WINDOWS IN FRENCH
+    // FERESTRE IN FRANCEZA - INSERARE IMAGINI
     // ADINA
 
 void menu_french()
 {
 
-    // WINDOW FOR MAIN MENU
+    // PAGINA DE PORNIRE
 
-    setbkcolor(WHITE);
     clearviewport();
     readimagefile("menu_french.jpg", 0, 0, windowWidth, windowHeight);
 }
@@ -15,9 +14,8 @@ void menu_french()
 void info_french()
 {
 
-    // WINDOW FOR INFO
+    // INFO
 
-    setbkcolor(WHITE);
     clearviewport();
     readimagefile("info_french.jpg", 0, 0, windowWidth, windowHeight);
 
@@ -26,19 +24,22 @@ void info_french()
 void language_french()
 {
 
-    // WINDOWS FOR LANGUAGES
+    // LIMBI
+    // DACA SELECTEZ LIMBILE DIN MENIU, ATUNCI ARE LOC DELAYUL
+    // DACA NU SI VREAU SA COMUT LIMBA, ATUNCI NU ARE LOC NICIUN DELAY, CI SE INSEREAZA IMAGINILE UNA PESTE ALTA SI SE ACTUALIZEAZA CURRENTWINDOW
 
-    setbkcolor(WHITE);
-    clearviewport();
-    readimagefile("language_french.jpg", 0, 0, windowWidth, windowHeight);
+    if(currentWindow==1 || currentWindow==6 || currentWindow==11)
+        clearviewport();
+
+
+     readimagefile("language_french.jpg", 0, 0, windowWidth, windowHeight);
 }
 
 void settings_french()
 {
 
-    // WINDOW FOR SETTINGS
+    // SETARI
 
-    setbkcolor(WHITE);
     clearviewport();
     readimagefile("settings_french.jpg", 0, 0, windowWidth, windowHeight);
 }
@@ -46,9 +47,8 @@ void settings_french()
 void aboutsettings_french()
 {
 
-    // WINDOW FOR MORE ABOUT SETTINGS
+    // MAI MULTE DESPRE SETARI
 
-    setbkcolor(WHITE);
     clearviewport();
     readimagefile("aboutsettings_french.jpg", 0, 0, windowWidth, windowHeight);
 }

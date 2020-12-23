@@ -1,7 +1,7 @@
 
 void buttons()
 {
-    // CLICK ON SETTINGS TO CHOOSE THE GAME COLOURS
+    // PREIA COORDONATELE LUI X SI Y DIN SETARI SI IN FUNCTIE DE ELE SE VOR SELECTA OPTIUNILE PRIN INSERAREA IMAGINILOR
 
     int x, y;
     getmouseclick(WM_LBUTTONDOWN, x, y);
@@ -9,28 +9,28 @@ void buttons()
     if(currentWindow==4 || currentWindow==9 || currentWindow==13)
     {
 
-            if(x>=795 && x<=840 && y>=110 && y<=205)
+            if(x>=950 && x<=1010 && y>=190 && y<=240)
                 colour1=7;
 
-            if(x>=795 && x<=840 && y>=215 && y<=310)
+            if(x>=950 && x<=1010 && y>=245 && y<=295)
                 colour2=7;
 
-            if(x>=855 && x<=900 && y>=110 && y<=205)
+            if(x>=1020 && x<=1080 && y>=190 && y<=240)
                 colour1=4;
 
-            if(x>=855 && x<=900 && y>=215 && y<=310)
+            if(x>=1020 && x<=1000 && y>=245 && y<=295)
                 colour2=4;
 
-            if(x>=910 && x<=955 && y>=110 && y<=205)
+            if(x>=1085 && x<=1145 && y>=190 && y<=240)
                 colour1=12;
 
-            if(x>=910 && x<=955 && y>=215 && y<=310)
+            if(x>=1085 && x<=1145 && y>=245 && y<=295)
                 colour2=12;
 
-            if(x>=970 && x<=1015 && y>=110 && y<=205)
+            if(x>=1155 && x<=1215 && y>=190 && y<=240)
                 colour1=11;
 
-            if(x>=970 && x<=1015 && y>=215 && y<=310)
+            if(x>=1155 && x<=1215 && y>=245 && y<=295)
                 colour2=11;
     }
 
@@ -41,9 +41,9 @@ void afisare()
 
     // ADINA
     // AFISARE MATRICE
-    // 0 - THERE IS NO DOT
-    // 1 - PLAYER 1 DOTS
-    // 2 - PLAYER 2 DOTS
+    // 0 - NU SUNT BULINE
+    // 1 - BULINE PLAYER 1
+    // 2 - BULINE PLAYER 2
 
     int i,j, boardside=5;
     int Board[20][20];
@@ -71,7 +71,7 @@ void afisare()
 
     for(i=0; i<=2*boardside; i++)
         for(j=0; j<=2*boardside; j++)
-            setcolor(BLACK);  // DRAWS THE DOTS IN THE BOARD, FOR VALUE 0 IT DRAWS AN ELLPISE, FOR 1 IT DRAWS FOR PLAYER 1 AND FOR 2 IT DRAWS FOR PLAYER 2
+            setcolor(BLACK);  // DESENEAZA TABLA DE JOC
             if(Board[i][j]==0)
 
 
@@ -89,10 +89,9 @@ void afisare()
 void drawboard()
 {
 
-    // DRAWS THE BOARD EDGES
+    // DESENEAZA MARGINILE TABLEI DE JOC
 
     clearviewport();
-    setbkcolor(WHITE);
 
     // ADINA
 
@@ -118,7 +117,7 @@ void drawboard()
 void board()
 {
 
-    // ALL THE FUNCTION RELATED TO THE PLAY WINDOW ARE INCLUDED
+    // TOATE FUNCTIILE LEGATE DE DESCHIDEREA TABLEI DE JOC, TIMER, MOUSE, ETC. SE GASESC AICI
     drawboard();
     buttons();
 }
