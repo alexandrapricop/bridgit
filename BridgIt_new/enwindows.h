@@ -4,26 +4,20 @@
 
 void menu_english()
 {
-
     // PAGINA DE PORNIRE
-
     clearviewport();
     readimagefile("menu_english.jpg", 0, 0, windowWidth, windowHeight);
 }
 
 void info_english()
 {
-
     // INFO
-
     clearviewport();
     readimagefile("info_english.jpg", 0, 0, windowWidth, windowHeight);
-
 }
 
 void language_english()
 {
-
     int x=mousex(), y=mousey();
 
     // LIMBI
@@ -43,7 +37,6 @@ void language_english()
 void settings_english()
 {
 
-
     int x, y;
 
     getmouseclick(WM_LBUTTONDOWN, x, y);
@@ -54,16 +47,11 @@ void settings_english()
 
         readimagefile("settings_english.jpg", 0, 0, windowWidth, windowHeight);
 
-
-
 }
 
 void aboutsettings_english()
 {
-
     // MAI MULTE DESPRE SETARI
-
     clearviewport();
     readimagefile("aboutsettings_english.jpg", 0, 0, windowWidth, windowHeight);
-
 }

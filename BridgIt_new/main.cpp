@@ -19,6 +19,7 @@ int main()
 
     while(true){
         when_left_click();
+        when_circle_click();
     }
 
     getch();

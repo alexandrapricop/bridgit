@@ -6,7 +6,7 @@
 void when_left_click()
 {
     // ALEXANDRA
-    const int DELAY = 50; // Milliseconds of delay between checks
+    const int DELAY = 1; // Milliseconds of delay between checks
     int x, y;
 
     while (!ismouseclick(WM_LBUTTONDOWN))

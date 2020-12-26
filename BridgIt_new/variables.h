@@ -3,6 +3,9 @@ int currentWindow = 1, lastWindow; // LASTWINDOW E FOLOSIT LA MORE ABOUT SETTING
 int defaultx = 30; // FOLOSIT IN NAVIGATION
 int colour1=7, colour2=4; // FOLOSIT IN BUTTONS
 int a=(windowWidth - 600)/2, b=(windowHeight - 600)/2; // BOARD EDGES' COORDINATES
+int player = 1;
+int clicked = 0;
+int firstI,firstJ;
 
 
 // currentWindow/ lastWindow - ENGLEZA: 1-HOME, 2-INFO, 3-LANGUAGES, 4-SETTINGS, 5-MORE ABOUT SETTINGS
