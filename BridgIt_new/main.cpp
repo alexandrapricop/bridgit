@@ -13,13 +13,18 @@ using namespace std;
 
 int main()
 {
+
     initwindow(windowWidth, windowHeight);
+    cout<< getwindowheight()<< " "<< getwindowwidth();
     setbkcolor(WHITE);
     menu_english();
 
-    while(true){
+    while(true)
+    {
         when_left_click();
-        when_circle_click();
+
+        if(currentWindow==16 || currentWindow==17)
+            when_circle_click();
     }
 
     getch();

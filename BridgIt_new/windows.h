@@ -1,6 +1,3 @@
-#include <iostream>
-#include <winbgim.h>
-#include <graphics.h>
 
 void buttons()
 {
@@ -9,34 +6,16 @@ void buttons()
     int x, y;
     getmouseclick(WM_LBUTTONDOWN, x, y);
 
-    if(currentWindow==4 || currentWindow==9 || currentWindow==13)
-    {
 
-            if(x>=950 && x<=1010 && y>=190 && y<=240)
-                colour1=7;
-
-            if(x>=950 && x<=1010 && y>=245 && y<=295)
-                colour2=7;
-
-            if(x>=1020 && x<=1080 && y>=190 && y<=240)
-                colour1=4;
-
-            if(x>=1020 && x<=1000 && y>=245 && y<=295)
-                colour2=4;
-
-            if(x>=1085 && x<=1145 && y>=190 && y<=240)
-                colour1=12;
-
-            if(x>=1085 && x<=1145 && y>=245 && y<=295)
-                colour2=12;
-
-            if(x>=1155 && x<=1215 && y>=190 && y<=240)
-                colour1=11;
-
-            if(x>=1155 && x<=1215 && y>=245 && y<=295)
-                colour2=11;
-    }
-
+    if(x>=dx*17 && x<=dx*34)
+       {
+            if(y>=dy*43 && y<=dy*50)
+                readimagefile("small_english.jpg", dx*17, dy*43, dx*34, dy*64);
+            if(y>=dy*51 && y<=dy*57)
+                readimagefile("mediumb_english.jpg", dx*17, dy*43, dx*34, dy*64);
+            if(y>=dy*58 && y<=dy*64)
+                readimagefile("large_english.jpg", dx*17, dy*43, dx*34, dy*64);
+       }
 }
 
 /*
@@ -132,6 +111,8 @@ void board()
 
 */
 
+
+
 struct gameCircle{
     int x, y;
     int status,color;
@@ -140,37 +121,53 @@ struct gameCircle{
 gameCircle GAME[7][7];
 gameCircle CONNECTIONS[10][10];
 
-void initializeMatrix(int n, int m){
+void initializeMatrix(int n, int m)
+{
+    // ALEXANDRA
+
     setlinestyle(SOLID_LINE, 0 , 10);
-    for(int i=1; i<=n+m; i++){
+
+    for(int i=1; i<=n+m; i++)
+    {
         for(int j=1; j<=m+n; j++)
-        if(i%2==1){
-            if(j%2==1){
-                CONNECTIONS[i][j].status=0;
-            }else{
+            if(i%2==1)
+            {
+                if(j%2==1)
+                {
+                    CONNECTIONS[i][j].status=0;
+                }
+                else
+                {
                 int x = 593+(j-1)*100;
                 int y = 230 + (i*70);
-                setcolor(RED);
+                setcolor(LIGHTRED);
+                setfillstyle(SOLID_FILL, LIGHTRED);
                 circle(x,y,30);
-                floodfill(x,y,RED);
+                floodfill(x,y,LIGHTRED);
                 CONNECTIONS[i][j].status = 1;
                 CONNECTIONS[i][j].x = x;
                 CONNECTIONS[i][j].y = y;
+                }
             }
-        }else{
-            if(j%2==1){
-                int x = 597+(j-1)*100;
-                int y = 230 + (i*70);
-                setcolor(BLUE);
-                circle(x,y,30);
-                floodfill(x,y,BLUE);
-                CONNECTIONS[i][j].status = 2;
-                CONNECTIONS[i][j].x = x;
-                CONNECTIONS[i][j].y = y;
-            }else{
-                CONNECTIONS[i][j].status=0;
+            else
+            {
+                if(j%2==1)
+                {
+                    int x = 597+(j-1)*100;
+                    int y = 230 + (i*70);
+                    setcolor(LIGHTBLUE);
+                    setfillstyle(SOLID_FILL, LIGHTBLUE);
+                    circle(x,y,30);
+                    floodfill(x,y,LIGHTBLUE);
+                    CONNECTIONS[i][j].status = 2;
+                    CONNECTIONS[i][j].x = x;
+                    CONNECTIONS[i][j].y = y;
+                }
+                else
+                {
+                    CONNECTIONS[i][j].status=0;
+                }
             }
-        }
     }
 }
 
@@ -187,7 +184,7 @@ void when_circle_click(){
     // ALEXANDRA
     const int DELAY = 1; // Milliseconds of delay between checks
     int x, y;
-        int n = 4, m = 5;
+    int n = 4, m = 5;
 
     while (!ismouseclick(WM_LBUTTONDOWN))
     delay(DELAY);
@@ -206,9 +203,9 @@ void when_circle_click(){
                  }
 
                  if(player == 1){
-                    setcolor(RED);
+                    setcolor(LIGHTRED);
                  }else{
-                    setcolor(BLUE);
+                    setcolor(LIGHTBLUE);
                  }
 
                  circle(CONNECTIONS[i][j].x,CONNECTIONS[i][j].y,30);
@@ -219,9 +216,9 @@ void when_circle_click(){
                  circle(CONNECTIONS[i][j].x,CONNECTIONS[i][j].y,6);
                  circle(CONNECTIONS[i][j].x,CONNECTIONS[i][j].y,5);
                 if(player == 1){
-                    floodfill(x+10,y+10,RED);
+                    floodfill(x+10,y+10,LIGHTRED);
                  }else{
-                    floodfill(x+10,y+10,BLUE);
+                    floodfill(x+10,y+10,LIGHTBLUE);
                  }
 
                  if(clicked == 0){
@@ -255,18 +252,12 @@ void when_circle_click(){
 
 
 /*
-
                 if(CONNECTIONS[i-2][j].color == 1){
-
                  }
                 if(CONNECTIONS[i+2][j].color == 1){
-
                  }
                 if(CONNECTIONS[i][j-2].color == 1){
-
                  }
                 if(CONNECTIONS[i][j+2].color == 1){
-
                  }
-
 */

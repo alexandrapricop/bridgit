@@ -17,7 +17,7 @@ void when_left_click()
     // ENGLEZA
     // SARE DIN PAGINA DE PORNIRE IN INFO
 
-    if(x>=defaultx && x<=120 && y>=30 && y<=85 && currentWindow==1)
+    if(x>=dx*1 && x<=dx*8 && y>=dy*1 && y<=dy*10 && currentWindow==1)
     {
         info_english();
         currentWindow=2;
@@ -25,7 +25,7 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN FEREASTRA CU LIMBI
-    if(x>=defaultx && x<=210 && y>=90 && y<=150 && currentWindow==1)
+    if(x>=dx*1 && x<=dx*14 && y>=dy*11 && y<=dy*18 && currentWindow==1)
     {
         language_english();
         currentWindow=3;
@@ -33,7 +33,7 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN SETARI
-    if(x>=defaultx && x<=185 && y>=150 && y<=195 && currentWindow==1)
+    if(x>=dx*1 && x<=dx*13 && y>=dy*19 && y<=dy*24 && currentWindow==1)
     {
         settings_english();
         currentWindow=4;
@@ -42,16 +42,16 @@ void when_left_click()
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
 
-     if(x>=20 && x<=365 && y>=10 && y<=65 && currentWindow==4)
+     if(x>=dx*1 && x<=dx*24 && y>=dy*1 && y<=dy*8 && currentWindow==4)
     {
-        aboutsettings_english();
-        currentWindow=5;
-        lastWindow=0;
+            aboutsettings_english();
+            currentWindow=5;
+            lastWindow=0;
     }
 
     // REVINE DIN MAI MULTE DESPRE SETARI IN SETARI
 
-     if(x>=1200 && x<=1510 && y>=10 && y<=60 && currentWindow==5)
+     if(x>=dx*78 && x<=dx*100 && y>=dy*0 && y<=dy*7 && currentWindow==5)
     {
         settings_english();
         currentWindow=4;
@@ -61,7 +61,7 @@ void when_left_click()
 
     // SE INTOARCE PE PAGINA DE PORNIRE INDIFERENT DE PAGINA CURENTA
 
-     if(x>=1335 && x<=1515 && y>=10 && y<=55 && currentWindow>1 && currentWindow<5)
+     if(x>=dx*87 && x<=dx*100 && y>=dy*1 && y<=dy*7 && currentWindow>1 && currentWindow<5)
     {
         if(lastWindow==!5)  // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 5
         {
@@ -78,7 +78,7 @@ void when_left_click()
     }
 
     // COMUTA PE ENGLEZA CAND ESTE SELECTATA
-    if(x>=600 && x<=925 && y>=285 && y<=380 && (currentWindow==3 || currentWindow==8 || currentWindow==13))
+    if(x>=dx*37 && x<=dx*63 && y>=dy*35&& y<=dy*46 && (currentWindow==3 || currentWindow==8 || currentWindow==13))
     {
         language_english();
         currentWindow=3;
@@ -90,15 +90,15 @@ void when_left_click()
     // FRANCEZA
 
     // COMUTA PE FRANCEZA CAND ESTE SELECTATA
-    if(x>=585 && x<=940 && y>=400 && y<=475 && (currentWindow==3 || currentWindow==8 || currentWindow==13 ))
+    if(x>=dx*37 && x<=dx*63 && y>=dy*47 && y<=dy*59 && (currentWindow==3 || currentWindow==8 || currentWindow==13 ))
     {
         language_french();
         currentWindow=8;
         lastWindow=0;
     }
 
-    // // SARE DIN PAGINA DE PORNIRE IN INFO
-    if(x>=defaultx && x<=120 && y>=30 && y<=85 && currentWindow==6)
+    // SARE DIN PAGINA DE PORNIRE IN INFO
+    if(x>=dx*1 && x<=dx*11 && y>=dy*1 && y<=dy*10 && currentWindow==6)
     {
         info_french();
         currentWindow=7;
@@ -106,7 +106,7 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN FEREASTRA CU LIMBI
-    if(x>=defaultx && x<=170 && y>=75 && y<=145 && currentWindow==6)
+    if(x>=dx*1 && x<=dx*7 && y>=dy*11 && y<=dy*18 && currentWindow==6)
     {
         language_french();
         currentWindow=8;
@@ -114,7 +114,7 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN SETARI
-    if(x>=defaultx && x<=235 && y>=145 && y<=195 && currentWindow==6)
+    if(x>=dx*1 && x<=dx*15 && y>=dy*19 && y<=dy*24 && currentWindow==6)
     {
         settings_french();
         currentWindow=9;
@@ -123,7 +123,7 @@ void when_left_click()
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
 
-     if(x>=10 && x<=420 && y>=5 && y<=65 && currentWindow==9)
+     if(x>=dx*0 && x<=dx*47 && y>=dy*0 && y<=dy*7 && currentWindow==9)
     {
         aboutsettings_french();
         currentWindow=10;
@@ -132,7 +132,7 @@ void when_left_click()
 
     // REVINE DIN MAI MULTE DESPRE SETARI IN SETARI
 
-     if(x>=1140 && x<=1510 && y>=5 && y<=60 && currentWindow==10)
+     if(x>=dx*75 && x<=dx*100 && y>=dy*0 && y<=dy*7 && currentWindow==10)
     {
         settings_french();
         currentWindow=9;
@@ -141,7 +141,7 @@ void when_left_click()
 
     // REVINE IN PAGINA DE PORNIRE
 
-    if(x>=1220 && x<=1510 && y>=5 && y<=60 && currentWindow>5 && currentWindow<10)
+    if(x>=dx*77 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>5 && currentWindow<10)
     {
             if(lastWindow==!10) // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 10
             {
@@ -161,7 +161,7 @@ void when_left_click()
     // ROMANA
     // COMUTA PE ROMANA CAND ESTE SELECTATA
 
-    if(x>=590 && x<=945 && y>=510 && y<=585 && (currentWindow==3 || currentWindow==8 || currentWindow==13))
+    if(x>=dx*37 && x<=dx*63 && y>=dy*60 && y<=dy*72 && (currentWindow==3 || currentWindow==8 || currentWindow==13))
     {
         language_romanian();
         currentWindow=13;
@@ -170,7 +170,7 @@ void when_left_click()
 
     // SARE DIN PAGINA DE PORNIRE IN INFO
 
-    if(x>=defaultx && x<=220 && y>=25 && y<=85 && currentWindow==11)
+    if(x>=dx*1 && x<=dx*15 && y>=dy*3 && y<=dy*10 && currentWindow==11)
     {
         info_romanian();
         currentWindow=12;
@@ -179,7 +179,7 @@ void when_left_click()
 
     // SARE DIN PAGINA DE PORNIRE IN FEREASTRA CU LIMBI
 
-    if(x>=defaultx && x<=145 && y>=90 && y<=135 && currentWindow==11)
+    if(x>=dx*1 && x<=dx*10 && y>=dy*11 && y<=dy*18 && currentWindow==11)
     {
         language_romanian();
         currentWindow=13;
@@ -187,7 +187,7 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN SETARI
-    if(x>=defaultx && x<=145 && y>=150 && y<=195 && currentWindow==11)
+    if(x>=dx*1 && x<=dx*10 && y>=dy*19 && y<=dy*25 && currentWindow==11)
     {
         settings_romanian();
         currentWindow=14;
@@ -196,7 +196,7 @@ void when_left_click()
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
 
-     if(x>=20 && x<=415 && y>=5 && y<=55 && currentWindow==14)
+     if(x>=dx*0 && x<=dx*30 && y>=dy*0 && y<=dy*7 && currentWindow==14)
     {
         aboutsettings_romanian();
         currentWindow=15;
@@ -205,7 +205,7 @@ void when_left_click()
 
     // REVINE DIN MAI MULTE DESPRE SETARI IN SETARI
 
-     if(x>=1200 && x<=1505 && y>=5 && y<=55 && currentWindow==15)
+     if(x>=dx*77 && x<=dx*98 && y>=dy*0 && y<=dy*8 && currentWindow==15)
     {
         settings_romanian();
         currentWindow=14;
@@ -214,7 +214,7 @@ void when_left_click()
 
     // REVINE IN PAGINA DE PORNIRE
 
-    if(x>=1165 && x<=1510 && y>=5 && y<=65 && currentWindow>10 && currentWindow<15)
+    if(x>=dx*75 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>10 && currentWindow<15)
     {
             if(lastWindow==!15) // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 15
             {
@@ -234,23 +234,27 @@ void when_left_click()
 
         // IESE DIN JOC
 
-    if(x>=1160 && x<=1250 && y>=20 && y<=65 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
-            closegraph();
+
+    //if(x>=dx*90 && x<=dx*98 && y>=dy*2 && y<=dy*9 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
+          //  closegraph();
 
     // DESCHIDE TABLA DE JOC PENTRU MODUL SINGLE PLAYER
-    if(x>=495 && x<=945 && y>=465 && y<=545 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
+    if(x>=dx*32 && x<=dx*62 && y>=dy*53 && y<=dy*66 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
     {
-        drawboard();
-        currentWindow=16;
+        if(lastWindow==0)
+        {
+            drawboard();
+            currentWindow=16;
+        }
     }
 
     // ODESCHIDE TABLA DE JOC PENTRU MODUL TWO PLAYERS
-    if(x>=515 && x<=940 && y>=575 && y<=665 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
+    if(x>=dx*33 && x<=dx*62 && y>=dy*68 && y<=dy*82 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
     {
         drawboard();
         currentWindow=17;
     }
 
-    std::cout << "Latest left click at: " << x << " " << y << "\n";
+    std::cout << "Latest left click at: " << x << " " << x*100/windowWidth<< " " << y << " " << y*100/windowHeight << "\n";
 
 }

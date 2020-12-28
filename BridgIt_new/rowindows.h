@@ -40,6 +40,10 @@ void settings_romanian()
     // SETARI
     clearviewport();
     readimagefile("settings_romanian.jpg", 0, 0, windowWidth, windowHeight);
+    readimagefile("ar.jpg", 1010, 210, 1335, 325);
+    readimagefile("p1_romanian.jpg", 825, 210, 975, 340);
+    readimagefile("small_romanian.jpg", 260, 370, 520, 545);
+    readimagefile("easy_romanian.jpg", 260, 600, 520, 765);
 }
 
 void aboutsettings_romanian()
