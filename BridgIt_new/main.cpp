@@ -3,7 +3,7 @@
 #include <graphics.h>
 #include <ctime>
 #include "variables.h"
-#include "windows.h"
+#include "gamewindows.h"
 #include "enwindows.h"
 #include "rowindows.h"
 #include "frwindows.h"
@@ -15,7 +15,9 @@ int main()
 {
 
     initwindow(windowWidth, windowHeight);
-    cout<< getwindowheight()<< " "<< getwindowwidth();
+    //PlaySound(TEXT("muzica1.mp3"), NULL, SND_SYNC);
+    //PlaySound(TEXT("SystemStart"), NULL, SND_ALIAS);
+
     setbkcolor(WHITE);
     menu_english();
 

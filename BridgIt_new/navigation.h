@@ -255,6 +255,6 @@ void when_left_click()
         currentWindow=17;
     }
 
-    std::cout << "Latest left click at: " << x << " " << x*100/windowWidth<< " " << y << " " << y*100/windowHeight << "\n";
+    std::cout << "Latest left click at: " << x << " " << " " << y << " " << "\n";
 
 }

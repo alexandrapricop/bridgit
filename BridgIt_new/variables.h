@@ -6,6 +6,7 @@ int a=(windowWidth - 600)/2, b=(windowHeight - 600)/2; // BOARD EDGES' COORDINAT
 int player = 1;
 int clicked = 0;
 int firstI, firstJ;
+int size1=2, size2=3;
 
 
 // currentWindow/ lastWindow - ENGLEZA: 1-HOME, 2-INFO, 3-LANGUAGES, 4-SETTINGS, 5-MORE ABOUT SETTINGS
