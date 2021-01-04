@@ -7,6 +7,10 @@ int player = 1;
 int clicked = 0;
 int firstI, firstJ;
 int size1=2, size2=3;
+int colors[3] = {1,2,3}; // 1 - lightred , 2 - lightblue, 3-lightgreen
+int dificulty[3] = {1,2,3}; // 1 - easy 3x4, 2 - medium 4x5, 3 - hard 5x6
+int color1, color2, firstPlayer1;
+
 
 
 // currentWindow/ lastWindow - ENGLEZA: 1-HOME, 2-INFO, 3-LANGUAGES, 4-SETTINGS, 5-MORE ABOUT SETTINGS
