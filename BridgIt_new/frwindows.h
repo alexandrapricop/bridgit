@@ -42,11 +42,10 @@ void settings_french()
 
     clearviewport();
     readimagefile("settings_french.jpg", 0, 0, windowWidth, windowHeight);
-    readimagefile("ar.jpg", 1010, 210, 1335, 325);
-    readimagefile("p1_french.jpg", 835, 210, 975, 340);
-    readimagefile("small_french.jpg", 260, 370, 520, 545);
-    readimagefile("easy_french.jpg", 260, 600, 520, 765);
-}
+    readimagefile("ar.jpg", dx*65, dy*25, dx*85, dy*40);
+    readimagefile("p1_french.jpg", dx*55, dy*25, dx*64, dy*42);
+    readimagefile("small_french.jpg", dx*15, dy*46, dx*32, dy*68);
+    readimagefile("easy_french.jpg", dx*15, dy*75, dx 32, dy*95);
 
 void aboutsettings_french()
 {

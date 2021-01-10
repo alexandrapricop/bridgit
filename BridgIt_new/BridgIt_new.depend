@@ -23,19 +23,22 @@
 
 1608681437 d:\proiect\bridgit_new\windows.h
 
-1609691406 source:c:\users\alexa\c++\bridgit\bridgit\bridgit_new\main.cpp
+1610301334 source:c:\users\alexa\c++\bridgit\bridgit\bridgit_new\main.cpp
 	<iostream>
 	<winbgim.h>
 	<graphics.h>
 	<ctime>
+	<stdlib.h>
+	<cstdlib>
+	<cstring>
 	"variables.h"
-	"gamewindows.h"
 	"enwindows.h"
 	"rowindows.h"
 	"frwindows.h"
+	"gamewindows.h"
 	"navigation.h"
 
-1609713269 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\variables.h
+1610301300 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\variables.h
 
 1609681505 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\windows.h
 
@@ -45,7 +48,7 @@
 
 1609275063 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\frwindows.h
 
-1609680503 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\navigation.h
+1610302617 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\navigation.h
 
 1609180195 source:c:\users\user\bridgit\bridgit_new\main.cpp
 	<iostream>
@@ -71,5 +74,5 @@
 
 1609112899 c:\users\user\bridgit\bridgit_new\navigation.h
 
-1609683139 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\gamewindows.h
+1610301562 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\gamewindows.h
 

@@ -14,6 +14,11 @@ void when_left_click()
 
     getmouseclick(WM_LBUTTONDOWN, x, y);
 
+    // EXIT
+    if(x>=dx*90 && x<=dx*98 && y>=dy*2 && y<=dy*9 && (currentWindow==1 || currentWindow==6 || currentWindow==11)){
+        closegraph();
+    }
+
     // ENGLEZA
     // SARE DIN PAGINA DE PORNIRE IN INFO
 
@@ -83,6 +88,7 @@ void when_left_click()
         language_english();
         currentWindow=3;
         lastWindow=0;
+        strcpy(language,"english");
     }
 
 
@@ -95,6 +101,7 @@ void when_left_click()
         language_french();
         currentWindow=8;
         lastWindow=0;
+        strcpy(language,"french");
     }
 
     // SARE DIN PAGINA DE PORNIRE IN INFO
@@ -103,6 +110,7 @@ void when_left_click()
         info_french();
         currentWindow=7;
         lastWindow=0;
+
     }
 
     // SARE DIN PAGINA DE PORNIRE IN FEREASTRA CU LIMBI
@@ -166,6 +174,7 @@ void when_left_click()
         language_romanian();
         currentWindow=13;
         lastWindow=0;
+        strcpy(language,"romana");
     }
 
     // SARE DIN PAGINA DE PORNIRE IN INFO
@@ -234,9 +243,6 @@ void when_left_click()
 
         // IESE DIN JOC
 
-
-    //if(x>=dx*90 && x<=dx*98 && y>=dy*2 && y<=dy*9 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
-          //  closegraph();
 
     // DESCHIDE TABLA DE JOC PENTRU MODUL SINGLE PLAYER
     if(x>=dx*32 && x<=dx*62 && y>=dy*53 && y<=dy*66 && (currentWindow==1 || currentWindow==6 || currentWindow==11))

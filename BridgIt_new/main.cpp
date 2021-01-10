@@ -2,11 +2,14 @@
 #include <winbgim.h>
 #include <graphics.h>
 #include <ctime>
+#include <stdlib.h>
+#include <cstdlib>
+#include <cstring>
 #include "variables.h"
-#include "gamewindows.h"
 #include "enwindows.h"
 #include "rowindows.h"
 #include "frwindows.h"
+#include "gamewindows.h"
 #include "navigation.h"
 
 using namespace std;
@@ -25,8 +28,8 @@ int main()
     {
         when_left_click();
 
-        if(currentWindow==16 || currentWindow==17)
-            when_circle_click();
+        //if(currentWindow==16 || currentWindow==17)
+            //when_circle_click();
     }
 
     getch();
