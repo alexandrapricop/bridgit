@@ -27,9 +27,6 @@ int main()
     while(true)
     {
         when_left_click();
-
-        //if(currentWindow==16 || currentWindow==17)
-            //when_circle_click();
     }
 
     getch();

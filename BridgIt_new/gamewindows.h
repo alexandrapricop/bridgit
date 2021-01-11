@@ -1,129 +1,132 @@
-#define MAX 20
-#define latura 120
 
-int TablaDeJoc[MAX][MAX];
-int stanga, sus, width, height, dimensiuneTabla=3, jucator=2, culoare=2, player=1, nrmutari=0, nrjucatori=2, level_computer=2;
+    // ALEXANDRA
+
+#define MAX 12
+#define border 120
+
+int board[MAX][MAX];
+int left, up, width, height, dimensiuneTabla=5, jucator=2, culoare=2, player=1, nrmutari=0, nrjucatori=2, level_computer=2;
 
 struct buton{
     int x1, y1, x2, y2, mx, my;
     char text[20];
 };
 
-void initializareTablaDeJoc();
+void initializareboard();
 void afisareTablaInConsola();
-void desenButon (buton &b, int textsize=3, int color=LIGHTGRAY);
+void desenButon (buton &b, int textsize=3, int colour=BLACK);
 void desenTabla();
-void trasareLinie (int linia, int coloana);
-void stergeLinia(int linia, int coloana);
+void trasareline (int linia, int col);
+void stergeLinia(int linia, int col);
 void play();
 void slaveplay();
-void easyslave(int &linia, int &coloana);
-void normalslave(int &linia, int &coloana);
-void hardslave(int ultimalinie, int ultimacoloana, int &linia, int &coloana);
+void easylevel(int &linia, int &col);
+void mediumlevel(int &linia, int &col);
+void hardlevel(int lastline, int lastcol, int &linia, int &col);
 void gameIncheiat();
 void timer(clock_t start, int numarmutari);
-int victorie(int linia, int coloana);
+int victorie(int linia, int col);
 
-void stergeLinia(int linia, int coloana){
+void stergeLinia(int linia, int col){
     setcolor(RED);
     setlinestyle(SOLID_FILL, 0 ,5);
-    if(TablaDeJoc[linia][coloana]==-1*jucator)
+    if(board[linia][col]==-1*jucator)
     {
-        TablaDeJoc[linia][coloana]=0;
-        if(TablaDeJoc[linia][coloana-1]==jucator)
+        board[linia][col]=0;
+        if(board[linia][col-1]==jucator)
         {
-            line(stanga+(coloana-1)*(latura/2)+22, sus+linia*(latura/2), stanga+(coloana+1)*(latura/2)-21,sus+linia*(latura/2));
+            line(left+(col-1)*(border/2)+22, up+linia*(border/2), left+(col+1)*(border/2)-21,up+linia*(border/2));
             nrmutari--;
         }
         else
         {
-            line(stanga+coloana*(latura/2), sus+(linia-1)*(latura/2)+22, stanga+coloana*(latura/2), sus+(linia+1)*(latura/2)-21);
+            line(left+col*(border/2), up+(linia-1)*(border/2)+22, left+col*(border/2), up+(linia+1)*(border/2)-21);
         }   nrmutari--;
     }
 
     if(jucator==1)
     {
         jucator=2;
-        readimagefile("yellows_turn.jpg", 150, 150, 750, 300);
+            readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+
     }
     else
     {
         jucator=1;
-        readimagefile("reds_turn.jpg", 150, 150, 750, 300);
+        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
     }
 }
 
-void trasareLinie(int linia, int coloana){
+void trasareline(int linia, int col){
     if(jucator==1)
     {
-        readimagefile("yellows_turn.jpg", 150, 150, 750, 300);
+        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
         jucator=2;
         setcolor(LIGHTRED);
-        setlinestyle(SOLID_LINE, 0, 5);
+        setlinestyle(SOLID_LINE, 0, 8);
     }
     else
     {
-        readimagefile("reds_turn.jpg", 150, 150, 750, 300);
+        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
         jucator=1;
-        setcolor(YELLOW);
-        setlinestyle(SOLID_LINE, 0, 5);
+        setcolor(LIGHTBLUE);
+        setlinestyle(SOLID_LINE, 0, 8);
     }
-    TablaDeJoc[linia][coloana]=-1*jucator;
+    board[linia][col]=-1*jucator;
 
-    if(TablaDeJoc[linia][coloana-1]==jucator)
-       line(stanga+(coloana-1)*(latura/2), sus+linia*(latura/2), stanga+(coloana+1)*(latura/2), sus+linia*(latura/2));
+    if(board[linia][col-1]==jucator)
+       line(left+(col-1)*(border/2), up+linia*(border/2), left+(col+1)*(border/2), up+linia*(border/2));
     else
-       line(stanga+coloana*(latura/2), sus+(linia-1)*(latura/2), stanga+coloana*(latura/2), sus+(linia+1)*(latura/2));
+       line(left+col*(border/2), up+(linia-1)*(border/2), left+col*(border/2), up+(linia+1)*(border/2));
 }
 
-void desenTabla(){9
+void desenTabla(){
     clearviewport();
     readimagefile("Chenar_joc.jpg", 0, 0, windowWidth, windowHeight);
     int i,j;
-    width=height=latura*dimensiuneTabla;
-    sus=(getmaxy()-width)/2;
-    stanga=(getmaxx()-height)/2+300;
+    width=height=border*dimensiuneTabla;
+    up=(getmaxy()-width)/2;
+    left=(getmaxx()-height)/2+300;
 
-    int x=stanga;
-    int y=sus;
-    int nrBulineLinie;
+    int x=left, y=up;
+    int dots;
     for(int i=1; i<=2*dimensiuneTabla+1; i++)
     {
         if(i%2)
         {
             setcolor(LIGHTRED);
             setfillstyle(SOLID_FILL, LIGHTRED);
-            x=stanga+latura/2;
-            nrBulineLinie=dimensiuneTabla;
+            x=left+border/2;
+            dots=dimensiuneTabla;
         }
         else
         {
-            setcolor(YELLOW);
-            setfillstyle(SOLID_FILL, YELLOW);
-            x=stanga;
-            nrBulineLinie=dimensiuneTabla+1;
+            setcolor(LIGHTBLUE);
+            setfillstyle(SOLID_FILL, LIGHTBLUE);
+            x=left;
+            dots=dimensiuneTabla+1;
         }
-        for(int j=1; j<=nrBulineLinie; j++)
+        for(int j=1; j<=dots; j++)
         {
-            fillellipse(x, y, 19, 19);
-            x+=latura;
+            fillellipse(x, y, 22, 22);
+            x+=border;
         }
-        y+=latura/2;
+        y+=border/2;
     }
 
-    setcolor(YELLOW);
+    setcolor(LIGHTBLUE);
     setlinestyle(SOLID_LINE, 0 ,10);
-    line(stanga, sus+latura/2-10, stanga, sus+height-latura/2+10);
-    line(stanga+width, sus+latura/2-10, stanga+width, sus+height-latura/2+10);
+    line(left, up+border/2-10, left, up+height-border/2+10);
+    line(left+width, up+border/2-10, left+width, up+height-border/2+10);
 
     setcolor(LIGHTRED);
     setlinestyle(SOLID_LINE, 0 ,10);
-    line(stanga+latura/2-10, sus, stanga+width-latura/2+10, sus);
-    line(stanga+latura/2-10, sus+height, stanga+width-latura/2+10, sus+height);
+    line(left+border/2-10, up, left+width-border/2+10, up);
+    line(left+border/2-10, up+height, left+width-border/2+10, up+height);
 
 }
 
-void desenButon(buton &b, int textsize, int color) {
+void desenButon(buton &b, int textsize, int colour) {
         settextstyle(DEFAULT_FONT, HORIZ_DIR, textsize);
         int inaltime=textheight(b.text);
         int lungime=textwidth(b.text);
@@ -138,28 +141,28 @@ void desenButon(buton &b, int textsize, int color) {
         b.x2=b.x1+lungime;
         b.y2=b.y1+inaltime;
 
-        setcolor(color);
+        setcolor(colour);
         outtextxy(b.x1+7, b.y1+7, b.text);
     }
 
 
-void initializareTablaDeJoc(){
+void initializareboard(){
     int i,j;
     for(i=0; i<=2*dimensiuneTabla; i++)
         for(j=0; j<=2*dimensiuneTabla; j++)
             if((i%2==1) && (j%2==0))
-                TablaDeJoc[i][j]=1;
+                board[i][j]=1;
             else
                 if((i%2==0) && (j%2==1))
-                    TablaDeJoc[i][j]=2;
+                    board[i][j]=2;
                 else
-                    TablaDeJoc[i][j]=0;
+                    board[i][j]=0;
     for(i=0; i<=2*dimensiuneTabla; i++)
         {
-          TablaDeJoc[0][i]=2;
-          TablaDeJoc[i][0]=1;
-          TablaDeJoc[2*dimensiuneTabla][i]=2;
-          TablaDeJoc[i][2*dimensiuneTabla]=1;
+          board[0][i]=2;
+          board[i][0]=1;
+          board[2*dimensiuneTabla][i]=2;
+          board[i][2*dimensiuneTabla]=1;
         }
 }
 
@@ -167,15 +170,15 @@ void play() {
     nrmutari=0;
     if(jucator==1)
     {
-        readimagefile("reds_turn.jpg", 150, 150, 750, 300);
+        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
     }
     else
     {
-        readimagefile("yellows_turn.jpg", 150, 150, 750, 300);
+        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
     }
 
     bool gata=false, undo=1, b1_status=0, b2_status=0;
-    int linia, coloana, x, y, last_line, last_column;
+    int linia, col, x, y, last_line, last_column;
     buton B1, B2;
 
     B1.mx=150; B1.my=400; strcpy(B1.text, "Restart");
@@ -194,18 +197,18 @@ void play() {
         {
             clearmouseclick(WM_LBUTTONDOWN);
 
-            if(x>=stanga && x<=stanga+width && y>=sus && y<=sus+height)
+            if(x>=left && x<=left+width && y>=up && y<=up+height)
             {
-                linia=(y-sus+20)/(latura/2);
-                coloana=(x-stanga+20)/(latura/2);
-                if(TablaDeJoc[linia][coloana]==0)
+                linia=(y-up+20)/(border/2);
+                col=(x-left+20)/(border/2);
+                if(board[linia][col]==0)
                 {
                     last_line=linia;
-                    last_column=coloana;
+                    last_column=col;
                     undo=0;
-                    trasareLinie(linia, coloana);
+                    trasareline(linia, col);
                     nrmutari++;
-                    int castigator=victorie(linia, coloana);
+                    int castigator=victorie(linia, col);
                     if(castigator)
                     {
                         jucator=castigator;
@@ -223,7 +226,7 @@ void play() {
                 else
                     jucator=2;
                 gata=1;
-                initializareTablaDeJoc();
+                initializareboard();
                 desenTabla;
                 play();
             }
@@ -246,7 +249,7 @@ void play() {
             else
                 if(b1_status==1)
             {
-                desenButon(B1, 4, YELLOW);
+                desenButon(B1, 4, LIGHTBLUE);
                 desenButon(B1);
                 b1_status=0;
             }
@@ -261,7 +264,7 @@ void play() {
             else
                 if(b2_status==1)
                 {
-                desenButon(B2, 4, YELLOW);
+                desenButon(B2, 4, LIGHTBLUE);
                 desenButon(B2);
                 b2_status=0;
                 }
@@ -299,15 +302,15 @@ void slaveplay(){
     nrmutari=0;
     if(jucator==1)
     {
-        readimagefile("reds_turn.jpg", 150, 150, 750, 300);
+        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
     }
     else
     {
-        readimagefile("yellows_turn.jpg", 150, 150, 750, 300);
+        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
     }
 
     bool gata=false, undo=1, b1_status=0, b2_status=0;
-    int linia, coloana, x, y, last_line, last_column, ultimalinie, ultimacoloana;
+    int linia, col, x, y, last_line, last_column, lastline, lastcol;
     buton B1, B2;
 
     B1.mx=150; B1.my=400; strcpy(B1.text, "Restart");
@@ -326,18 +329,18 @@ void slaveplay(){
         {
             clearmouseclick(WM_LBUTTONDOWN);
 
-            if(x>=stanga && x<=stanga+width && y>=sus && y<=sus+height)
+            if(x>=left && x<=left+width && y>=up && y<=up+height)
             {
-                linia=(y-sus+20)/(latura/2);
-                coloana=(x-stanga+20)/(latura/2);
-                if(TablaDeJoc[linia][coloana]==0)
+                linia=(y-up+20)/(border/2);
+                col=(x-left+20)/(border/2);
+                if(board[linia][col]==0)
                 {
                     last_line=linia;
-                    last_column=coloana;
+                    last_column=col;
                     undo=0;
-                    trasareLinie(linia, coloana);
+                    trasareline(linia, col);
                     nrmutari++;
-                    int castigator=victorie(linia, coloana);
+                    int castigator=victorie(linia, col);
                     if(castigator)
                     {
                         jucator=castigator;
@@ -348,19 +351,19 @@ void slaveplay(){
                     else
                     {
                         if(level_computer==1)
-                            easyslave(linia, coloana);
+                            easylevel(linia, col);
                         else
                             if(level_computer==2)
-                                normalslave(linia, coloana);
+                                mediumlevel(linia, col);
                             else
-                                hardslave(ultimalinie, ultimacoloana, linia, coloana);
+                                hardlevel(lastline, lastcol, linia, col);
 
-                        ultimalinie=linia;
-                        ultimacoloana=coloana;
-                        trasareLinie(linia, coloana);
+                        lastline=linia;
+                        lastcol=col;
+                        trasareline(linia, col);
                         nrmutari++;
 
-                        castigator=victorie(linia, coloana);
+                        castigator=victorie(linia, col);
                         if(castigator)
                         {
                             jucator=castigator;
@@ -379,7 +382,7 @@ void slaveplay(){
                     else
                         jucator=2;
                     gata=1;
-                    initializareTablaDeJoc();
+                    initializareboard();
                     desenTabla();
                     slaveplay();
                 }
@@ -403,7 +406,7 @@ void slaveplay(){
             else
                 if(b1_status==1)
                 {
-                    desenButon(B1, 4, YELLOW);
+                    desenButon(B1, 4,LIGHTBLUE);
                     desenButon(B1);
                     b1_status=0;
                 }
@@ -418,7 +421,7 @@ void slaveplay(){
             else
                 if(b2_status==1)
                 {
-                desenButon(B2, 4, YELLOW);
+                desenButon(B2, 4, LIGHTBLUE);
                 desenButon(B2);
                 b2_status=0;
                 }
@@ -430,175 +433,175 @@ void slaveplay(){
             if(undo==0)
             {
                 undo=1;
-                stergeLinia(ultimalinie, ultimacoloana);
+                stergeLinia(lastline, lastcol);
                 stergeLinia(last_line, last_column);
             }
         }
     }
 }
 
-void easyslave(int &linia, int &coloana){
+void easylevel(int &linia, int &col){
     int mutare=0;
     while(mutare==0)
     {
         linia=rand()%(2*dimensiuneTabla)+1;
-        coloana=rand()%(2*dimensiuneTabla)+1;
+        col=rand()%(2*dimensiuneTabla)+1;
 
-        if(TablaDeJoc[linia][coloana]==0)
+        if(board[linia][col]==0)
         {
-            TablaDeJoc[linia][coloana]=jucator;
+            board[linia][col]=jucator;
             mutare=1;
         }
     }
 }
 
-void normalslave(int &linia, int &coloana){
+void mediumlevel(int &linia, int &col){
     if(nrmutari==0)
-        easyslave(linia, coloana);
+        easylevel(linia, col);
     else
         {
             int mutare=0;
-            if((TablaDeJoc[linia][coloana-1]!=jucator) && (TablaDeJoc[linia][coloana+1]!=0))
+            if((board[linia][col-1]!=jucator) && (board[linia][col+1]!=0))
             {
                 for(int i=1; i<=dimensiuneTabla; i++)
                 {
-                    if((TablaDeJoc[linia-i][coloana]==0)&& (mutare==0) &&(linia-i>0))
+                    if((board[linia-i][col]==0)&& (mutare==0) &&(linia-i>0))
                         {
-                            TablaDeJoc[linia-i][coloana]=jucator;
+                            board[linia-i][col]=jucator;
                             mutare=1;
                             linia=linia-i;
                         }
-                    if((TablaDeJoc[linia+i][coloana]==0)&& (mutare==0) &&(linia+i<2*dimensiuneTabla+1))
+                    if((board[linia+i][col]==0)&& (mutare==0) &&(linia+i<2*dimensiuneTabla+1))
                     {
-                        TablaDeJoc[linia+i][coloana]=jucator;
+                        board[linia+i][col]=jucator;
                         mutare=1;
                         linia=linia+i;
                     }
                 }
             }
                 else
-                    if((TablaDeJoc[linia-1][coloana]!=jucator) && (TablaDeJoc[linia+1][coloana!=jucator]))
+                    if((board[linia-1][col]!=jucator) && (board[linia+1][col!=jucator]))
                         {
                             for(int i=1; i<=dimensiuneTabla;i++)
                             {
-                                if((TablaDeJoc[linia][coloana-i]==0) && (mutare==0) && (coloana-i>0))
+                                if((board[linia][col-i]==0) && (mutare==0) && (col-i>0))
                                     {
-                                        TablaDeJoc[linia][coloana-i]=jucator;
+                                        board[linia][col-i]=jucator;
                                         mutare=1;
-                                        coloana=coloana-i;
+                                        col=col-i;
                                     }
-                                if((TablaDeJoc[linia][coloana+i]==0) && (mutare==0) && (coloana+i>0))
+                                if((board[linia][col+i]==0) && (mutare==0) && (col+i>0))
                                     {
-                                        TablaDeJoc[linia][coloana+i]=jucator;
+                                        board[linia][col+i]=jucator;
                                         mutare=1;
-                                        coloana=coloana+i;
+                                        col=col+i;
                                     }
                             }
                         }
                         if(mutare==0)
-                            easyslave(linia, coloana);
+                            easylevel(linia, col);
         }
 }
 
-void hardslave(int ultimalinie, int ultimacoloana, int &linia, int &coloana){
+void hardlevel(int lastline, int lastcol, int &linia, int &col){
     int coditai[100]={0}, coditaj[100]={0}, k=1;
     int di[4]={0, 0, 1, -1};
     int dj[4]={1, -1, 0, 0};
-    coditai[1]=ultimalinie;
-    coditaj[1]=ultimacoloana;
+    coditai[1]=lastline;
+    coditaj[1]=lastcol;
 
     if((nrmutari==0)  || (nrmutari==1))
-            easyslave(linia, coloana);
+            easylevel(linia, col);
         else
             {
                 int miscare=0;
-                if((TablaDeJoc[ultimalinie][ultimacoloana-1]==jucator) && (TablaDeJoc[ultimalinie][ultimacoloana+1]==jucator))
+                if((board[lastline][lastcol-1]==jucator) && (board[lastline][lastcol+1]==jucator))
                     {
-                        coditaj[++k]=ultimacoloana-1;
-                        coditai[k]=ultimalinie;
-                        coditaj[++k]=ultimacoloana+1;
-                        coditai[k]=ultimalinie;
+                        coditaj[++k]=lastcol-1;
+                        coditai[k]=lastline;
+                        coditaj[++k]=lastcol+1;
+                        coditai[k]=lastline;
                     }
-                if((TablaDeJoc[ultimalinie-1][ultimacoloana]==jucator) && (TablaDeJoc[ultimalinie+1][ultimacoloana]==jucator))
+                if((board[lastline-1][lastcol]==jucator) && (board[lastline+1][lastcol]==jucator))
                     {
-                        coditai[++k]=ultimalinie-1;
-                        coditaj[k]=ultimacoloana;
-                        coditai[++k]=ultimalinie+1;
-                        coditaj[k]=ultimacoloana;
+                        coditai[++k]=lastline-1;
+                        coditaj[k]=lastcol;
+                        coditai[++k]=lastline+1;
+                        coditaj[k]=lastcol;
                     }
                 k=1;
                 while((miscare==0) && (coditai[k]!=0) && (coditaj[k]!=0))
                     {
                        for(int i=0; i<=3; i++)
-                            if((TablaDeJoc[coditai[k]+di[i]][coditaj[k]+dj[i]]==jucator) && (coditai[k]+di[i]>i) && (coditai[k]+di[i]<=2*dimensiuneTabla) && (coditaj[k]+dj[i]>i) && (coditaj[k]+dj[i]<=2*dimensiuneTabla))
+                            if((board[coditai[k]+di[i]][coditaj[k]+dj[i]]==jucator) && (coditai[k]+di[i]>i) && (coditai[k]+di[i]<=2*dimensiuneTabla) && (coditaj[k]+dj[i]>i) && (coditaj[k]+dj[i]<=2*dimensiuneTabla))
                                {
                                     coditai[++k]=coditai[k]+di[i];
                                     coditaj[k]=coditai[k]+dj[i];
                                }
                        for(int i=0; i<=3; i++)
-                            if((TablaDeJoc[coditai[k]+di[i]][coditaj[k]+dj[i]]==0))
+                            if((board[coditai[k]+di[i]][coditaj[k]+dj[i]]==0))
                                 {
-                                    TablaDeJoc[coditai[k]+di[i]][coditaj[k]+dj[i]]=jucator;
+                                    board[coditai[k]+di[i]][coditaj[k]+dj[i]]=jucator;
                                     linia=coditai[k];
-                                    coloana=coditaj[k];
+                                    col=coditaj[k];
                                     miscare=1;
                                 }
                                     k++;
                     }
                 if(miscare==0)
-                    normalslave(linia, coloana);
+                    mediumlevel(linia, col);
             }
 }
 
-int victorie(int linia, int coloana){
-    int coadai[50]={0}, coadaj[50]={0}, prim=1, ultim=1, i, j, aux[12][12]={0};
+int victorie(int linia, int col){
+    int queuei[50]={0}, queuej[50]={0}, first=1, last=1, i, j, aux[12][12]={0};
     // debug(aux);
-    coadai[prim]=linia;
-    coadaj[prim]=coloana;
-    while(prim<=ultim)
+    queuei[first]=linia;
+    queuej[first]=col;
+    while(first<=last)
         {
-            i=coadai[prim];
-            j=coadaj[prim];
+            i=queuei[first];
+            j=queuej[first];
             aux[i][j]=1;
-            if((abs(TablaDeJoc[i][j+1])==abs(TablaDeJoc[i][j])) && (aux[i][j+1]!=1) && (i!=2*dimensiuneTabla) && (i!=0) && (j+1!=0) && (j+1!=2*dimensiuneTabla))
+            if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*dimensiuneTabla) && (i!=0) && (j+1!=0) && (j+1!=2*dimensiuneTabla))
                 {
                     aux[i][j+1]=1;
-                    ultim++;
-                    coadai[ultim]=i;
-                    coadaj[ultim]=j+1;
+                    last++;
+                    queuei[last]=i;
+                    queuej[last]=j+1;
                 }
-            if((abs(TablaDeJoc[i][j-1])==abs(TablaDeJoc[i][j])) && (aux[i][j-1]!=1) && (i!=2*dimensiuneTabla) && (i!=0) && (j-1!=0) && (j-1!=2*dimensiuneTabla))
+            if((abs(board[i][j-1])==abs(board[i][j])) && (aux[i][j-1]!=1) && (i!=2*dimensiuneTabla) && (i!=0) && (j-1!=0) && (j-1!=2*dimensiuneTabla))
                 {
                     aux[i][j-1]=1;
-                    ultim++;
-                    coadai[ultim]=i;
-                    coadaj[ultim]=j-1;
+                    last++;
+                    queuei[last]=i;
+                    queuej[last]=j-1;
                 }
-            if((abs(TablaDeJoc[i+1][j])==abs(TablaDeJoc[i][j])) && (aux[i+1][j]!=1) && (i+1!=2*dimensiuneTabla) && (i+1!=0) && (j!=0) && (j!=2*dimensiuneTabla))
+            if((abs(board[i+1][j])==abs(board[i][j])) && (aux[i+1][j]!=1) && (i+1!=2*dimensiuneTabla) && (i+1!=0) && (j!=0) && (j!=2*dimensiuneTabla))
                 {
                     aux[i+1][j]=1;
-                    ultim++;
-                    coadai[ultim]=i+1;
-                    coadaj[ultim]=j;
+                    last++;
+                    queuei[last]=i+1;
+                    queuej[last]=j;
                 }
-            if((abs(TablaDeJoc[i-1][j])==abs(TablaDeJoc[i][j])) && (aux[i-1][j]!=1) && (i-1!=2*dimensiuneTabla) && (i-1!=0) && (j!=0) && (j!=2*dimensiuneTabla))
+            if((abs(board[i-1][j])==abs(board[i][j])) && (aux[i-1][j]!=1) && (i-1!=2*dimensiuneTabla) && (i-1!=0) && (j!=0) && (j!=2*dimensiuneTabla))
                 {
                     aux[i-1][j]=1;
-                    ultim++;
-                    coadai[ultim]=i-1;
-                    coadaj[ultim]=j;
+                    last++;
+                    queuei[last]=i-1;
+                    queuej[last]=j;
                 }
-            prim++;
+            first++;
         }
 
         if(jucator==2)//rosu
         {
             int cond1=0, cond2=0;
-            for(int i=1; i<=ultim; i++)
+            for(int i=1; i<=last; i++)
                 {
-                    if(coadai[i]==1)
+                    if(queuei[i]==1)
                         cond1=1;
-                     if(coadai[i]==2*dimensiuneTabla-1)
+                     if(queuei[i]==2*dimensiuneTabla-1)
                         cond2=1;
                 }
             if((cond1==1) && (cond2==1))
@@ -609,11 +612,11 @@ int victorie(int linia, int coloana){
         if(jucator==1)//galben
         {
             int cond1=0, cond2=0;
-            for(int j=1; j<=ultim; j++)
+            for(int j=1; j<=last; j++)
                 {
-                    if(coadaj[j]==1)
+                    if(queuej[j]==1)
                         cond1=1;
-                     if(coadaj[j]==2*dimensiuneTabla-1)
+                     if(queuej[j]==2*dimensiuneTabla-1)
                         cond2=1;
                 }
             if((cond1==1) && (cond2==1))
@@ -631,11 +634,11 @@ void gameIncheiat(){
 
     if(jucator==1)
     {
-        readimagefile("yellow_won.jpg", getmaxwidth()/2-200, 300, getmaxwidth()/2+200, 500);
+        readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
     }
     else
     {
-        readimagefile("red_won.jpg", getmaxwidth()/2-200, 300, getmaxwidth()/2+200, 500);
+        readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
     }
 
     buton B1, B2, B3;
@@ -671,7 +674,7 @@ void gameIncheiat(){
                         jucator=1;
                     else
                         jucator=2;
-                    initializareTablaDeJoc();
+                    initializareboard();
                     desenTabla();
                     if(nrjucatori==1)
                         slaveplay();
@@ -695,7 +698,7 @@ void gameIncheiat(){
 void drawboard(){
 
     clearviewport();
-    initializareTablaDeJoc();
+    initializareboard();
     desenTabla();
     if(nrjucatori==1)
         slaveplay();

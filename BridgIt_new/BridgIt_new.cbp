@@ -34,11 +34,11 @@
 		</Compiler>
 		<Unit filename="enwindows.h" />
 		<Unit filename="frwindows.h" />
+		<Unit filename="gamewindows.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="navigation.h" />
 		<Unit filename="rowindows.h" />
 		<Unit filename="variables.h" />
-		<Unit filename="windows.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

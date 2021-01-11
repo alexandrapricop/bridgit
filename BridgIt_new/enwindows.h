@@ -18,7 +18,9 @@ void info_english()
 
 void language_english()
 {
-    int x=mousex(), y=mousey();
+
+    int x, y;
+    getmouseclick(WM_LBUTTONDOWN, x, y);
 
     // LIMBI
     // DACA SELECTEZ LIMBILE DIN MENIU, ATUNCI ARE LOC DELAYUL
@@ -46,12 +48,10 @@ void settings_english()
         clearviewport();
 
     readimagefile("settings_english.jpg", 0, 0, windowWidth, windowHeight);
-    //readimagefile("ar.jpg", dx*60, dy*24, dx*82, dy*38);
-    //readimagefile("p1_english.jpg", dx*49, dy*24, dx*58, dy*40);
-    //readimagefile("small_english.jpg", dx*17, dy*44, dx*34, dy*65);
-    //readimagefile("easy_english.jpg", dx*17, dy*75, dx*34, dy*95);
-    settextstyle(8, 0,5);
-    outtextxy(300, 500, "Textllllllllllll");
+    readimagefile("ar.jpg", dx*65, dy*25, dx*85, dy*40);
+    readimagefile("p1_english.jpg", dx*54, dy*25, dx*64, dy*42);
+    readimagefile("small_english.jpg", dx*17, dy*44, dx*34, dy*65);
+    readimagefile("easy_english.jpg", dx*17, dy*75, dx*34, dy*95);
     buttons();
 }
 

@@ -50,29 +50,88 @@
 
 1610302617 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\navigation.h
 
-1609180195 source:c:\users\user\bridgit\bridgit_new\main.cpp
+1610307338 source:c:\users\user\bridgit\bridgit_new\main.cpp
 	<iostream>
 	<winbgim.h>
 	<graphics.h>
 	<ctime>
+	<stdlib.h>
+	<cstdlib>
+	<cstring>
 	"variables.h"
-	"windows.h"
 	"enwindows.h"
 	"rowindows.h"
 	"frwindows.h"
+	"gamewindows.h"
 	"navigation.h"
 
-1609150825 c:\users\user\bridgit\bridgit_new\variables.h
+1610326010 c:\users\user\bridgit\bridgit_new\variables.h
 
 1609153320 c:\users\user\bridgit\bridgit_new\windows.h
 
-1609152572 c:\users\user\bridgit\bridgit_new\enwindows.h
+1610325992 c:\users\user\bridgit\bridgit_new\enwindows.h
 
-1609085320 c:\users\user\bridgit\bridgit_new\rowindows.h
+1610320187 c:\users\user\bridgit\bridgit_new\rowindows.h
 
-1609085470 c:\users\user\bridgit\bridgit_new\frwindows.h
+1610323056 c:\users\user\bridgit\bridgit_new\frwindows.h
 
-1609112899 c:\users\user\bridgit\bridgit_new\navigation.h
+1610326400 c:\users\user\bridgit\bridgit_new\navigation.h
 
 1610301562 c:\users\alexa\c++\bridgit\bridgit\bridgit_new\gamewindows.h
+
+1610307338 source:c:\users\user\bridgit\bridgit\bridgit_new\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+	<ctime>
+	<stdlib.h>
+	<cstdlib>
+	<cstring>
+	"variables.h"
+	"enwindows.h"
+	"rowindows.h"
+	"frwindows.h"
+	"gamewindows.h"
+	"navigation.h"
+
+1610307143 c:\users\user\bridgit\bridgit\bridgit_new\variables.h
+
+1610307293 c:\users\user\bridgit\bridgit\bridgit_new\enwindows.h
+
+1610302927 c:\users\user\bridgit\bridgit\bridgit_new\rowindows.h
+
+1610302971 c:\users\user\bridgit\bridgit\bridgit_new\frwindows.h
+
+1610309667 c:\users\user\bridgit\bridgit\bridgit_new\gamewindows.h
+
+1610302927 c:\users\user\bridgit\bridgit\bridgit_new\navigation.h
+
+1610307338 source:d:\bridgit_new\main.cpp
+	<iostream>
+	<winbgim.h>
+	<graphics.h>
+	<ctime>
+	<stdlib.h>
+	<cstdlib>
+	<cstring>
+	"variables.h"
+	"enwindows.h"
+	"rowindows.h"
+	"frwindows.h"
+	"gamewindows.h"
+	"navigation.h"
+
+1610326010 d:\bridgit_new\variables.h
+
+1610325992 d:\bridgit_new\enwindows.h
+
+1610320187 d:\bridgit_new\rowindows.h
+
+1610323056 d:\bridgit_new\frwindows.h
+
+1610324155 d:\bridgit_new\gamewindows.h
+
+1610326400 d:\bridgit_new\navigation.h
+
+1610324155 c:\users\user\bridgit\bridgit_new\gamewindows.h
 

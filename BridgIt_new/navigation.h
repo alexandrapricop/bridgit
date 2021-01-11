@@ -35,6 +35,7 @@ void when_left_click()
         language_english();
         currentWindow=3;
         lastWindow=0;
+
     }
 
     // SARE DIN PAGINA DE PORNIRE IN SETARI
@@ -66,7 +67,7 @@ void when_left_click()
 
     // SE INTOARCE PE PAGINA DE PORNIRE INDIFERENT DE PAGINA CURENTA
 
-     if(x>=dx*87 && x<=dx*100 && y>=dy*1 && y<=dy*7 && currentWindow>1 && currentWindow<5)
+     if(x>=dx*87 && x<=dx*100 && y>=dy*1 && y<=dy*7 && currentWindow>1 && currentWindow<5 || currentWindow==16 || currentWindow==17)
     {
         if(lastWindow==!5)  // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 5
         {
@@ -149,7 +150,7 @@ void when_left_click()
 
     // REVINE IN PAGINA DE PORNIRE
 
-    if(x>=dx*77 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>5 && currentWindow<10)
+    if(x>=dx*77 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>5 && currentWindow<10 || currentWindow==16 || currentWindow==17)
     {
             if(lastWindow==!10) // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 10
             {
@@ -174,7 +175,7 @@ void when_left_click()
         language_romanian();
         currentWindow=13;
         lastWindow=0;
-        strcpy(language,"romana");
+        strcpy(language,"romanian");
     }
 
     // SARE DIN PAGINA DE PORNIRE IN INFO
@@ -223,7 +224,7 @@ void when_left_click()
 
     // REVINE IN PAGINA DE PORNIRE
 
-    if(x>=dx*75 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>10 && currentWindow<15)
+    if(x>=dx*75 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>10 && currentWindow<18)
     {
             if(lastWindow==!15) // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 15
             {
@@ -261,6 +262,6 @@ void when_left_click()
         currentWindow=17;
     }
 
-    std::cout << "Latest left click at: " << x << " " << " " << y << " " << "\n";
+    std::cout << "Latest left click at: " << x*100/ getmaxwidth()<< " " << " " << y*100/getmaxheight() << " " << "\n";
 
 }
