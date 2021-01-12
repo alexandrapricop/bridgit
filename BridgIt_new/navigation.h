@@ -31,6 +31,7 @@ void when_left_click()
     // SARE DIN PAGINA DE PORNIRE IN FEREASTRA CU LIMBI
     if(x>=dx*1 && x<=dx*14 && y>=dy*11 && y<=dy*18 && currentWindow==1)
     {
+        strcpy(language,"english");
         language_english();
         currentWindow=3;
         lastWindow=0;
@@ -38,60 +39,14 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN SETARI
-    if(x>=dx*1 && x<=dx*13 && y>=dy*19 && y<=dy*24 && currentWindow==1)
+    if(x>=dx*1 && x<=dx*13 && y>=dy*19 && y<=dy*24 && (currentWindow==1 || currentWindow==5))
     {
         settings_english();
         currentWindow=4;
         lastWindow=0;
 
-        // ALEXANDRA
-        if(difficulty == 1){
-            readimagefile("easy_english.jpg", dx*16, dy*75, dx*32, dy*95);
-        }
-        if(difficulty == 2){
-           readimagefile("medium_english.jpg", dx*16, dy*75, dx*32, dy*95);
-        }
-        if(difficulty == 3){
-             readimagefile("hard_english.jpg", dx*16, dy*75, dx*32, dy*95);
-        }
-
-        if(boardsize == 1){
-            readimagefile("small_english.jpg", dx*17, dy*44, dx*34, dy*65);
-        }
-
-        if(boardsize == 2){
-            readimagefile("mediumb_english.jpg", dx*17, dy*44, dx*34, dy*65);
-        }
-
-        if(boardsize == 3){
-            readimagefile("large_english.jpg", dx*17, dy*44, dx*34, dy*65);
-        }
-
-        if(colour2 == 7){
-            readimagefile("a_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 4){
-              readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 12){
-                readimagefile("g_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 11){
-                readimagefile("v_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-
-        if(colour1 == 7){
-                readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 4){
-               readimagefile("r_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 12){
-                readimagefile("g_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 11){
-                readimagefile("v_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
+        std::cout<<firstPlayer;
+        buttons_en();
     }
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
@@ -110,6 +65,8 @@ void when_left_click()
         settings_english();
         currentWindow=4;
         lastWindow=5;
+
+        buttons_en();
     }
 
 
@@ -174,59 +131,13 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN SETARI
-    if(x>=dx*1 && x<=dx*15 && y>=dy*19 && y<=dy*24 && currentWindow==6)
+    if(x>=dx*1 && x<=dx*15 && y>=dy*19 && y<=dy*24 && (currentWindow==6 || currentWindow==10))
     {
         settings_french();
         currentWindow=9;
         lastWindow=0;
 
-        if(difficulty == 1){
-            readimagefile("easy_french.jpg", dx*15, dy*75, dx*32, dy*95);
-        }
-        if(difficulty == 2){
-            readimagefile("medium_french.jpg", dx*15, dy*75, dx*32, dy*95);
-        }
-        if(difficulty == 3){
-             readimagefile("hard_french.jpg", dx*15, dy*75, dx*32, dy*95);
-        }
-
-        if(boardsize == 1){
-            readimagefile("small_french.jpg", dx*15, dy*46, dx*32, dy*68);
-        }
-
-        if(boardsize == 2){
-            readimagefile("mediumb_french.jpg", dx*15, dy*46, dx*32, dy*68);
-        }
-
-        if(boardsize == 3){
-                readimagefile("large_french.jpg", dx*15, dy*46, dx*32, dy*68);
-        }
-
-        if(colour2 == 7){
-            readimagefile("a_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 4){
-              readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 12){
-                readimagefile("g_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 11){
-                readimagefile("v_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-
-        if(colour1 == 7){
-                readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 4){
-               readimagefile("r_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 12){
-                readimagefile("g_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 11){
-                readimagefile("v_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
+        buttons_fr();
     }
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
@@ -236,6 +147,7 @@ void when_left_click()
         aboutsettings_french();
         currentWindow=10;
         lastWindow=0;
+
     }
 
     // REVINE DIN MAI MULTE DESPRE SETARI IN SETARI
@@ -245,6 +157,8 @@ void when_left_click()
         settings_french();
         currentWindow=9;
         lastWindow=10;
+
+        buttons_fr();
     }
 
     // REVINE IN PAGINA DE PORNIRE
@@ -299,59 +213,12 @@ void when_left_click()
     // SARE DIN PAGINA DE PORNIRE IN SETARI
     if(x>=dx*1 && x<=dx*10 && y>=dy*19 && y<=dy*25 && currentWindow==11)
     {
+          std::cout<<firstPlayer;
         settings_romanian();
         currentWindow=14;
         lastWindow=0;
 
-        // ALEXANDRA
-        if(difficulty == 1){
-            readimagefile("easy_romanian.jpg", dx*16, dy*75, dx*32, dy*95);
-        }
-        if(difficulty == 2){
-           readimagefile("medium_romanian.jpg", dx*16, dy*75, dx*32, dy*95);
-        }
-        if(difficulty == 3){
-             readimagefile("hard_romanian.jpg", dx*16, dy*75, dx*32, dy*95);
-        }
-
-        if(boardsize == 1){
-             readimagefile("small_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
-        }
-
-        if(boardsize == 2){
-             readimagefile("mediumb_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
-        }
-
-        if(boardsize == 3){
-             readimagefile("large_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
-        }
-
-        if(colour2 == 7){
-            readimagefile("a_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 4){
-              readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 12){
-                readimagefile("g_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-        if(colour2 == 11){
-                readimagefile("v_colour.jpg", dx*65, dy*33, dx*83, dy*40);
-        }
-
-        if(colour1 == 7){
-                readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 4){
-               readimagefile("r_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 12){
-                readimagefile("g_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-        if(colour1 == 11){
-                readimagefile("v_colour.jpg", dx*65, dy*25, dx*83, dy*32);
-        }
-
+        buttons_ro;
 
     }
 
@@ -371,6 +238,8 @@ void when_left_click()
         settings_romanian();
         currentWindow=14;
         lastWindow=15;
+
+        buttons_ro();
     }
 
     // REVINE IN PAGINA DE PORNIRE
@@ -394,8 +263,8 @@ void when_left_click()
     // DESCHIDE TABLA DE JOC PENTRU MODUL SINGLE PLAYER
     if(x>=dx*32 && x<=dx*62 && y>=dy*53 && y<=dy*66 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
     {
-
-            drawboard();
+            nrplayers=1;
+            maindraw();
             currentWindow=16;
 
     }
@@ -403,7 +272,8 @@ void when_left_click()
     // ODESCHIDE TABLA DE JOC PENTRU MODUL TWO PLAYERS
     if(x>=dx*33 && x<=dx*62 && y>=dy*68 && y<=dy*82 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
     {
-        drawboard();
+        nrplayers=2;
+        maindraw();
         currentWindow=17;
     }
 

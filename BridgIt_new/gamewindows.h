@@ -2,17 +2,17 @@
 #define border 120
 
 int board[12][12];
-int left, up, width, height, boarddimension=5, jucator=1, culoare=colour1, player=1, moves=0, nrjucatori=2;
+int left, up, width, height, culoare=colour1, player=1, moves=0;
 
-struct buton{
+struct button{
     int x1, y1, x2, y2, mx, my;
     char text[20];
 };
 
 void initializare();
 void tabla_consola();
-void drawbutton (buton &b, int textsize=3, int colour=BLACK);
-void boarddraw();
+void drawbutton (button &b, int textsize=5, int colour=BLACK);
+void drawboard();
 void drawline (int linia, int col);
 void eraseline(int linia, int col);
 void play();
@@ -28,10 +28,10 @@ void eraseline(int linia, int col){
     setcolor(RED);
     setlinestyle(SOLID_FILL, 0 ,5);
 
-    if(board[linia][col]==-1*jucator)
+    if(board[linia][col]==-1*player)
     {
         board[linia][col]=0;
-        if(board[linia][col-1]==jucator)
+        if(board[linia][col-1]==player)
         {
             line(left+(col-1)*(border/2)+22, up+linia*(border/2), left+(col+1)*(border/2)-21,up+linia*(border/2));
             moves--;
@@ -42,9 +42,9 @@ void eraseline(int linia, int col){
         }   moves--;
     }
 
-    if(jucator==1)
+    if(player==1)
     {
-        jucator=2;
+        player=2;
 
         if(colour1 == 7){
 
@@ -78,7 +78,7 @@ void eraseline(int linia, int col){
 
         }
 
-        if(colour1 == 12){
+        if(colour1 == 11){
 
 
           if(strcmp(language, "english")==0){
@@ -95,7 +95,7 @@ void eraseline(int linia, int col){
 
         }
 
-        if(colour1 == 11){
+        if(colour1 == 12){
 
           if(strcmp(language, "english")==0){
             readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
@@ -113,7 +113,7 @@ void eraseline(int linia, int col){
     }
     else
     {
-        jucator=1;
+        player=1;
 
         if(colour2 == 7){
           if(strcmp(language, "english")==0){
@@ -144,7 +144,7 @@ void eraseline(int linia, int col){
           }
         }
 
-        if(colour2 == 12){
+        if(colour2 == 11){
           if(strcmp(language, "english")==0){
             readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
           }
@@ -158,7 +158,7 @@ void eraseline(int linia, int col){
           }
         }
 
-        if(colour2 == 11){
+        if(colour2 == 12){
           if(strcmp(language, "english")==0){
             readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
           }
@@ -175,9 +175,9 @@ void eraseline(int linia, int col){
 }
 
 void drawline(int linia, int col){
-    if(jucator==1)
+    if(player==1)
     {
-        jucator=2;
+        player=2;
 
         if(colour1 == 7){
             setcolor(LIGHTBLUE);
@@ -188,18 +188,18 @@ void drawline(int linia, int col){
             setcolor(LIGHTRED);
             setlinestyle(SOLID_LINE, 0 ,8);
         }
-        if(colour1 == 12){
+        if(colour1 == 11){
             setcolor(LIGHTGREEN);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
-        if(colour1 == 11){
+        if(colour1 == 12){
             setcolor(YELLOW);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
     }
     else
     {
-        jucator=1;
+        player=1;
 
         if(colour2 == 7){
             setcolor(LIGHTBLUE);
@@ -210,30 +210,30 @@ void drawline(int linia, int col){
             setcolor(LIGHTRED);
             setlinestyle(SOLID_LINE, 0 ,8);
         }
-        if(colour2 == 12){
+        if(colour2 == 11){
             setcolor(LIGHTGREEN);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
-        if(colour2 == 11){
+        if(colour2 == 12){
             setcolor(YELLOW);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
     }
-    board[linia][col]=-1*jucator;
+    board[linia][col]=-1*player;
 
-    if(board[linia][col-1]==jucator)
+    if(board[linia][col-1]==player)
        line(left+(col-1)*(border/2), up+linia*(border/2), left+(col+1)*(border/2), up+linia*(border/2));
     else
        line(left+col*(border/2), up+(linia-1)*(border/2), left+col*(border/2), up+(linia+1)*(border/2));
 }
 
-void boarddraw(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
+void drawboard(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
 
     clearviewport();
     readimagefile("Chenar_joc.jpg", 0, 0, windowWidth, windowHeight);
 
     int i,j;
-    width=height=border*boarddimension;
+    width=height=border*boardsize;
     up=(getmaxheight()-height)/2;
     left=(getmaxwidth()-width)/2+20*dx;
 
@@ -241,9 +241,9 @@ void boarddraw(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
     int dots;
 
     // SE ADAUGA PIESELE
-    for(int i=1; i<=2*boarddimension+1; i++)
+    for(int i=1; i<=2*boardsize+1; i++)
     {
-        if(i%2)
+        if(i%2==1)
             // 7 albastru, 4 rosu 12 galben 11 verde
         {
             if(colour1 == 7){
@@ -255,18 +255,18 @@ void boarddraw(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
                 setcolor(LIGHTRED);
                 setfillstyle(SOLID_FILL, LIGHTRED);
             }
-            if(colour1 == 12){
+            if(colour1 == 11){
                 setcolor(LIGHTGREEN);
                 setfillstyle(SOLID_FILL, LIGHTGREEN);
             }
 
-            if(colour1 == 11){
+            if(colour1 == 12){
                 setcolor(YELLOW);
                 setfillstyle(SOLID_FILL, YELLOW);
             }
 
             x=left+border/2;
-            dots=boarddimension;
+            dots=boardsize;
         }
         else
         {
@@ -279,18 +279,18 @@ void boarddraw(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
                 setcolor(LIGHTRED);
                 setfillstyle(SOLID_FILL, LIGHTRED);
             }
-            if(colour2 == 12){
+            if(colour2 == 11){
                 setcolor(LIGHTGREEN);
                 setfillstyle(SOLID_FILL, LIGHTGREEN);
             }
 
-            if(colour2 == 11){
+            if(colour2 == 12){
                 setcolor(YELLOW);
                 setfillstyle(SOLID_FILL, YELLOW);
             }
 
             x=left;
-            dots=boarddimension+1;
+            dots=boardsize+1;
         }
 
         for(int j=1; j<=dots; j++)
@@ -312,18 +312,18 @@ void boarddraw(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
         setcolor(LIGHTRED);
         setlinestyle(SOLID_LINE, 0 ,10);
     }
-    if(colour2 == 12){
+    if(colour2 == 11){
         setcolor(LIGHTGREEN);
         setlinestyle(SOLID_LINE, 0 ,10);
     }
 
-    if(colour2 == 11){
+    if(colour2 == 12){
         setcolor(YELLOW);
         setlinestyle(SOLID_LINE, 0 ,10);
     }
 
-    line(left, up+border/2-10, left, up+height-border/2+10);
-    line(left+width, up+border/2-10, left+width, up+height-border/2+10);
+    line(left, up+border/2, left, up+height-border/2);
+    line(left+width, up+border/2, left+width, up+height-border/2);
 
     if(colour1 == 7){
     setcolor(LIGHTBLUE);
@@ -334,24 +334,27 @@ void boarddraw(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
         setcolor(LIGHTRED);
     setlinestyle(SOLID_LINE, 0 ,10);
     }
-    if(colour1 == 12){
+    if(colour1 == 11){
         setcolor(LIGHTGREEN);
     setlinestyle(SOLID_LINE, 0 ,10);
     }
 
-    if(colour1 == 11){
+    if(colour1 == 12){
         setcolor(YELLOW);
         setlinestyle(SOLID_LINE, 0 ,10);
     }
 
-    line(left+border/2-10, up, left+width-border/2+10, up);
-    line(left+border/2-10, up+height, left+width-border/2+10, up+height);
+    line(left+border/2, up, left+width-border/2, up);
+    line(left+border/2, up+height, left+width-border/2, up+height);
 
 }
 
-void drawbutton(buton &b, int textsize, int colour) {
+void drawbutton(button &b, int textsize, int colour) {
+
         // FUNCTIA CE CREEAZA BUTOANELE DE NAVIGARE
+
         settextstyle(TRIPLEX_FONT, HORIZ_DIR, textsize);
+
         int inaltime=textheight(b.text);
         int lungime=textwidth(b.text);
 
@@ -361,15 +364,15 @@ void drawbutton(buton &b, int textsize, int colour) {
         b.y2=b.y1+inaltime;
 
         setcolor(colour);
-        outtextxy(b.x1+7, b.y1+7, b.text);
+        outtextxy(b.x1, b.y1, b.text);
 }
 
 void initializare(){
 
-    // CREEAZA TABLA DE JOC IN BACKEND - ADICA MATRICEA UNDE SE TIN MINTE POZITIILE PIESELOR SI MUTARILE JUCATORULUI
+    // CREEAZA TABLA DE JOC IN BACKEND - ADICA MATRICEA UNDE SE TIN MINTE POZITIILE PIESELOR SI MUTARILE playerULUI
     int i,j;
-    for(i=0; i<=2*boarddimension; i++)
-        for(j=0; j<=2*boarddimension; j++)
+    for(i=0; i<=2*boardsize; i++)
+        for(j=0; j<=2*boardsize; j++)
             if((i%2==1) && (j%2==0))
                 board[i][j]=1;
             else
@@ -377,23 +380,31 @@ void initializare(){
                     board[i][j]=2;
                 else
                     board[i][j]=0;
-    for(i=0; i<=2*boarddimension; i++)
+    for(i=0; i<=2*boardsize; i++)
         {
           board[0][i]=2;
           board[i][0]=1;
-          board[2*boarddimension][i]=2;
-          board[i][2*boarddimension]=1;
+          board[2*boardsize][i]=2;
+          board[i][2*boardsize]=1;
         }
+
+    for(i=0; i<=2*boardsize; i++)
+    {
+        for(j=0; j<=2*boardsize; j++)
+            std::cout<<board[i][j]<<" ";
+    std::cout<<"\n";
+    }
 }
 
 void play() {
+
 
     // FUNCTIA CARE DA START JOCULUI PLAYER VS PLAYER
 
     moves=0;
 
     // INDICA A CUI RAND ESTE SA MUTE
-    if(jucator==1)
+    if(player==1)
     {
 
         if(colour1 == 7){
@@ -428,7 +439,7 @@ void play() {
 
         }
 
-        if(colour1 == 12){
+        if(colour1 == 11){
 
 
           if(strcmp(language, "english")==0){
@@ -445,7 +456,7 @@ void play() {
 
         }
 
-        if(colour1 == 11){
+        if(colour1 == 12){
 
           if(strcmp(language, "english")==0){
             readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
@@ -492,7 +503,7 @@ void play() {
           }
         }
 
-        if(colour2 == 12){
+        if(colour2 == 11){
           if(strcmp(language, "english")==0){
             readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
           }
@@ -506,7 +517,7 @@ void play() {
           }
         }
 
-        if(colour2 == 11){
+        if(colour2 == 12){
           if(strcmp(language, "english")==0){
             readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
           }
@@ -522,20 +533,49 @@ void play() {
     }
 
 
-    bool gata=false, undo=1, b1_status=0, b2_status=0;
+    bool done=true, undo=1;
     int linia, col, x, y, last_line, last_column;
-    buton B1, B2;
+    button B1, B2;
 
-    B1.mx=150; B1.my=400; strcpy(B1.text, "Restart");
-    B2.mx=150; B2.my=470; strcpy(B2.text, "Menu");
+    if(strcmp(language, "english")==0)
+    {
+        B1.mx= getmaxwidth()/2 - textwidth("Restart")/2;
+        B1.my=71*dy;
+        strcpy(B1.text, "Restart");
+        B2.mx= getmaxwidth()/2 - textwidth("Menu")/2;
+        B2.my=80*dy;
+        strcpy(B2.text, "Menu");
+    }
+
+    if(strcmp(language, "french")==0)
+    {
+        B1.mx= getmaxwidth()/2 - textwidth("Restart")/2;
+        B1.my=71*dy;
+        strcpy(B1.text, "Restart");
+        B2.mx= getmaxwidth()/2 - textwidth("Page d'accueil")/2;
+        B2.my=80*dy;
+        strcpy(B2.text, "Page d'accueil");
+    }
+
+    if(strcmp(language, "romanian")==0)
+    {
+        B1.mx= getmaxwidth()/2 - textwidth("Restart")/2;
+        B1.my=71*dy;
+        strcpy(B1.text, "Restart");
+        B2.mx= getmaxwidth()/2 - textwidth("Pagina de pornire")/2;
+        B2.my=80*dy;
+        strcpy(B2.text, "Pagina de pornire");
+    }
 
     drawbutton(B1);
     drawbutton(B2);
+
     moves=0;
     clock_t duration;
     clock_t start;
     start=clock();
-    while(!gata)
+
+    while(done)
     {
         x=mousex();  y=mousey();
         if(ismouseclick(WM_LBUTTONDOWN))
@@ -544,8 +584,9 @@ void play() {
 
             if(x>=left && x<=left+width && y>=up && y<=up+height)
             {
-                linia=(y-up+20)/(border/2);
-                col=(x-left+20)/(border/2);
+                linia=(y-up+2*dy)/(border/2);
+                col=(x-left+dx)/(border/2);
+
                 if(board[linia][col]==0)
                 {
                     last_line=linia;
@@ -553,11 +594,11 @@ void play() {
                     undo=0;
                     drawline(linia, col);
                     moves++;
-                    int castigator=victory(linia, col);
-                    if(castigator)
+                    int winner=victory(linia, col);
+                    if(winner)
                     {
-                        jucator=castigator;
-                        gata=true;
+                        player=winner;
+                        done=true;
                         timer(start, moves);
                         endgame();
                     }
@@ -567,51 +608,26 @@ void play() {
                 if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
             {
                 if(player==culoare)
-                    jucator=1;
+                    player=1;
                 else
-                    jucator=2;
-                gata=1;
+                    player=2;
+
+                done=false;
                 initializare();
-                boarddraw;
+                drawboard;
                 play();
             }
             else
                 if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
                 {
-                    gata=1;
-                    menu_english();
-                }
-        }
-        else{
-            if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
-            {
-                if(b1_status==0)
-                {
-                    drawbutton(B1, 4);
-                    b1_status=1;
-                }
-            }
-            else
-                if(b1_status==1)
-            {
-                drawbutton(B1, 4, LIGHTBLUE);
-                drawbutton(B1);
-                b1_status=0;
-            }
-            if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
-            {
-                if(b2_status==0)
-                {
-                    drawbutton(B2, 4);
-                    b2_status=1;
-                }
-            }
-            else
-                if(b2_status==1)
-                {
-                drawbutton(B2, 4, LIGHTBLUE);
-                drawbutton(B2);
-                b2_status=0;
+                    done=false;
+
+                    if(strcmp(language, "english")==0)
+                        menu_english();
+                    if(strcmp(language, "french")==0)
+                        menu_french();
+                    if(strcmp(language, "romana")==0)
+                        menu_romanian();
                 }
         }
 
@@ -632,15 +648,37 @@ void timer(clock_t start, int numarmutari){
     int scor, penalty;
     clock_t duration;
     duration=difftime(clock(), start);
-    scor=(int)duration/10+moves;
+    scor=(int)duration + moves;
 
     penalty=1000-scor;
     if(penalty<0)
         penalty=0;
     itoa(penalty, charscor, 10);
-    setcolor(GREEN);
+    setcolor(BLACK);
+
     outtextxy(150, 700, "SCOR :");
     outtextxy(textwidth("SCOR :")+120, 700, charscor);
+}
+
+void selected_colour(){
+
+    if(colour1==4)
+        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+    if(colour1==7)
+        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+    if(colour1==11)
+        readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+    if(colour1==12)
+        readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+
+    if(colour2==4)
+        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+    if(colour2==7)
+        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+    if(colour2==11)
+        readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+    if(colour2==12)
+        readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
 }
 
 void computerplay(){
@@ -648,39 +686,42 @@ void computerplay(){
     // FUNCTIA CARE DA START JOCULUI PLAYER VS COMPUTER
 
     moves=0;
-    if(jucator==1)
-    {
-        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    }
-    else
-    {
-        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    }
 
-    bool gata=false, undo=1, b1_status=0, b2_status=0;
-    int linia, col, x, y, last_line, last_column, lastline, lastcol;
-    buton B1, B2;
+    if(firstPlayer==1)
+            selected_colour();
+
+    if(firstPlayer==2)
+            selected_colour();
+
+    bool done=true, undo=1, b1_status=0, b2_status=0;
+    int linia, col, last_line, last_column, lastline, lastcol;
+    button B1, B2;
 
     B1.mx=150; B1.my=400; strcpy(B1.text, "Restart");
     B2.mx=150; B2.my=470; strcpy(B2.text, "Menu");
 
     drawbutton(B1);
     drawbutton(B2);
+
     moves=0;
+
     clock_t duration;
     clock_t start;
     start=clock();
-    while(!gata)
+    while(done)
     {
-        x=mousex();  y=mousey();
+        int x=mousex();
+        int y=mousey();
+
         if(ismouseclick(WM_LBUTTONDOWN))
         {
             clearmouseclick(WM_LBUTTONDOWN);
 
             if(x>=left && x<=left+width && y>=up && y<=up+height)
             {
-                linia=(y-up+20)/(border/2);
-                col=(x-left+20)/(border/2);
+                linia=(y-up+dy*3)/(border/2);
+                col=(x-left+dx*3)/(border/2);
+
                 if(board[linia][col]==0)
                 {
                     last_line=linia;
@@ -688,11 +729,12 @@ void computerplay(){
                     undo=0;
                     drawline(linia, col);
                     moves++;
-                    int castigator=victory(linia, col);
-                    if(castigator)
+                    int winner=victory(linia, col);
+
+                    if(winner)
                     {
-                        jucator=castigator;
-                        gata=true;
+                        player=winner;
+                        done=true;
                         timer(start, moves);
                         endgame();
                     }
@@ -711,11 +753,11 @@ void computerplay(){
                         drawline(linia, col);
                         moves++;
 
-                        castigator=victory(linia, col);
-                        if(castigator)
+                        winner=victory(linia, col);
+                        if(winner)
                         {
-                            jucator=castigator;
-                            gata=true;
+                            player=winner;
+                            done=true;
                             timer(start, moves);
                             endgame();
                         }
@@ -726,19 +768,18 @@ void computerplay(){
                 if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
                 {
                     if(player==culoare)
-                        jucator=1;
+                        player=1;
                     else
-                        jucator=2;
-                    gata=1;
+                        player=2;
+                    done=1;
                     initializare();
-                    boarddraw();
+                    drawboard();
                     computerplay();
                 }
                 else
                     if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
                 {
-                    gata=1;
-                    //desenCopertaJoc();
+                    done=1;
                 }
         }
         else
@@ -791,15 +832,17 @@ void computerplay(){
 void easylevel(int &linia, int &col){
 
     // MODUL EASY PENTRU PLAYER VS COMPUTER
+
     int mutare=0;
+
     while(mutare==0)
     {
-        linia=rand()%(2*boarddimension)+1;
-        col=rand()%(2*boarddimension)+1;
+        linia=rand()%(2*boardsize)+1;
+        col=rand()%(2*boardsize)+1;
 
         if(board[linia][col]==0)
         {
-            board[linia][col]=jucator;
+            board[linia][col]=player;
             mutare=1;
         }
     }
@@ -814,38 +857,38 @@ void mediumlevel(int &linia, int &col){
     else
         {
             int mutare=0;
-            if((board[linia][col-1]!=jucator) && (board[linia][col+1]!=0))
+            if((board[linia][col-1]!=player) && (board[linia][col+1]!=0))
             {
-                for(int i=1; i<=boarddimension; i++)
+                for(int i=1; i<=boardsize; i++)
                 {
                     if((board[linia-i][col]==0)&& (mutare==0) &&(linia-i>0))
                         {
-                            board[linia-i][col]=jucator;
+                            board[linia-i][col]=player;
                             mutare=1;
                             linia=linia-i;
                         }
-                    if((board[linia+i][col]==0)&& (mutare==0) &&(linia+i<2*boarddimension+1))
+                    if((board[linia+i][col]==0)&& (mutare==0) &&(linia+i<2*boardsize+1))
                     {
-                        board[linia+i][col]=jucator;
+                        board[linia+i][col]=player;
                         mutare=1;
                         linia=linia+i;
                     }
                 }
             }
                 else
-                    if((board[linia-1][col]!=jucator) && (board[linia+1][col!=jucator]))
+                    if((board[linia-1][col]!=player) && (board[linia+1][col!=player]))
                         {
-                            for(int i=1; i<=boarddimension;i++)
+                            for(int i=1; i<=boardsize;i++)
                             {
                                 if((board[linia][col-i]==0) && (mutare==0) && (col-i>0))
                                     {
-                                        board[linia][col-i]=jucator;
+                                        board[linia][col-i]=player;
                                         mutare=1;
                                         col=col-i;
                                     }
                                 if((board[linia][col+i]==0) && (mutare==0) && (col+i>0))
                                     {
-                                        board[linia][col+i]=jucator;
+                                        board[linia][col+i]=player;
                                         mutare=1;
                                         col=col+i;
                                     }
@@ -857,11 +900,11 @@ void mediumlevel(int &linia, int &col){
 }
 
 void hardlevel(int lastline, int lastcol, int &linia, int &col){
-    int coditai[100]={0}, coditaj[100]={0}, k=1;
+    int queuei[100]={0}, queuej[100]={0}, k=1;
     int di[4]={0, 0, 1, -1};
     int dj[4]={1, -1, 0, 0};
-    coditai[1]=lastline;
-    coditaj[1]=lastcol;
+    queuei[1]=lastline;
+    queuej[1]=lastcol;
 
     // MODUL HARD PENTRU PLAYER VS COMPUTER
 
@@ -870,35 +913,35 @@ void hardlevel(int lastline, int lastcol, int &linia, int &col){
         else
             {
                 int miscare=0;
-                if((board[lastline][lastcol-1]==jucator) && (board[lastline][lastcol+1]==jucator))
+                if((board[lastline][lastcol-1]==player) && (board[lastline][lastcol+1]==player))
                     {
-                        coditaj[++k]=lastcol-1;
-                        coditai[k]=lastline;
-                        coditaj[++k]=lastcol+1;
-                        coditai[k]=lastline;
+                        queuej[++k]=lastcol-1;
+                        queuei[k]=lastline;
+                        queuej[++k]=lastcol+1;
+                        queuei[k]=lastline;
                     }
-                if((board[lastline-1][lastcol]==jucator) && (board[lastline+1][lastcol]==jucator))
+                if((board[lastline-1][lastcol]==player) && (board[lastline+1][lastcol]==player))
                     {
-                        coditai[++k]=lastline-1;
-                        coditaj[k]=lastcol;
-                        coditai[++k]=lastline+1;
-                        coditaj[k]=lastcol;
+                        queuei[++k]=lastline-1;
+                        queuej[k]=lastcol;
+                        queuei[++k]=lastline+1;
+                        queuej[k]=lastcol;
                     }
                 k=1;
-                while((miscare==0) && (coditai[k]!=0) && (coditaj[k]!=0))
+                while((miscare==0) && (queuei[k]!=0) && (queuej[k]!=0))
                     {
                        for(int i=0; i<=3; i++)
-                            if((board[coditai[k]+di[i]][coditaj[k]+dj[i]]==jucator) && (coditai[k]+di[i]>i) && (coditai[k]+di[i]<=2*boarddimension) && (coditaj[k]+dj[i]>i) && (coditaj[k]+dj[i]<=2*boarddimension))
+                            if((board[queuei[k]+di[i]][queuej[k]+dj[i]]==player) && (queuei[k]+di[i]>i) && (queuei[k]+di[i]<=2*boardsize) && (queuej[k]+dj[i]>i) && (queuej[k]+dj[i]<=2*boardsize))
                                {
-                                    coditai[++k]=coditai[k]+di[i];
-                                    coditaj[k]=coditai[k]+dj[i];
+                                    queuei[++k]=queuei[k]+di[i];
+                                    queuej[k]=queuei[k]+dj[i];
                                }
                        for(int i=0; i<=3; i++)
-                            if((board[coditai[k]+di[i]][coditaj[k]+dj[i]]==0))
+                            if((board[queuei[k]+di[i]][queuej[k]+dj[i]]==0))
                                 {
-                                    board[coditai[k]+di[i]][coditaj[k]+dj[i]]=jucator;
-                                    linia=coditai[k];
-                                    col=coditaj[k];
+                                    board[queuei[k]+di[i]][queuej[k]+dj[i]]=player;
+                                    linia=queuei[k];
+                                    col=queuej[k];
                                     miscare=1;
                                 }
                                     k++;
@@ -909,6 +952,7 @@ void hardlevel(int lastline, int lastcol, int &linia, int &col){
 }
 
 int victory(int linia, int col){
+
     int queuei[50]={0}, queuej[50]={0}, first=1, last=1, i, j, aux[12][12]={0};
     queuei[first]=linia;
     queuej[first]=col;
@@ -917,28 +961,28 @@ int victory(int linia, int col){
             i=queuei[first];
             j=queuej[first];
             aux[i][j]=1;
-            if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*boarddimension) && (i!=0) && (j+1!=0) && (j+1!=2*boarddimension))
+            if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*boardsize) && (i!=0) && (j+1!=0) && (j+1!=2*boardsize))
                 {
                     aux[i][j+1]=1;
                     last++;
                     queuei[last]=i;
                     queuej[last]=j+1;
                 }
-            if((abs(board[i][j-1])==abs(board[i][j])) && (aux[i][j-1]!=1) && (i!=2*boarddimension) && (i!=0) && (j-1!=0) && (j-1!=2*boarddimension))
+            if((abs(board[i][j-1])==abs(board[i][j])) && (aux[i][j-1]!=1) && (i!=2*boardsize) && (i!=0) && (j-1!=0) && (j-1!=2*boardsize))
                 {
                     aux[i][j-1]=1;
                     last++;
                     queuei[last]=i;
                     queuej[last]=j-1;
                 }
-            if((abs(board[i+1][j])==abs(board[i][j])) && (aux[i+1][j]!=1) && (i+1!=2*boarddimension) && (i+1!=0) && (j!=0) && (j!=2*boarddimension))
+            if((abs(board[i+1][j])==abs(board[i][j])) && (aux[i+1][j]!=1) && (i+1!=2*boardsize) && (i+1!=0) && (j!=0) && (j!=2*boardsize))
                 {
                     aux[i+1][j]=1;
                     last++;
                     queuei[last]=i+1;
                     queuej[last]=j;
                 }
-            if((abs(board[i-1][j])==abs(board[i][j])) && (aux[i-1][j]!=1) && (i-1!=2*boarddimension) && (i-1!=0) && (j!=0) && (j!=2*boarddimension))
+            if((abs(board[i-1][j])==abs(board[i][j])) && (aux[i-1][j]!=1) && (i-1!=2*boardsize) && (i-1!=0) && (j!=0) && (j!=2*boardsize))
                 {
                     aux[i-1][j]=1;
                     last++;
@@ -948,45 +992,47 @@ int victory(int linia, int col){
             first++;
         }
 
-        if(jucator==2)//rosu
+        if(player==2)//rosu
         {
             int cond1=0, cond2=0;
             for(int i=1; i<=last; i++)
                 {
                     if(queuei[i]==1)
                         cond1=1;
-                     if(queuei[i]==2*boarddimension-1)
+                     if(queuei[i]==2*boardsize-1)
                         cond2=1;
                 }
             if((cond1==1) && (cond2==1))
                 {
-                    return jucator;
+                    return player;
                 }
         }
-        if(jucator==1)//galben
+        if(player==1)//galben
         {
             int cond1=0, cond2=0;
             for(int j=1; j<=last; j++)
                 {
                     if(queuej[j]==1)
                         cond1=1;
-                     if(queuej[j]==2*boarddimension-1)
+                     if(queuej[j]==2*boardsize-1)
                         cond2=1;
                 }
             if((cond1==1) && (cond2==1))
                 {
-                    return jucator;
+                    return player;
                 }
         }
         return 0;
 }
 
 void endgame(){
-    delay(1000);
+
+    delay(700);
+
     clearviewport();
     readimagefile("Chenar_joc.jpg", 0, 0, windowWidth, windowHeight);
 
-    if(jucator==1)
+    if(player==2)
     {
         if(strcmp(language, "english")==0)
         {
@@ -1063,42 +1109,65 @@ void endgame(){
         }
     }
 
-    buton B1, B2, B3;
+    button B1, B2, B3;
 
-    B1.mx= getmaxwidth()/2 - textwidth("Play again")/2;
-    B1.my=600;
-    strcpy(B1.text, "Play again");
-    B2.mx= getmaxwidth()/2 - textwidth("Restart")/2;
-    B2.my=670;
-    strcpy(B2.text, "Restart");
-    B3.mx= getmaxwidth()/2 - textwidth("Exit")/2;
-    B3.my=740;
-    strcpy(B3.text, "Exit");
+    if(strcmp(language, "english")==0)
+    {
+        B1.mx= getmaxwidth()/2 - textwidth("Play again")/2;
+        B1.my=71*dy;
+        strcpy(B1.text, "Play again");
+        B2.mx= getmaxwidth()/2 - textwidth("Exit")/2;
+        B2.my=80*dy;
+        strcpy(B2.text, "Exit");
+    }
+
+    if(strcmp(language, "french")==0)
+    {
+        B1.mx= getmaxwidth()/2 - textwidth("Play again")/2;
+        B1.my=71*dy;
+        strcpy(B1.text, "Play again");
+        B2.mx= getmaxwidth()/2 - textwidth("Page d'accueil")/2;
+        B2.my=80*dy;
+        strcpy(B2.text, "Page d'accueil");
+    }
+
+    if(strcmp(language, "romanian")==0)
+    {
+        B1.mx= getmaxwidth()/2 - textwidth("Joaca din nou")/2;
+        B1.my=71*dy;
+        strcpy(B1.text, "Joaca din nou");
+        B2.mx= getmaxwidth()/2 - textwidth("Pagina de pornire")/2;
+        B2.my=80*dy;
+        strcpy(B2.text, "Pagina de pornire");
+    }
 
 
     drawbutton(B1);
     drawbutton(B2);
-    drawbutton(B3);
 
-    bool gata=0, b1_status=0, b2_status=0, b3_status=0;
-    int x,y;
-    while(!gata)
+    bool done=true;
+    int x, y;
+    while(done)
     {
         x=mousex();  y=mousey();
+
         if(ismouseclick(WM_LBUTTONDOWN))
         {
             clearmouseclick(WM_LBUTTONDOWN);
 
             if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
                 {
-                    gata=1;
+                    done=false;
+
                     if(player==culoare)
-                        jucator=1;
+                        player=1;
                     else
-                        jucator=2;
+                        player=2;
+
                     initializare();
-                    boarddraw();
-                    if(nrjucatori==1)
+                    drawboard();
+
+                    if(nrplayers==1)
                         computerplay();
                     else
                         play();
@@ -1106,22 +1175,28 @@ void endgame(){
                 else
                     if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
                 {
-                    gata=1;
+                    done=false;
+
+                    if(strcmp(language, "english")==0)
+                        menu_english();
+                    if(strcmp(language, "french")==0)
+                        menu_french();
+                    if(strcmp(language, "romanian")==0)
+                        menu_romanian();
                 }
-                else
-                    if(x>=B3.x1 && x<=B3.x2 && y>=B3.y1 && y<=B3.y2)
-                        gata=1;
 
         }
     }
 }
 
-void drawboard(){
+void maindraw(){
 
     clearviewport();
+
     initializare();
-     boarddraw();
-    if(nrjucatori==1)
+    drawboard();
+
+    if(nrplayers==1)
         computerplay();
     else
         play();

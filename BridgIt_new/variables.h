@@ -4,11 +4,11 @@ float dx = windowWidth/100, dy = windowHeight/100; // FOLOSIT IN NAVIGATION, DIM
 int colour1=7, colour2=4; // 4 - LIGHTRED, 7 - LIGHTBLUE, 11 - LIGHTGREEN, 12 - YELLOW
 int clicked = 0;
 int firstI, firstJ;
-int boardsize=1; // 1 - small, 2 - medium, 3 - large
+int boardsize=3; // 3 - small, 4 - medium, 5 - large
 int difficulty=1; // 1 - easy 3x4, 2 - medium 4x5, 3 - hard 5x6
 int firstPlayer=1;
 char language[20]={"english"};
-int setok=0;
+int nrplayers;
 
 
 
@@ -17,7 +17,7 @@ void buttons(){
     // ADINA
     // PREIA COORDONATELE LUI X SI Y DIN SETARI SI IN FUNCTIE DE ELE SE VOR SELECTA OPTIUNILE PRIN INSERAREA IMAGINILOR
 
-    int x=mousex(), y=mousey(), firstPlayer;
+    int x=mousex(), y=mousey();
 
 
     // VERIFICA LIMBA SI COORDONATELE SI IN FUNCTIE DE ELE INSEREAZA IMAGINEA PENTRU JUCATORUL ALES
@@ -31,11 +31,13 @@ void buttons(){
             {
                 firstPlayer=1;
                 readimagefile("p1_english.jpg", dx*54, dy*25, dx*64, dy*42);
+                std::cout<<firstPlayer;
             }
-            else
+            if(y>=dy*33 && y<=dy*40)
             {
                 firstPlayer=2;
                 readimagefile("p2_english.jpg", dx*54, dy*25, dx*64, dy*42);
+                std::cout<<firstPlayer;
             }
         }
 
@@ -69,8 +71,6 @@ void buttons(){
     }
 
    // INSEREAZA O IMAGINE IN FUNCTIE DE CULOAREA SELECTATA
-
-        // INITIALIZEAZA CULOAREA PRIMULUI JUCATOR CU 7(ALBASTRU), SI CULOAREA CELUI DE-AL DOILEA JUCATOR CU 4(ROSU)
 
        if(x>=dx*65 &&  x<=dx*85 && y>=dy*25 && y<=dy*32)
        {
@@ -128,17 +128,17 @@ void buttons(){
                 {
                     if(y>=dy*44 && y<=dy*50)
                     {
-                        boardsize=1;
+                        boardsize=3;
                         readimagefile("small_english.jpg", dx*17, dy*44, dx*34, dy*65);
                     }
                     if(y>=dy*51 && y<=dy*57)
                     {
-                        boardsize=2;
+                        boardsize=4;
                         readimagefile("mediumb_english.jpg", dx*17, dy*44, dx*34, dy*65);
                     }
                     if(y>=dy*58 && y<=dy*65)
                     {
-                        boardsize=3;
+                        boardsize=5;
                         readimagefile("large_english.jpg", dx*17, dy*44, dx*34, dy*65);
                     }
                }
@@ -147,18 +147,18 @@ void buttons(){
                 {
                     if(y>=dy*46 && y<=dy*53)
                     {
-                            boardsize=1;
+                            boardsize=3;
                             readimagefile("small_french.jpg", dx*15, dy*46, dx*32, dy*68);
                     }
                     if(y>=dy*54 && y<=dy*60)
                     {
-                            boardsize=2;
+                            boardsize=4;
                             readimagefile("mediumb_french.jpg", dx*15, dy*46, dx*32, dy*68);
                     }
 
                     if(y>=dy*61 && y<=dy*68)
                     {
-                            boardsize=3;
+                            boardsize=5;
                             readimagefile("large_french.jpg", dx*15, dy*46, dx*32, dy*68);
                     }
                 }
@@ -167,17 +167,17 @@ void buttons(){
                 {
                     if(y>=dy*46 && y<=dy*53)
                     {
-                            boardsize=1;
+                            boardsize=3;
                             readimagefile("small_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
                     }
                     if(y>=dy*54 && y<=dy*60)
                     {
-                            boardsize=2;
+                            boardsize=4;
                             readimagefile("mediumb_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
                     }
                     if(y>=dy*61 && y<=dy*68)
                     {
-                            boardsize=3;
+                            boardsize=5;
                             readimagefile("large_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
                     }
                 }
