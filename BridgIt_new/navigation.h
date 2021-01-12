@@ -43,6 +43,55 @@ void when_left_click()
         settings_english();
         currentWindow=4;
         lastWindow=0;
+
+        // ALEXANDRA
+        if(difficulty == 1){
+            readimagefile("easy_english.jpg", dx*16, dy*75, dx*32, dy*95);
+        }
+        if(difficulty == 2){
+           readimagefile("medium_english.jpg", dx*16, dy*75, dx*32, dy*95);
+        }
+        if(difficulty == 3){
+             readimagefile("hard_english.jpg", dx*16, dy*75, dx*32, dy*95);
+        }
+
+        if(boardsize == 1){
+            readimagefile("small_english.jpg", dx*17, dy*44, dx*34, dy*65);
+        }
+
+        if(boardsize == 2){
+            readimagefile("mediumb_english.jpg", dx*17, dy*44, dx*34, dy*65);
+        }
+
+        if(boardsize == 3){
+            readimagefile("large_english.jpg", dx*17, dy*44, dx*34, dy*65);
+        }
+
+        if(colour2 == 7){
+            readimagefile("a_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 4){
+              readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 12){
+                readimagefile("g_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 11){
+                readimagefile("v_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+
+        if(colour1 == 7){
+                readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 4){
+               readimagefile("r_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 12){
+                readimagefile("g_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 11){
+                readimagefile("v_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
     }
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
@@ -130,6 +179,54 @@ void when_left_click()
         settings_french();
         currentWindow=9;
         lastWindow=0;
+
+        if(difficulty == 1){
+            readimagefile("easy_french.jpg", dx*15, dy*75, dx*32, dy*95);
+        }
+        if(difficulty == 2){
+            readimagefile("medium_french.jpg", dx*15, dy*75, dx*32, dy*95);
+        }
+        if(difficulty == 3){
+             readimagefile("hard_french.jpg", dx*15, dy*75, dx*32, dy*95);
+        }
+
+        if(boardsize == 1){
+            readimagefile("small_french.jpg", dx*15, dy*46, dx*32, dy*68);
+        }
+
+        if(boardsize == 2){
+            readimagefile("mediumb_french.jpg", dx*15, dy*46, dx*32, dy*68);
+        }
+
+        if(boardsize == 3){
+                readimagefile("large_french.jpg", dx*15, dy*46, dx*32, dy*68);
+        }
+
+        if(colour2 == 7){
+            readimagefile("a_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 4){
+              readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 12){
+                readimagefile("g_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 11){
+                readimagefile("v_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+
+        if(colour1 == 7){
+                readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 4){
+               readimagefile("r_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 12){
+                readimagefile("g_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 11){
+                readimagefile("v_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
     }
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
@@ -205,6 +302,57 @@ void when_left_click()
         settings_romanian();
         currentWindow=14;
         lastWindow=0;
+
+        // ALEXANDRA
+        if(difficulty == 1){
+            readimagefile("easy_romanian.jpg", dx*16, dy*75, dx*32, dy*95);
+        }
+        if(difficulty == 2){
+           readimagefile("medium_romanian.jpg", dx*16, dy*75, dx*32, dy*95);
+        }
+        if(difficulty == 3){
+             readimagefile("hard_romanian.jpg", dx*16, dy*75, dx*32, dy*95);
+        }
+
+        if(boardsize == 1){
+             readimagefile("small_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
+        }
+
+        if(boardsize == 2){
+             readimagefile("mediumb_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
+        }
+
+        if(boardsize == 3){
+             readimagefile("large_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
+        }
+
+        if(colour2 == 7){
+            readimagefile("a_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 4){
+              readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 12){
+                readimagefile("g_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+        if(colour2 == 11){
+                readimagefile("v_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        }
+
+        if(colour1 == 7){
+                readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 4){
+               readimagefile("r_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 12){
+                readimagefile("g_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+        if(colour1 == 11){
+                readimagefile("v_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        }
+
+
     }
 
     // SARE DIN SETARI IN MAI MULTE DESPRE SETARI
