@@ -15,9 +15,8 @@ void when_left_click()
     getmouseclick(WM_LBUTTONDOWN, x, y);
 
     // EXIT
-    if(x>=dx*90 && x<=dx*98 && y>=dy*2 && y<=dy*9 && (currentWindow==1 || currentWindow==6 || currentWindow==11)){
+    if(x>=dx*90 && x<=dx*98 && y>=dy*2 && y<=dy*9 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
         closegraph();
-    }
 
     // ENGLEZA
     // SARE DIN PAGINA DE PORNIRE IN INFO
@@ -67,7 +66,7 @@ void when_left_click()
 
     // SE INTOARCE PE PAGINA DE PORNIRE INDIFERENT DE PAGINA CURENTA
 
-     if(x>=dx*87 && x<=dx*100 && y>=dy*1 && y<=dy*7 && currentWindow>1 && currentWindow<5 || currentWindow==16 || currentWindow==17)
+     if(((x>=dx*87 && x<=dx*100 && y>=dy*1 && y<=dy*7) && (currentWindow>1 && currentWindow<5 && strcmp(language, "english")==0)) || (currentWindow==16 || currentWindow==17))
     {
         if(lastWindow==!5)  // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 5
         {
@@ -89,9 +88,11 @@ void when_left_click()
         language_english();
         currentWindow=3;
         lastWindow=0;
-        strcpy(language,"english");
+
     }
 
+    if(x>=dx*0 && x<=dx*100 && y>=dy*20 && y<=dy*100 && (currentWindow==4 || currentWindow==9 || currentWindow==14))
+        buttons();
 
     // ADINA
     // FRANCEZA
@@ -99,10 +100,11 @@ void when_left_click()
     // COMUTA PE FRANCEZA CAND ESTE SELECTATA
     if(x>=dx*37 && x<=dx*63 && y>=dy*47 && y<=dy*59 && (currentWindow==3 || currentWindow==8 || currentWindow==13 ))
     {
+        strcpy(language,"french");
         language_french();
         currentWindow=8;
         lastWindow=0;
-        strcpy(language,"french");
+
     }
 
     // SARE DIN PAGINA DE PORNIRE IN INFO
@@ -115,7 +117,7 @@ void when_left_click()
     }
 
     // SARE DIN PAGINA DE PORNIRE IN FEREASTRA CU LIMBI
-    if(x>=dx*1 && x<=dx*7 && y>=dy*11 && y<=dy*18 && currentWindow==6)
+    if(x>=dx*1 && x<=dx*11 && y>=dy*11 && y<=dy*18 && currentWindow==6)
     {
         language_french();
         currentWindow=8;
@@ -150,7 +152,7 @@ void when_left_click()
 
     // REVINE IN PAGINA DE PORNIRE
 
-    if(x>=dx*77 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>5 && currentWindow<10 || currentWindow==16 || currentWindow==17)
+    if(((x>=dx*77 && x<=dx*100 && y>=dy*0 && y<=dy*8) && (currentWindow>5 && currentWindow<10 && strcmp(language, "french")==0)) ||  (currentWindow==16 || currentWindow==17))
     {
             if(lastWindow==!10) // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 10
             {
@@ -172,10 +174,11 @@ void when_left_click()
 
     if(x>=dx*37 && x<=dx*63 && y>=dy*60 && y<=dy*72 && (currentWindow==3 || currentWindow==8 || currentWindow==13))
     {
+        strcpy(language,"romanian");
         language_romanian();
         currentWindow=13;
         lastWindow=0;
-        strcpy(language,"romanian");
+
     }
 
     // SARE DIN PAGINA DE PORNIRE IN INFO
@@ -240,19 +243,13 @@ void when_left_click()
                     }
     }
 
-
-
-        // IESE DIN JOC
-
-
     // DESCHIDE TABLA DE JOC PENTRU MODUL SINGLE PLAYER
     if(x>=dx*32 && x<=dx*62 && y>=dy*53 && y<=dy*66 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
     {
-        if(lastWindow==0)
-        {
+
             drawboard();
             currentWindow=16;
-        }
+
     }
 
     // ODESCHIDE TABLA DE JOC PENTRU MODUL TWO PLAYERS
@@ -262,6 +259,6 @@ void when_left_click()
         currentWindow=17;
     }
 
-    std::cout << "Latest left click at: " << x*100/ getmaxwidth()<< " " << " " << y*100/getmaxheight() << " " << "\n";
+    std::cout << "Latest left click at: " << x*100/getmaxwidth()<< " " << " " << y*100/getmaxheight() << " " << "\n";
 
 }

@@ -40,10 +40,17 @@ void settings_romanian()
     // SETARI
     clearviewport();
     readimagefile("settings_romanian.jpg", 0, 0, windowWidth, windowHeight);
-    readimagefile("ar.jpg", dx*65, dy*25, dx*85, dy*40);
+
+    if(setok==0)
+    {
+    readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+    readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
     readimagefile("p1_romanian.jpg", dx*54, dy*25, dx*64, dy*42);
     readimagefile("small_romanian.jpg", dx*16, dy*46, dx*33, dy*68);
     readimagefile("easy_romanian.jpg", dx*16, dy*75, dx*32, dy*95);
+    }
+
+
 }
 
 void aboutsettings_romanian()

@@ -19,9 +19,6 @@ void info_english()
 void language_english()
 {
 
-    int x, y;
-    getmouseclick(WM_LBUTTONDOWN, x, y);
-
     // LIMBI
     // DACA SELECTEZ LIMBILE DIN MENIU, ATUNCI ARE LOC DELAYUL
     // DACA NU SI VREAU SA COMUT LIMBA, ATUNCI NU ARE LOC NICIUN DELAY, CI SE INSEREAZA IMAGINILE UNA PESTE ALTA SI SE ACTUALIZEAZA CURRENTWINDOW
@@ -31,9 +28,6 @@ void language_english()
 
     readimagefile("language_english.jpg", 0, 0, windowWidth, windowHeight);
 
-
-    if(x>=765 && x<=900 && y>=245 && y<=300)
-        readimagefile("language_english_p2.jpg", 0, 0, windowWidth, windowHeight);
 }
 
 void settings_english()
@@ -42,17 +36,19 @@ void settings_english()
     int x, y;
 
     getmouseclick(WM_LBUTTONDOWN, x, y);
+    strcpy(language, "english");
 
     // SETARI
     if(currentWindow==1 || currentWindow==5)
         clearviewport();
 
-    readimagefile("settings_english.jpg", 0, 0, windowWidth, windowHeight);
-    readimagefile("ar.jpg", dx*65, dy*25, dx*85, dy*40);
-    readimagefile("p1_english.jpg", dx*54, dy*25, dx*64, dy*42);
-    readimagefile("small_english.jpg", dx*17, dy*44, dx*34, dy*65);
-    readimagefile("easy_english.jpg", dx*17, dy*75, dx*34, dy*95);
-    buttons();
+        readimagefile("settings_english.jpg", 0, 0, windowWidth, windowHeight);
+        readimagefile("a_colour.jpg", dx*65, dy*25, dx*83, dy*32);
+        readimagefile("r_colour.jpg", dx*65, dy*33, dx*83, dy*40);
+        readimagefile("p1_english.jpg", dx*54, dy*25, dx*64, dy*42);
+        readimagefile("small_english.jpg", dx*17, dy*44, dx*34, dy*65);
+        readimagefile("easy_english.jpg", dx*17, dy*75, dx*34, dy*95);
+
 }
 
 void aboutsettings_english()

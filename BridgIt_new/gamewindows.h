@@ -1,33 +1,33 @@
 
-    // ALEXANDRA
+    // ALEXANDRA SI ADINA
 
 #define MAX 12
 #define border 120
 
 int board[MAX][MAX];
-int left, up, width, height, dimensiuneTabla=5, jucator=2, culoare=2, player=1, nrmutari=0, nrjucatori=2, level_computer=2;
+int left, up, width, height, boarddimension=5, jucator=1, culoare=2, player=1, moves=0, nrjucatori=2;
 
 struct buton{
     int x1, y1, x2, y2, mx, my;
     char text[20];
 };
 
-void initializareboard();
-void afisareTablaInConsola();
-void desenButon (buton &b, int textsize=3, int colour=BLACK);
-void desenTabla();
-void trasareline (int linia, int col);
-void stergeLinia(int linia, int col);
+void initializare();
+void tabla_consola();
+void drawbutton (buton &b, int textsize=3, int colour=BLACK);
+void boarddraw();
+void drawline (int linia, int col);
+void eraseline(int linia, int col);
 void play();
-void slaveplay();
+void computerplay();
 void easylevel(int &linia, int &col);
 void mediumlevel(int &linia, int &col);
 void hardlevel(int lastline, int lastcol, int &linia, int &col);
-void gameIncheiat();
+void endgame();
 void timer(clock_t start, int numarmutari);
-int victorie(int linia, int col);
+int victory(int linia, int col);
 
-void stergeLinia(int linia, int col){
+void eraseline(int linia, int col){
     setcolor(RED);
     setlinestyle(SOLID_FILL, 0 ,5);
     if(board[linia][col]==-1*jucator)
@@ -36,12 +36,12 @@ void stergeLinia(int linia, int col){
         if(board[linia][col-1]==jucator)
         {
             line(left+(col-1)*(border/2)+22, up+linia*(border/2), left+(col+1)*(border/2)-21,up+linia*(border/2));
-            nrmutari--;
+            moves--;
         }
         else
         {
             line(left+col*(border/2), up+(linia-1)*(border/2)+22, left+col*(border/2), up+(linia+1)*(border/2)-21);
-        }   nrmutari--;
+        }   moves--;
     }
 
     if(jucator==1)
@@ -57,7 +57,7 @@ void stergeLinia(int linia, int col){
     }
 }
 
-void trasareline(int linia, int col){
+void drawline(int linia, int col){
     if(jucator==1)
     {
         readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
@@ -80,32 +80,35 @@ void trasareline(int linia, int col){
        line(left+col*(border/2), up+(linia-1)*(border/2), left+col*(border/2), up+(linia+1)*(border/2));
 }
 
-void desenTabla(){
+void boarddraw(){
+
     clearviewport();
     readimagefile("Chenar_joc.jpg", 0, 0, windowWidth, windowHeight);
+
     int i,j;
-    width=height=border*dimensiuneTabla;
-    up=(getmaxy()-width)/2;
-    left=(getmaxx()-height)/2+300;
+    width=height=border*boarddimension;
+    up=(getmaxheight()-height)/2;
+    left=(getmaxwidth()-width)/2+20*dx;
 
     int x=left, y=up;
     int dots;
-    for(int i=1; i<=2*dimensiuneTabla+1; i++)
+    for(int i=1; i<=2*boarddimension+1; i++)
     {
         if(i%2)
         {
             setcolor(LIGHTRED);
             setfillstyle(SOLID_FILL, LIGHTRED);
             x=left+border/2;
-            dots=dimensiuneTabla;
+            dots=boarddimension;
         }
         else
         {
             setcolor(LIGHTBLUE);
             setfillstyle(SOLID_FILL, LIGHTBLUE);
             x=left;
-            dots=dimensiuneTabla+1;
+            dots=boarddimension+1;
         }
+
         for(int j=1; j<=dots; j++)
         {
             fillellipse(x, y, 22, 22);
@@ -126,8 +129,8 @@ void desenTabla(){
 
 }
 
-void desenButon(buton &b, int textsize, int colour) {
-        settextstyle(DEFAULT_FONT, HORIZ_DIR, textsize);
+void drawbutton(buton &b, int textsize, int colour) {
+        settextstyle(TRIPLEX_FONT, HORIZ_DIR, textsize);
         int inaltime=textheight(b.text);
         int lungime=textwidth(b.text);
 
@@ -136,7 +139,7 @@ void desenButon(buton &b, int textsize, int colour) {
         b.x2=b.x1;
         b.y2=b.y1;*/
 
-         b.x1=b.mx;
+        b.x1=b.mx;
         b.y1=b.my;
         b.x2=b.x1+lungime;
         b.y2=b.y1+inaltime;
@@ -145,11 +148,10 @@ void desenButon(buton &b, int textsize, int colour) {
         outtextxy(b.x1+7, b.y1+7, b.text);
     }
 
-
-void initializareboard(){
+void initializare(){
     int i,j;
-    for(i=0; i<=2*dimensiuneTabla; i++)
-        for(j=0; j<=2*dimensiuneTabla; j++)
+    for(i=0; i<=2*boarddimension; i++)
+        for(j=0; j<=2*boarddimension; j++)
             if((i%2==1) && (j%2==0))
                 board[i][j]=1;
             else
@@ -157,17 +159,17 @@ void initializareboard(){
                     board[i][j]=2;
                 else
                     board[i][j]=0;
-    for(i=0; i<=2*dimensiuneTabla; i++)
+    for(i=0; i<=2*boarddimension; i++)
         {
           board[0][i]=2;
           board[i][0]=1;
-          board[2*dimensiuneTabla][i]=2;
-          board[i][2*dimensiuneTabla]=1;
+          board[2*boarddimension][i]=2;
+          board[i][2*boarddimension]=1;
         }
 }
 
 void play() {
-    nrmutari=0;
+    moves=0;
     if(jucator==1)
     {
         readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
@@ -184,9 +186,9 @@ void play() {
     B1.mx=150; B1.my=400; strcpy(B1.text, "Restart");
     B2.mx=150; B2.my=470; strcpy(B2.text, "Menu");
 
-    desenButon(B1);
-    desenButon(B2);
-    nrmutari=0;
+    drawbutton(B1);
+    drawbutton(B2);
+    moves=0;
     clock_t duration;
     clock_t start;
     start=clock();
@@ -206,15 +208,15 @@ void play() {
                     last_line=linia;
                     last_column=col;
                     undo=0;
-                    trasareline(linia, col);
-                    nrmutari++;
-                    int castigator=victorie(linia, col);
+                    drawline(linia, col);
+                    moves++;
+                    int castigator=victory(linia, col);
                     if(castigator)
                     {
                         jucator=castigator;
                         gata=true;
-                        timer(start, nrmutari);
-                        gameIncheiat();
+                        timer(start, moves);
+                        endgame();
                     }
                 }
             }
@@ -226,8 +228,8 @@ void play() {
                 else
                     jucator=2;
                 gata=1;
-                initializareboard();
-                desenTabla;
+                initializare();
+                boarddraw;
                 play();
             }
             else
@@ -242,30 +244,30 @@ void play() {
             {
                 if(b1_status==0)
                 {
-                    desenButon(B1, 4);
+                    drawbutton(B1, 4);
                     b1_status=1;
                 }
             }
             else
                 if(b1_status==1)
             {
-                desenButon(B1, 4, LIGHTBLUE);
-                desenButon(B1);
+                drawbutton(B1, 4, LIGHTBLUE);
+                drawbutton(B1);
                 b1_status=0;
             }
             if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
             {
                 if(b2_status==0)
                 {
-                    desenButon(B2, 4);
+                    drawbutton(B2, 4);
                     b2_status=1;
                 }
             }
             else
                 if(b2_status==1)
                 {
-                desenButon(B2, 4, LIGHTBLUE);
-                desenButon(B2);
+                drawbutton(B2, 4, LIGHTBLUE);
+                drawbutton(B2);
                 b2_status=0;
                 }
         }
@@ -276,7 +278,7 @@ void play() {
             if(undo==0)
             {
                 undo=1;
-                stergeLinia(last_line, last_column);
+                eraseline(last_line, last_column);
             }
         }
     }
@@ -287,7 +289,7 @@ void timer(clock_t start, int numarmutari){
     int scor, penalty;
     clock_t duration;
     duration=difftime(clock(), start);
-    scor=(int)duration/10+nrmutari;
+    scor=(int)duration/10+moves;
 
     penalty=1000-scor;
     if(penalty<0)
@@ -298,8 +300,8 @@ void timer(clock_t start, int numarmutari){
     outtextxy(textwidth("SCOR :")+120, 700, charscor);
 }
 
-void slaveplay(){
-    nrmutari=0;
+void computerplay(){
+    moves=0;
     if(jucator==1)
     {
         readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
@@ -316,9 +318,9 @@ void slaveplay(){
     B1.mx=150; B1.my=400; strcpy(B1.text, "Restart");
     B2.mx=150; B2.my=470; strcpy(B2.text, "Menu");
 
-    desenButon(B1);
-    desenButon(B2);
-    nrmutari=0;
+    drawbutton(B1);
+    drawbutton(B2);
+    moves=0;
     clock_t duration;
     clock_t start;
     start=clock();
@@ -338,38 +340,38 @@ void slaveplay(){
                     last_line=linia;
                     last_column=col;
                     undo=0;
-                    trasareline(linia, col);
-                    nrmutari++;
-                    int castigator=victorie(linia, col);
+                    drawline(linia, col);
+                    moves++;
+                    int castigator=victory(linia, col);
                     if(castigator)
                     {
                         jucator=castigator;
                         gata=true;
-                        timer(start, nrmutari);
-                        gameIncheiat();
+                        timer(start, moves);
+                        endgame();
                     }
                     else
                     {
-                        if(level_computer==1)
+                        if(difficulty==1)
                             easylevel(linia, col);
                         else
-                            if(level_computer==2)
+                            if(difficulty==2)
                                 mediumlevel(linia, col);
                             else
                                 hardlevel(lastline, lastcol, linia, col);
 
                         lastline=linia;
                         lastcol=col;
-                        trasareline(linia, col);
-                        nrmutari++;
+                        drawline(linia, col);
+                        moves++;
 
-                        castigator=victorie(linia, col);
+                        castigator=victory(linia, col);
                         if(castigator)
                         {
                             jucator=castigator;
                             gata=true;
-                            timer(start, nrmutari);
-                            gameIncheiat();
+                            timer(start, moves);
+                            endgame();
                         }
                     }
                 }
@@ -382,9 +384,9 @@ void slaveplay(){
                     else
                         jucator=2;
                     gata=1;
-                    initializareboard();
-                    desenTabla();
-                    slaveplay();
+                    initializare();
+                    boarddraw();
+                    computerplay();
                 }
                 else
                     if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
@@ -399,30 +401,30 @@ void slaveplay(){
             {
                 if(b1_status==0)
                 {
-                    desenButon(B1, 4);
+                    drawbutton(B1, 4);
                     b1_status=1;
                 }
             }
             else
                 if(b1_status==1)
                 {
-                    desenButon(B1, 4,LIGHTBLUE);
-                    desenButon(B1);
+                    drawbutton(B1, 4,LIGHTBLUE);
+                    drawbutton(B1);
                     b1_status=0;
                 }
             if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
             {
                 if(b2_status==0)
                 {
-                    desenButon(B2, 4);
+                    drawbutton(B2, 4);
                     b2_status=1;
                 }
             }
             else
                 if(b2_status==1)
                 {
-                desenButon(B2, 4, LIGHTBLUE);
-                desenButon(B2);
+                drawbutton(B2, 4, LIGHTBLUE);
+                drawbutton(B2);
                 b2_status=0;
                 }
         }
@@ -433,8 +435,8 @@ void slaveplay(){
             if(undo==0)
             {
                 undo=1;
-                stergeLinia(lastline, lastcol);
-                stergeLinia(last_line, last_column);
+                eraseline(lastline, lastcol);
+                eraseline(last_line, last_column);
             }
         }
     }
@@ -444,8 +446,8 @@ void easylevel(int &linia, int &col){
     int mutare=0;
     while(mutare==0)
     {
-        linia=rand()%(2*dimensiuneTabla)+1;
-        col=rand()%(2*dimensiuneTabla)+1;
+        linia=rand()%(2*boarddimension)+1;
+        col=rand()%(2*boarddimension)+1;
 
         if(board[linia][col]==0)
         {
@@ -456,14 +458,14 @@ void easylevel(int &linia, int &col){
 }
 
 void mediumlevel(int &linia, int &col){
-    if(nrmutari==0)
+    if(moves==0)
         easylevel(linia, col);
     else
         {
             int mutare=0;
             if((board[linia][col-1]!=jucator) && (board[linia][col+1]!=0))
             {
-                for(int i=1; i<=dimensiuneTabla; i++)
+                for(int i=1; i<=boarddimension; i++)
                 {
                     if((board[linia-i][col]==0)&& (mutare==0) &&(linia-i>0))
                         {
@@ -471,7 +473,7 @@ void mediumlevel(int &linia, int &col){
                             mutare=1;
                             linia=linia-i;
                         }
-                    if((board[linia+i][col]==0)&& (mutare==0) &&(linia+i<2*dimensiuneTabla+1))
+                    if((board[linia+i][col]==0)&& (mutare==0) &&(linia+i<2*boarddimension+1))
                     {
                         board[linia+i][col]=jucator;
                         mutare=1;
@@ -482,7 +484,7 @@ void mediumlevel(int &linia, int &col){
                 else
                     if((board[linia-1][col]!=jucator) && (board[linia+1][col!=jucator]))
                         {
-                            for(int i=1; i<=dimensiuneTabla;i++)
+                            for(int i=1; i<=boarddimension;i++)
                             {
                                 if((board[linia][col-i]==0) && (mutare==0) && (col-i>0))
                                     {
@@ -510,7 +512,7 @@ void hardlevel(int lastline, int lastcol, int &linia, int &col){
     coditai[1]=lastline;
     coditaj[1]=lastcol;
 
-    if((nrmutari==0)  || (nrmutari==1))
+    if((moves==0)  || (moves==1))
             easylevel(linia, col);
         else
             {
@@ -533,7 +535,7 @@ void hardlevel(int lastline, int lastcol, int &linia, int &col){
                 while((miscare==0) && (coditai[k]!=0) && (coditaj[k]!=0))
                     {
                        for(int i=0; i<=3; i++)
-                            if((board[coditai[k]+di[i]][coditaj[k]+dj[i]]==jucator) && (coditai[k]+di[i]>i) && (coditai[k]+di[i]<=2*dimensiuneTabla) && (coditaj[k]+dj[i]>i) && (coditaj[k]+dj[i]<=2*dimensiuneTabla))
+                            if((board[coditai[k]+di[i]][coditaj[k]+dj[i]]==jucator) && (coditai[k]+di[i]>i) && (coditai[k]+di[i]<=2*boarddimension) && (coditaj[k]+dj[i]>i) && (coditaj[k]+dj[i]<=2*boarddimension))
                                {
                                     coditai[++k]=coditai[k]+di[i];
                                     coditaj[k]=coditai[k]+dj[i];
@@ -553,7 +555,7 @@ void hardlevel(int lastline, int lastcol, int &linia, int &col){
             }
 }
 
-int victorie(int linia, int col){
+int victory(int linia, int col){
     int queuei[50]={0}, queuej[50]={0}, first=1, last=1, i, j, aux[12][12]={0};
     // debug(aux);
     queuei[first]=linia;
@@ -563,28 +565,28 @@ int victorie(int linia, int col){
             i=queuei[first];
             j=queuej[first];
             aux[i][j]=1;
-            if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*dimensiuneTabla) && (i!=0) && (j+1!=0) && (j+1!=2*dimensiuneTabla))
+            if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*boarddimension) && (i!=0) && (j+1!=0) && (j+1!=2*boarddimension))
                 {
                     aux[i][j+1]=1;
                     last++;
                     queuei[last]=i;
                     queuej[last]=j+1;
                 }
-            if((abs(board[i][j-1])==abs(board[i][j])) && (aux[i][j-1]!=1) && (i!=2*dimensiuneTabla) && (i!=0) && (j-1!=0) && (j-1!=2*dimensiuneTabla))
+            if((abs(board[i][j-1])==abs(board[i][j])) && (aux[i][j-1]!=1) && (i!=2*boarddimension) && (i!=0) && (j-1!=0) && (j-1!=2*boarddimension))
                 {
                     aux[i][j-1]=1;
                     last++;
                     queuei[last]=i;
                     queuej[last]=j-1;
                 }
-            if((abs(board[i+1][j])==abs(board[i][j])) && (aux[i+1][j]!=1) && (i+1!=2*dimensiuneTabla) && (i+1!=0) && (j!=0) && (j!=2*dimensiuneTabla))
+            if((abs(board[i+1][j])==abs(board[i][j])) && (aux[i+1][j]!=1) && (i+1!=2*boarddimension) && (i+1!=0) && (j!=0) && (j!=2*boarddimension))
                 {
                     aux[i+1][j]=1;
                     last++;
                     queuei[last]=i+1;
                     queuej[last]=j;
                 }
-            if((abs(board[i-1][j])==abs(board[i][j])) && (aux[i-1][j]!=1) && (i-1!=2*dimensiuneTabla) && (i-1!=0) && (j!=0) && (j!=2*dimensiuneTabla))
+            if((abs(board[i-1][j])==abs(board[i][j])) && (aux[i-1][j]!=1) && (i-1!=2*boarddimension) && (i-1!=0) && (j!=0) && (j!=2*boarddimension))
                 {
                     aux[i-1][j]=1;
                     last++;
@@ -601,7 +603,7 @@ int victorie(int linia, int col){
                 {
                     if(queuei[i]==1)
                         cond1=1;
-                     if(queuei[i]==2*dimensiuneTabla-1)
+                     if(queuei[i]==2*boarddimension-1)
                         cond2=1;
                 }
             if((cond1==1) && (cond2==1))
@@ -616,7 +618,7 @@ int victorie(int linia, int col){
                 {
                     if(queuej[j]==1)
                         cond1=1;
-                     if(queuej[j]==2*dimensiuneTabla-1)
+                     if(queuej[j]==2*boarddimension-1)
                         cond2=1;
                 }
             if((cond1==1) && (cond2==1))
@@ -627,18 +629,86 @@ int victorie(int linia, int col){
         return 0;
 }
 
-void gameIncheiat(){
+void endgame(){
     delay(1000);
     clearviewport();
     readimagefile("Chenar_joc.jpg", 0, 0, windowWidth, windowHeight);
 
     if(jucator==1)
     {
-        readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        if(strcmp(language, "english")==0)
+        {
+            if(colour1=7)
+                readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=4)
+                readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=12)
+                readimagefile("yellow_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=11)
+                readimagefile("green_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        }
+
+        if(strcmp(language, "french")==0)
+        {
+            if(colour1=7)
+                readimagefile("blue_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=4)
+                readimagefile("red_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=12)
+                readimagefile("yellow_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=11)
+                readimagefile("green_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        }
+
+        if(strcmp(language, "romanian")==0)
+        {
+            if(colour1=7)
+                readimagefile("blue_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=4)
+                readimagefile("red_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=12)
+                readimagefile("yellow_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour1=11)
+                readimagefile("green_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        }
     }
     else
     {
-        readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        if(strcmp(language, "english")==0)
+        {
+            if(colour2=7)
+                readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=4)
+                readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=12)
+                readimagefile("yellow_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=11)
+                readimagefile("green_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        }
+
+        if(strcmp(language, "french")==0)
+        {
+            if(colour2=7)
+                readimagefile("blue_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=4)
+                readimagefile("red_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=12)
+                readimagefile("yellow_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=11)
+                readimagefile("green_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        }
+
+        if(strcmp(language, "romanian")==0)
+        {
+            if(colour2=7)
+                readimagefile("blue_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=4)
+                readimagefile("red_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=12)
+                readimagefile("yellow_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            if(colour2=11)
+                readimagefile("green_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+        }
     }
 
     buton B1, B2, B3;
@@ -654,9 +724,9 @@ void gameIncheiat(){
     strcpy(B3.text, "Exit");
 
 
-    desenButon(B1);
-    desenButon(B2);
-    desenButon(B3);
+    drawbutton(B1);
+    drawbutton(B2);
+    drawbutton(B3);
 
     bool gata=0, b1_status=0, b2_status=0, b3_status=0;
     int x,y;
@@ -674,10 +744,10 @@ void gameIncheiat(){
                         jucator=1;
                     else
                         jucator=2;
-                    initializareboard();
-                    desenTabla();
+                    initializare();
+                    boarddraw();
                     if(nrjucatori==1)
-                        slaveplay();
+                        computerplay();
                     else
                         play();
                 }
@@ -698,10 +768,10 @@ void gameIncheiat(){
 void drawboard(){
 
     clearviewport();
-    initializareboard();
-    desenTabla();
+    initializare();
+     boarddraw();
     if(nrjucatori==1)
-        slaveplay();
+        computerplay();
     else
         play();
 }
