@@ -31,13 +31,11 @@ void buttons(){
             {
                 firstPlayer=1;
                 readimagefile("p1_english.jpg", dx*54, dy*25, dx*64, dy*42);
-                std::cout<<firstPlayer;
             }
             if(y>=dy*33 && y<=dy*40)
             {
                 firstPlayer=2;
                 readimagefile("p2_english.jpg", dx*54, dy*25, dx*64, dy*42);
-                std::cout<<firstPlayer;
             }
         }
 

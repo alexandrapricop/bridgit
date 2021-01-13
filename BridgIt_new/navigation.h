@@ -162,7 +162,7 @@ void when_left_click()
 
     // REVINE IN PAGINA DE PORNIRE
 
-    if(((x>=dx*77 && x<=dx*100 && y>=dy*0 && y<=dy*8) && (currentWindow>5 && currentWindow<10 && strcmp(language, "french")==0)) ||  (currentWindow==16 || currentWindow==17))
+     if(((x>=dx*79 && x<=dx*100 && y>=dy*1 && y<=dy*7) && (currentWindow>6 && currentWindow<11 )) ||( strcmp(language, "french")==0 && (currentWindow==16 || currentWindow==17) && x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy))
     {
             if(lastWindow==!10) // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 10
             {
@@ -242,7 +242,7 @@ void when_left_click()
 
     // REVINE IN PAGINA DE PORNIRE
 
-    if(x>=dx*75 && x<=dx*100 && y>=dy*0 && y<=dy*8 && currentWindow>10 && currentWindow<18)
+     if(((x>=dx*75 && x<=dx*100 && y>=dy*1 && y<=dy*7) && (currentWindow>10 && currentWindow<16 )) ||( strcmp(language, "romanian")==0 && (currentWindow==16 || currentWindow==17) && x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy))
     {
             if(lastWindow==!15) // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 15
             {
@@ -263,6 +263,7 @@ void when_left_click()
     {
             nrplayers=1;
             currentWindow=16;
+            lastWindow=16;
             maindraw();
 
     }
@@ -272,11 +273,9 @@ void when_left_click()
     {
         nrplayers=2;
         currentWindow=17;
+        lastWindow=17;
         maindraw();
     }
-
-    if(currentWindow==16 || currentWindow==17)
-        std::cout<<currentWindow;
 
         std::cout << "Latest left click at: " << x*100/getmaxwidth()<< " " << " " << y*100/getmaxheight() << " " << "\n";
 

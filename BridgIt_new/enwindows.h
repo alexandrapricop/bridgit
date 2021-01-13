@@ -8,7 +8,6 @@ void menu_english()
         clearviewport();
     readimagefile("menu_english.jpg", 0, 0, windowWidth, windowHeight);
 
-    std::cout<<language;
 }
 
 void info_english()

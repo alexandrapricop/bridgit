@@ -17,15 +17,32 @@ using namespace std;
 
 int main()
 {
-
+    strcpy(language, "english");
     initwindow(windowWidth, windowHeight);
-
     setbkcolor(WHITE);
     menu_english();
 
     while(true)
     {
         when_left_click();
+        if(lastWindow==16 || lastWindow==17)
+        {
+            if(strcmp(language, "english")==0)
+            {
+                lastWindow=0;
+                currentWindow=1;
+            }
+            if(strcmp(language, "french")==0)
+            {
+                lastWindow=0;
+                currentWindow=6;
+            }
+            if(strcmp(language, "romanian")==0)
+            {
+                lastWindow=0;
+                currentWindow=11;
+            }
+        }
     }
 
     getch();

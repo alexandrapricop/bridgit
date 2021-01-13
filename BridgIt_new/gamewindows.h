@@ -1,16 +1,14 @@
 
 // ALEXANDRA SI ADINA
 
-#define border 120
+#define border 14*dy
 
 int board[12][12];
-int left, up, width, height, culoare=colour1, player=1, moves=0;
-
+int left, up, width, height, culoare=colour1, player=firstPlayer, playerline=firstPlayer, moves=0;
 void initializare();
 void tabla_consola();
 void drawboard();
 void drawline (int linia, int col);
-void eraseline(int linia, int col);
 void play();
 void computerplay();
 void easylevel(int &linia, int &col);
@@ -20,159 +18,9 @@ void endgame();
 void timer(clock_t start, int numarmutari);
 int victory(int linia, int col);
 
-void eraseline(int linia, int col){
-    setcolor(RED);
-    setlinestyle(SOLID_FILL, 0 ,5);
+void drawline(int linia, int col){ // DESENEAZA LINIILE DINTRE BULINE PENTRU MODUL SINGLE-PLAYER
 
-    if(board[linia][col]==-1*player)
-    {
-        board[linia][col]=0;
-        if(board[linia][col-1]==player)
-        {
-            line(left+(col-1)*(border/2)+22, up+linia*(border/2), left+(col+1)*(border/2)-21,up+linia*(border/2));
-            moves--;
-        }
-        else
-        {
-            line(left+col*(border/2), up+(linia-1)*(border/2)+22, left+col*(border/2), up+(linia+1)*(border/2)-21);
-        }   moves--;
-    }
-
-    if(player==1)
-    {
-        player=2;
-
-        if(colour1 == 7){
-
-          if(strcmp(language, "english")==0){
-            readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("blues_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-
-          if(strcmp(language, "romanian")==0){
-            readimagefile("blues_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour1 == 4){
-
-          if(strcmp(language, "english")==0){
-            readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("reds_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romanian")==0){
-            readimagefile("reds_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-        }
-
-        if(colour1 == 11){
-
-
-          if(strcmp(language, "english")==0){
-            readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("greens_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("greens_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-        }
-
-        if(colour1 == 12){
-
-          if(strcmp(language, "english")==0){
-            readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("yellows_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("yellows_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-    }
-    else
-    {
-        player=1;
-
-        if(colour2 == 7){
-          if(strcmp(language, "english")==0){
-            readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("blues_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("blues_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour2 == 4){
-          if(strcmp(language, "english")==0){
-            readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("reds_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("reds_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour2 == 11){
-          if(strcmp(language, "english")==0){
-            readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("greens_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("greens_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour2 == 12){
-          if(strcmp(language, "english")==0){
-            readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("yellows_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("yellows_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-    }
-}
-
-void drawline(int linia, int col){
-
-    if(player==1)
+    if(playerline==1)
     {
 
         if(colour1 == 7){
@@ -192,8 +40,7 @@ void drawline(int linia, int col){
             setcolor(YELLOW);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
-
-        player=2;
+        playerline=2;
     }
     else
     {
@@ -215,15 +62,15 @@ void drawline(int linia, int col){
             setcolor(YELLOW);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
-
-        player=1;
+        playerline=1;
     }
-    board[linia][col]=-1*player;
+    board[linia][col]=-1*playerline;
 
-    if(board[linia][col-1]==player)
+    if(board[linia][col-1]==playerline)
        line(left+(col-1)*(border/2), up+linia*(border/2), left+(col+1)*(border/2), up+linia*(border/2));
     else
        line(left+col*(border/2), up+(linia-1)*(border/2), left+col*(border/2), up+(linia+1)*(border/2));
+
 }
 
 void drawboard(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
@@ -232,9 +79,9 @@ void drawboard(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
     readimagefile("Chenar_joc.jpg", 0, 0, windowWidth, windowHeight);
 
     int i,j;
-    width=height=border*boardsize;
-    up=(getmaxheight()-height)/2;
-    left=(getmaxwidth()-width)/2+20*dx;
+    width=height=border*boardsize;  // DIMENSIUNEA TABLEI IN FUNCTIE DE NUMARUL DE BULINE ALESE
+    up=(getmaxheight()-height)/2;   // DISTANTA IN INALTIME DINTRE MARGINEA TABLEI SI MARGINEA FERESTREI
+    left=(getmaxwidth()-width)/2+20*dx; // DISTANTA IN LATIME LA STANGA DINTRE MARGINEA TABLEI SI MARGINEA FERESTREI
 
     int x=left, y=up;
     int dots;
@@ -243,7 +90,7 @@ void drawboard(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
 
     for(int i=1; i<=2*boardsize+1; i++)
     {
-        if(i%2==1)
+        if(i%2==1) // SETEAZA CULOAREA BULINELOR
         {
             if(colour1 == 7){
                 setcolor(LIGHTBLUE);
@@ -350,18 +197,20 @@ void drawboard(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
 
 void initializare(){
 
-    // CREEAZA TABLA DE JOC IN BACnEND - ADICA MATRICEA UNDE SE TIN MINTE POZITIILE PIESELOR SI MUTARILE playerULUI
+    // CREEAZA TABLA DE JOC IN BACKEND - ADICA MATRICEA UNDE SE TIN MINTE POZITIILE PIESELOR SI MUTARILE JUCATORULUI
     int i,j;
     for(i=0; i<=2*boardsize; i++)
         for(j=0; j<=2*boardsize; j++)
-            if((i%2==1) && (j%2==0))
+            if((i%2==1) && (j%2==0))  // IA VALOAREA 1 IN LOCURILE UNDE SE AFLA BULINE PRIMULUI JUCATOR
                 board[i][j]=1;
             else
                 if((i%2==0) && (j%2==1))
-                    board[i][j]=2;
+                    board[i][j]=2; // IA VALOAREA 2 IN LOCURILE UNDE SE AFLA BULINE CELUI DE-AL DOILEA JUCATOR
                 else
-                    board[i][j]=0;
-    for(i=0; i<=2*boardsize; i++)
+                    board[i][j]=0; // IA VALOAREA 0 UNDE NU EXISTA BULINE SI UNDE SE VOR TRASEAZA LINIILE
+
+
+    for(i=0; i<=2*boardsize; i++) // SE STABILESC VALORILE MARGINII TABLEI, CARE IN MATRICE VOR FI DOAR DE 1 SI 2 PENTRU A NU PUTEA FI TRASATE LINII
         {
             board[i][0]=1;
             board[0][i]=2;
@@ -378,266 +227,13 @@ void initializare(){
     }
 }
 
-void play_images(){
-
-
-    // INDICA RANDUL CUI ESTE SA MUTE
-
-    if(player==1)
-    {
-
-        if(colour1 == 7){
-
-          if(strcmp(language, "english")==0){
-            readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("blues_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("blues_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour1 == 4){
-
-          if(strcmp(language, "english")==0){
-            readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("reds_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("reds_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-        }
-
-        if(colour1 == 11){
-
-
-          if(strcmp(language, "english")==0){
-            readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("greens_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("greens_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-        }
-
-        if(colour1 == 12){
-
-          if(strcmp(language, "english")==0){
-            readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("yellows_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("yellows_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-    }
-    else
-    {
-        if(colour2 == 7){
-          if(strcmp(language, "english")==0){
-            readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("blues_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("blues_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour2 == 4){
-          if(strcmp(language, "english")==0){
-            readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("reds_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("reds_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour2 == 11){
-          if(strcmp(language, "english")==0){
-            readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("greens_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("greens_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-
-        if(colour2 == 12){
-          if(strcmp(language, "english")==0){
-            readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "french")==0){
-            readimagefile("yellows_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-
-          if(strcmp(language, "romana")==0){
-            readimagefile("yellows_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-          }
-        }
-    }
-
-    if(strcmp(language, "english")==0)
-    {
-        readimagefile("menu_e.jpg", 9*dx, 45*dy, 36*dx, 55*dy);
-        readimagefile("restart.jpg", 9*dx, 57*dy, 36*dx, 67*dy);
-    }
-
-    if(strcmp(language, "french")==0)
-    {
-        readimagefile("menu_f.jpg", 9*dx, 45*dy, 36*dx, 55*dy);
-        readimagefile("restart_f.jpg", 9*dx, 57*dy, 36*dx, 67*dy);
-    }
-
-    if(strcmp(language, "romanian")==0)
-    {
-        readimagefile("menu_r.jpg",9*dx, 45*dy, 36*dx, 55*dy);
-        readimagefile("restart.jpg", 9*dx, 57*dy, 36*dx, 67*dy);
-    }
-
-}
-
-
-void play() {
-
-    // FUNCTIA CARE DA START JOCULUI PLAYER VS PLAYER
-
-    moves=0;
-
-    play_images();
-
-    bool done=true, undo=1;
-    int linia, col, x, y, last_line, last_column;
-
-
-    moves=0;
-    clock_t duration;
-    clock_t start;
-    start=clock();
-
-    while(done)
-    {
-        x=mousex();  y=mousey();
-        if(ismouseclick(WM_LBUTTONDOWN))
-        {
-            clearmouseclick(WM_LBUTTONDOWN);
-
-            if(x>=left && x<=left+width && y>=up && y<=up+height)
-            {
-                linia=(y-up+2*dy)/(border/2);
-                col=(x-left+dx)/(border/2);
-
-                if(board[linia][col]==0)
-                {
-                    last_line=linia;
-                    last_column=col;
-                    undo=0;
-                    drawline(linia, col);
-                    moves++;
-                    int winner=victory(linia, col);
-                    if(winner)
-                    {
-                        player=winner;
-                        done=false;
-                        timer(start, moves);
-                        endgame();
-                    }
-                }
-            }
-            else
-               if(x>=9*dx && x<=36*dx && y>=57*dy && y<=67*dy)
-            {
-                if(player==culoare)
-                    player=1;
-                else
-                    player=2;
-
-                done=false;
-                initializare();
-                drawboard;
-                play();
-            }
-            else
-               if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy)
-                {
-                    done=false;
-
-                    if(strcmp(language, "english")==0)
-                        menu_english();
-                    if(strcmp(language, "french")==0)
-                        menu_french();
-                    if(strcmp(language, "romana")==0)
-                        menu_romanian();
-                }
-        }
-
-        if(ismouseclick(WM_RBUTTONDOWN))
-        {
-            clearmouseclick(WM_RBUTTONDOWN);
-            if(undo==0)
-            {
-                undo=1;
-                eraseline(last_line, last_column);
-            }
-        }
-    }
-}
-
-void timer(clock_t start, int numarmutari){
-    char charscor[19];
-    int scor, penalty;
-    clock_t duration;
-    duration=difftime(clock(), start);
-    scor=(int)duration + moves;
-
-    penalty=1000-scor;
-    if(penalty<0)
-        penalty=0;
-    itoa(penalty, charscor, 10);
-    setcolor(BLACK);
-
-    outtextxy(150, 700, "SCOR :");
-    outtextxy(textwidth("SCOR :")+120, 700, charscor);
-}
-
 void selected_colour(){
 
+// IN FUNCTIE DE CULOAREA JUCATORULUI CARE INCEPE, VA INSERA IMAGINEA
     if(firstPlayer==1)
     {
+        player=2;
+
         if(strcmp(language, "english")==0)
             {
             if(colour1==4)
@@ -674,6 +270,8 @@ void selected_colour(){
     }
     else
     {
+        player=1;
+
           if(strcmp(language, "english")==0)
             {
             if(colour2==4)
@@ -711,18 +309,151 @@ void selected_colour(){
 
 }
 
-void computerplay(){
+void play_images(){
 
-    // FUNCTIA CARE DA START JOCULUI PLAYER VS COMPUTER
+
+    // INDICA RANDUL CUI ESTE SA MUTE SI ACTUALIZEAZA NUMARUL JUCATORULUI
+
+    if(player==1)
+    {
+        player=2;
+
+        if(colour1 == 7){
+
+          if(strcmp(language, "english")==0){
+            readimagefile("blues_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("blues_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("blues_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+        }
+
+        if(colour1 == 4){
+
+          if(strcmp(language, "english")==0){
+            readimagefile("reds_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("reds_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("reds_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+        }
+
+        if(colour1 == 11){
+
+
+          if(strcmp(language, "english")==0){
+            readimagefile("greens_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("greens_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("greens_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+        }
+
+        if(colour1 == 12){
+
+          if(strcmp(language, "english")==0){
+            readimagefile("yellows_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("yellows_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("yellows_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+        }
+    }
+    else
+    {
+        player=1;
+
+        if(colour2 == 7){
+          if(strcmp(language, "english")==0){
+            readimagefile("blues_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("blues_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("blues_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+        }
+
+        if(colour2 == 4){
+          if(strcmp(language, "english")==0){
+            readimagefile("reds_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("reds_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("reds_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+        }
+
+        if(colour2 == 11){
+          if(strcmp(language, "english")==0){
+            readimagefile("greens_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("greens_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("greens_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+        }
+
+        if(colour2 == 12){
+          if(strcmp(language, "english")==0){
+            readimagefile("yellows_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "french")==0){
+            readimagefile("yellows_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+
+          if(strcmp(language, "romanian")==0){
+            readimagefile("yellows_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+          }
+        }
+    }
+}
+
+void play() {
+
+    // FUNCTIA CARE DA START JOCULUI PLAYER VS PLAYER
 
     moves=0;
+
+    // INSEREAZA IMAGINILE CU BUTOANE
 
     selected_colour();
-
-    bool done=true, undo=1;
-    int linia, col, last_line, last_column, lastline, lastcol;
-
-    moves=0;
 
     if(strcmp(language, "english")==0)
     {
@@ -742,9 +473,123 @@ void computerplay(){
         readimagefile("restart.jpg", 11*dx, 57*dy, 34*dx, 67*dy);
     }
 
+    bool done=true;
+    int linia, col, x, y, last_line, last_column;
+
+    moves=0;
     clock_t duration;
     clock_t start;
     start=clock();
+
+    while(done)
+    {
+        x=mousex();  y=mousey();
+        if(ismouseclick(WM_LBUTTONDOWN)) // CAT TIMP CURSORUL SE AFLA IN INTERIORUL TABLEI DE JOC
+        {
+            clearmouseclick(WM_LBUTTONDOWN);
+
+            if(x>=left && x<=left+width && y>=up && y<=up+height)
+            {
+                linia=(y-up+4*dy)/(border/2);
+                col=(x-left+3*dx)/(border/2);
+
+                if(board[linia][col]==0)
+                {
+                    last_line=linia;
+                    last_column=col;
+                    play_images();
+                    drawline(linia, col);
+                    moves++;
+                    int winner=victory(linia, col);
+                    if(winner)
+                    {
+                        winner=player;
+                        done=false;
+                        timer(start, moves);
+                        endgame();
+                    }
+                }
+            }
+            else
+                if(x>=9*dx && x<=36*dx && y>=58*dy && y<=68*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE RESTART, CARE RESETEAZA TABLA
+                {
+                    if(player==culoare)
+                        player=1;
+                    else
+                        player=2;
+                    done=false;
+                    initializare();
+                    drawboard();
+                    computerplay();
+                }
+            else
+               if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE MENIU, SI IN FUNCTIE DE LIMBA, INSEREAZA IMAGINEA
+                {
+                    done=false;
+
+                    if(strcmp(language, "english")==0)
+                        menu_english();
+                    if(strcmp(language, "french")==0)
+                        menu_french();
+                    if(strcmp(language, "romanian")==0)
+                        menu_romanian();
+                }
+        }
+    }
+}
+
+void timer(clock_t start, int numarmutari){
+    char charscor[19];
+    int scor, penalty;
+    clock_t duration;
+    duration=difftime(clock(), start);
+    scor=(int)duration + moves;
+
+    penalty=1000-scor;
+    if(penalty<0)
+        penalty=0;
+    itoa(penalty, charscor, 10);
+    setcolor(BLACK);
+
+    outtextxy(150, 700, "SCOR :");
+    outtextxy(textwidth("SCOR :")+120, 700, charscor);
+}
+
+void computerplay(){
+
+    // FUNCTIA CARE DA START JOCULUI PLAYER VS COMPUTER
+
+    moves=0;
+
+     //  INSEREAZA IMAGINILE CU BUTOANE
+
+    selected_colour();
+
+    if(strcmp(language, "english")==0)
+    {
+        readimagefile("menu_e.jpg", 11*dx, 45*dy, 34*dx, 55*dy);
+        readimagefile("restart.jpg", 11*dx, 57*dy, 34*dx, 67*dy);
+    }
+
+    if(strcmp(language, "french")==0)
+    {
+        readimagefile("menu_f.jpg", 11*dx, 45*dy, 34*dx, 55*dy);
+        readimagefile("restart_f.jpg", 11*dx, 57*dy, 34*dx, 67*dy);
+    }
+
+    if(strcmp(language, "romanian")==0)
+    {
+        readimagefile("menu_r.jpg",11*dx, 45*dy, 34*dx, 55*dy);
+        readimagefile("restart.jpg", 11*dx, 57*dy, 34*dx, 67*dy);
+    }
+
+    bool done=true;
+    int linia, col, last_line, last_column, lastline, lastcol;
+
+    clock_t duration;
+    clock_t start;
+    start=clock();
+
     while(done)
     {
         int x=mousex();
@@ -756,14 +601,14 @@ void computerplay(){
 
             if(x>=left && x<=left+width && y>=up && y<=up+height)
             {
-                linia=(y-up+dy*3)/(border/2);
+                linia=(y-up+dy*4)/(border/2);
                 col=(x-left+dx*3)/(border/2);
 
                 if(board[linia][col]==0)
                 {
                     last_line=linia;
                     last_column=col;
-                    undo=0;
+                    play_images();
                     drawline(linia, col);
                     moves++;
                     int winner=victory(linia, col);
@@ -802,7 +647,7 @@ void computerplay(){
                 }
             }
             else
-                if(x>=9*dx && x<=36*dx && y>=58*dy && y<=68*dy)
+                if(x>=9*dx && x<=36*dx && y>=58*dy && y<=68*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE RESTART
                 {
                     if(player==culoare)
                         player=1;
@@ -814,35 +659,24 @@ void computerplay(){
                     computerplay();
                 }
                 else
-                    if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy)
+                    if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE MENIU SI, IN FUNCTIE DE LIMBA SELECTATA, INSEREAZA IMAGINEA
                 {
                  done=false;
 
-                   if(strcmp(language, "english")==0)
+                    if(strcmp(language, "english")==0)
                         menu_english();
                     if(strcmp(language, "french")==0)
                         menu_french();
-                    if(strcmp(language, "romana")==0)
+                    if(strcmp(language, "romanian")==0)
                         menu_romanian();
                 }
-        }
-
-        if(ismouseclick(WM_RBUTTONDOWN))
-        {
-            clearmouseclick(WM_RBUTTONDOWN);
-            if(undo==0)
-            {
-                undo=1;
-                eraseline(lastline, lastcol);
-                eraseline(last_line, last_column);
-            }
         }
     }
 }
 
 void easylevel(int &linia, int &col){
 
-    // MODUL EASY PENTRU PLAYER VS COMPUTER
+    // MODUL EASY PENTRU PLAYER VS COMPUTER - PUNE RANDOM O LINIE
 
     int mutare=0;
 
@@ -864,13 +698,13 @@ void mediumlevel(int &linia, int &col){
     // MODUL MEDIUM PENTRU PLAYER VS COMPUTER
 
     if(moves==0)
-        easylevel(linia, col);
+        easylevel(linia, col); // DACA NU ESTE FACUTA NICIO MUTARE, ATUNCI CALCULATORUL VA PUNE ALEATORIU O LINIE
 
     else
         {
             int mutare=0;
 
-            if((board[linia][col-1]!=player) && (board[linia][col+1]!=player))
+            if((board[linia][col-1]!=player) && (board[linia][col+1]!=player)) // VERIFICA DACA PE INALTIME SE AFLA INTRE 2 BULINE DE CULOAREA CELUILALT JUCATOR
             {
                 for(int i=1; i<=boardsize; i++)
                 {
@@ -889,7 +723,7 @@ void mediumlevel(int &linia, int &col){
                 }
             }
                 else
-                    if((board[linia-1][col]!=player) && (board[linia+1][col]!=player)) // !!!!
+                    if((board[linia-1][col]!=player) && (board[linia+1][col]!=player)) // VERIFICA DACA PE LATIME SE AFLA INTRE 2 BULINE DE CULOAREA CELUILALT JUCATOR
                         {
                             for(int i=1; i<=boardsize;i++)
                             {
@@ -966,7 +800,9 @@ void hardlevel(int lastline, int lastcol, int &linia, int &col){
 
 void butoane_victory(){
 
-    if(player==2)
+    // VERIFICA CE JUCATOR A CASTIGAT SI AFISEAZA IMAGINEA
+
+    if(player==1)
         {
             if(strcmp(language, "english")==0)
             {
@@ -1051,7 +887,7 @@ void butoane_victory(){
         else if(strcmp(language, "french")==0)
                 {
                     readimagefile("menu_f.jpg", getmaxwidth()/2 - dx*12, dy*65, getmaxwidth()/2 + dx*12, dy*75);
-                    readimagefile("playagain_f.jpg", getmaxwidth()/2 - dx*12, dy*77, getmaxwidth()/2 + dx*12, dy*87);
+                    readimagefile("playagain_f.jpg", getmaxwidth()/2 - dx*12, dy*75, getmaxwidth()/2 + dx*12, dy*87);
                 }
                 else if(strcmp(language, "romanian")==0)
                         {
@@ -1068,13 +904,13 @@ int victory(int linia, int col){
     queuei[first]=linia;
     queuej[first]=col;
 
-    while(first<=last)
+    while(first<=last) // VERIFICA DACA DINTR-UN PUNCT NU PLEACA DEJA 4 LINII
         {
             i=queuei[first];
             j=queuej[first];
             aux[i][j]=1;
 
-            if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*boardsize) && (i!=0) && (j+1!=0) && (j+1!=2*boardsize))
+            if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*boardsize) && (i!=0) && (j+1!=0) && (j+1!=2*boardsize)) // VERIFICA
                 {
                     aux[i][j+1]=1;
                     last++;
@@ -1192,6 +1028,8 @@ void endgame(){
 }
 
 void maindraw(){
+
+    // FUNCTIA PRINCIPALA A TABLEI DE JOC
 
     clearviewport();
 
