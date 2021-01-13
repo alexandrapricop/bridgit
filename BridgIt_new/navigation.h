@@ -45,7 +45,6 @@ void when_left_click()
         currentWindow=4;
         lastWindow=0;
 
-        std::cout<<firstPlayer;
         buttons_en();
     }
 
@@ -72,7 +71,7 @@ void when_left_click()
 
     // SE INTOARCE PE PAGINA DE PORNIRE INDIFERENT DE PAGINA CURENTA
 
-     if(((x>=dx*87 && x<=dx*100 && y>=dy*1 && y<=dy*7) && (currentWindow>1 && currentWindow<5 && strcmp(language, "english")==0)) || (currentWindow==16 || currentWindow==17))
+     if(((x>=dx*87 && x<=dx*100 && y>=dy*1 && y<=dy*7) && (currentWindow>1 && currentWindow<5 )) ||( strcmp(language, "english")==0 && (currentWindow==16 || currentWindow==17) && x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy))
     {
         if(lastWindow==!5)  // DACA VREAU SA MA INTORC IN MENIU DIN ORICE FEREASTRA, MAI PUTIN CEA CU NR 5
         {
@@ -213,12 +212,11 @@ void when_left_click()
     // SARE DIN PAGINA DE PORNIRE IN SETARI
     if(x>=dx*1 && x<=dx*10 && y>=dy*19 && y<=dy*25 && currentWindow==11)
     {
-          std::cout<<firstPlayer;
         settings_romanian();
         currentWindow=14;
         lastWindow=0;
 
-        buttons_ro;
+        buttons_ro();
 
     }
 
@@ -264,19 +262,22 @@ void when_left_click()
     if(x>=dx*32 && x<=dx*62 && y>=dy*53 && y<=dy*66 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
     {
             nrplayers=1;
-            maindraw();
             currentWindow=16;
+            maindraw();
 
     }
 
-    // ODESCHIDE TABLA DE JOC PENTRU MODUL TWO PLAYERS
+    // DESCHIDE TABLA DE JOC PENTRU MODUL TWO PLAYERS
     if(x>=dx*33 && x<=dx*62 && y>=dy*68 && y<=dy*82 && (currentWindow==1 || currentWindow==6 || currentWindow==11))
     {
         nrplayers=2;
-        maindraw();
         currentWindow=17;
+        maindraw();
     }
 
-    std::cout << "Latest left click at: " << x*100/getmaxwidth()<< " " << " " << y*100/getmaxheight() << " " << "\n";
+    if(currentWindow==16 || currentWindow==17)
+        std::cout<<currentWindow;
+
+        std::cout << "Latest left click at: " << x*100/getmaxwidth()<< " " << " " << y*100/getmaxheight() << " " << "\n";
 
 }

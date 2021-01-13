@@ -19,8 +19,6 @@ int main()
 {
 
     initwindow(windowWidth, windowHeight);
-    //PlaySound(TEXT("muzica1.mp3"), NULL, SND_SYNC);
-    //PlaySound(TEXT("SystemStart"), NULL, SND_ALIAS);
 
     setbkcolor(WHITE);
     menu_english();

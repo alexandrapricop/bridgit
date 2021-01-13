@@ -2,63 +2,68 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="gamewindows.h" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="enwindows.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="17162" topLine="200" />
+			<Cursor1 position="848" topLine="3" />
 		</Cursor>
 		<Folding>
-			<Collapse line="26" />
-			<Collapse line="48" />
-			<Collapse line="64" />
-			<Collapse line="80" />
-			<Collapse line="97" />
-			<Collapse line="117" />
-			<Collapse line="132" />
-			<Collapse line="176" />
-			<Collapse line="229" />
-			<Collapse line="369" />
-			<Collapse line="645" />
-			<Collapse line="662" />
-			<Collapse line="683" />
-			<Collapse line="831" />
-			<Collapse line="850" />
-			<Collapse line="901" />
-			<Collapse line="953" />
-			<Collapse line="1191" />
+			<Collapse line="14" />
+			<Collapse line="21" />
+			<Collapse line="35" />
+			<Collapse line="47" />
 		</Folding>
+	</File>
+	<File name="navigation.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="553" topLine="177" />
+		</Cursor>
 	</File>
 	<File name="frwindows.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1834" topLine="0" />
+			<Cursor1 position="1834" topLine="36" />
 		</Cursor>
 	</File>
-	<File name="rowindows.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="216" topLine="6" />
+			<Cursor1 position="381" topLine="9" />
 		</Cursor>
 	</File>
 	<File name="variables.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="808" topLine="189" />
-		</Cursor>
-	</File>
-	<File name="navigation.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7758" topLine="240" />
-		</Cursor>
-	</File>
-	<File name="enwindows.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="212" topLine="6" />
+			<Cursor1 position="808" topLine="0" />
 		</Cursor>
 		<Folding>
-			<Collapse line="12" />
-			<Collapse line="19" />
+			<Collapse line="14" />
 		</Folding>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="rowindows.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="239" topLine="0" />
+			<Cursor1 position="1186" topLine="49" />
 		</Cursor>
+	</File>
+	<File name="gamewindows.h" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="27132" topLine="97" />
+		</Cursor>
+		<Folding>
+			<Collapse line="22" />
+			<Collapse line="76" />
+			<Collapse line="93" />
+			<Collapse line="113" />
+			<Collapse line="128" />
+			<Collapse line="172" />
+			<Collapse line="228" />
+			<Collapse line="350" />
+			<Collapse line="380" />
+			<Collapse line="534" />
+			<Collapse line="619" />
+			<Collapse line="636" />
+			<Collapse line="713" />
+			<Collapse line="842" />
+			<Collapse line="966" />
+			<Collapse line="1063" />
+			<Collapse line="1140" />
+			<Collapse line="1193" />
+		</Folding>
 	</File>
 </CodeBlocks_layout_file>

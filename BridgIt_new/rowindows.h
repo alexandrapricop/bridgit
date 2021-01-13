@@ -43,6 +43,7 @@ void settings_romanian()
 
     readimagefile("settings_romanian.jpg", 0, 0, windowWidth, windowHeight);
 
+
 }
 
 void aboutsettings_romanian()

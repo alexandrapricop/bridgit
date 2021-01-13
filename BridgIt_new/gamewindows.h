@@ -1,17 +1,13 @@
+
 // ALEXANDRA SI ADINA
+
 #define border 120
 
 int board[12][12];
 int left, up, width, height, culoare=colour1, player=1, moves=0;
 
-struct button{
-    int x1, y1, x2, y2, mx, my;
-    char text[20];
-};
-
 void initializare();
 void tabla_consola();
-void drawbutton (button &b, int textsize=5, int colour=BLACK);
 void drawboard();
 void drawline (int linia, int col);
 void eraseline(int linia, int col);
@@ -57,7 +53,7 @@ void eraseline(int linia, int col){
           }
 
 
-          if(strcmp(language, "romana")==0){
+          if(strcmp(language, "romanian")==0){
             readimagefile("blues_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
           }
         }
@@ -72,7 +68,7 @@ void eraseline(int linia, int col){
             readimagefile("reds_turn_f.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
           }
 
-          if(strcmp(language, "romana")==0){
+          if(strcmp(language, "romanian")==0){
             readimagefile("reds_turn_r.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
           }
 
@@ -175,9 +171,9 @@ void eraseline(int linia, int col){
 }
 
 void drawline(int linia, int col){
+
     if(player==1)
     {
-        player=2;
 
         if(colour1 == 7){
             setcolor(LIGHTBLUE);
@@ -196,10 +192,11 @@ void drawline(int linia, int col){
             setcolor(YELLOW);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
+
+        player=2;
     }
     else
     {
-        player=1;
 
         if(colour2 == 7){
             setcolor(LIGHTBLUE);
@@ -218,6 +215,8 @@ void drawline(int linia, int col){
             setcolor(YELLOW);
             setlinestyle(SOLID_LINE, 0 , 8);
         }
+
+        player=1;
     }
     board[linia][col]=-1*player;
 
@@ -241,10 +240,10 @@ void drawboard(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
     int dots;
 
     // SE ADAUGA PIESELE
+
     for(int i=1; i<=2*boardsize+1; i++)
     {
         if(i%2==1)
-            // 7 albastru, 4 rosu 12 galben 11 verde
         {
             if(colour1 == 7){
                 setcolor(LIGHTBLUE);
@@ -349,27 +348,9 @@ void drawboard(){    // SE INITIALIZEAZA DESENUL PENTRU TABLA DE JOC
 
 }
 
-void drawbutton(button &b, int textsize, int colour) {
-
-        // FUNCTIA CE CREEAZA BUTOANELE DE NAVIGARE
-
-        settextstyle(TRIPLEX_FONT, HORIZ_DIR, textsize);
-
-        int inaltime=textheight(b.text);
-        int lungime=textwidth(b.text);
-
-        b.x1=b.mx;
-        b.y1=b.my;
-        b.x2=b.x1+lungime;
-        b.y2=b.y1+inaltime;
-
-        setcolor(colour);
-        outtextxy(b.x1, b.y1, b.text);
-}
-
 void initializare(){
 
-    // CREEAZA TABLA DE JOC IN BACKEND - ADICA MATRICEA UNDE SE TIN MINTE POZITIILE PIESELOR SI MUTARILE playerULUI
+    // CREEAZA TABLA DE JOC IN BACnEND - ADICA MATRICEA UNDE SE TIN MINTE POZITIILE PIESELOR SI MUTARILE playerULUI
     int i,j;
     for(i=0; i<=2*boardsize; i++)
         for(j=0; j<=2*boardsize; j++)
@@ -382,10 +363,11 @@ void initializare(){
                     board[i][j]=0;
     for(i=0; i<=2*boardsize; i++)
         {
-          board[0][i]=2;
-          board[i][0]=1;
-          board[2*boardsize][i]=2;
-          board[i][2*boardsize]=1;
+            board[i][0]=1;
+            board[0][i]=2;
+            board[i][2*boardsize]=1;
+            board[2*boardsize][i]=2;
+
         }
 
     for(i=0; i<=2*boardsize; i++)
@@ -396,14 +378,11 @@ void initializare(){
     }
 }
 
-void play() {
+void play_images(){
 
 
-    // FUNCTIA CARE DA START JOCULUI PLAYER VS PLAYER
+    // INDICA RANDUL CUI ESTE SA MUTE
 
-    moves=0;
-
-    // INDICA A CUI RAND ESTE SA MUTE
     if(player==1)
     {
 
@@ -532,43 +511,38 @@ void play() {
         }
     }
 
-
-    bool done=true, undo=1;
-    int linia, col, x, y, last_line, last_column;
-    button B1, B2;
-
     if(strcmp(language, "english")==0)
     {
-        B1.mx= getmaxwidth()/2 - textwidth("Restart")/2;
-        B1.my=71*dy;
-        strcpy(B1.text, "Restart");
-        B2.mx= getmaxwidth()/2 - textwidth("Menu")/2;
-        B2.my=80*dy;
-        strcpy(B2.text, "Menu");
+        readimagefile("menu_e.jpg", 9*dx, 45*dy, 36*dx, 55*dy);
+        readimagefile("restart.jpg", 9*dx, 57*dy, 36*dx, 67*dy);
     }
 
     if(strcmp(language, "french")==0)
     {
-        B1.mx= getmaxwidth()/2 - textwidth("Restart")/2;
-        B1.my=71*dy;
-        strcpy(B1.text, "Restart");
-        B2.mx= getmaxwidth()/2 - textwidth("Page d'accueil")/2;
-        B2.my=80*dy;
-        strcpy(B2.text, "Page d'accueil");
+        readimagefile("menu_f.jpg", 9*dx, 45*dy, 36*dx, 55*dy);
+        readimagefile("restart_f.jpg", 9*dx, 57*dy, 36*dx, 67*dy);
     }
 
     if(strcmp(language, "romanian")==0)
     {
-        B1.mx= getmaxwidth()/2 - textwidth("Restart")/2;
-        B1.my=71*dy;
-        strcpy(B1.text, "Restart");
-        B2.mx= getmaxwidth()/2 - textwidth("Pagina de pornire")/2;
-        B2.my=80*dy;
-        strcpy(B2.text, "Pagina de pornire");
+        readimagefile("menu_r.jpg",9*dx, 45*dy, 36*dx, 55*dy);
+        readimagefile("restart.jpg", 9*dx, 57*dy, 36*dx, 67*dy);
     }
 
-    drawbutton(B1);
-    drawbutton(B2);
+}
+
+
+void play() {
+
+    // FUNCTIA CARE DA START JOCULUI PLAYER VS PLAYER
+
+    moves=0;
+
+    play_images();
+
+    bool done=true, undo=1;
+    int linia, col, x, y, last_line, last_column;
+
 
     moves=0;
     clock_t duration;
@@ -598,14 +572,14 @@ void play() {
                     if(winner)
                     {
                         player=winner;
-                        done=true;
+                        done=false;
                         timer(start, moves);
                         endgame();
                     }
                 }
             }
             else
-                if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
+               if(x>=9*dx && x<=36*dx && y>=57*dy && y<=67*dy)
             {
                 if(player==culoare)
                     player=1;
@@ -618,7 +592,7 @@ void play() {
                 play();
             }
             else
-                if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
+               if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy)
                 {
                     done=false;
 
@@ -662,23 +636,79 @@ void timer(clock_t start, int numarmutari){
 
 void selected_colour(){
 
-    if(colour1==4)
-        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    if(colour1==7)
-        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    if(colour1==11)
-        readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    if(colour1==12)
-        readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
+    if(firstPlayer==1)
+    {
+        if(strcmp(language, "english")==0)
+            {
+            if(colour1==4)
+                readimagefile("reds_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            if(colour1==7)
+                readimagefile("blues_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            if(colour1==11)
+                readimagefile("greens_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            if(colour1==12)
+                readimagefile("yellows_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            }
+            else if(strcmp(language, "french")==0)
+                    {
+                    if(colour1==4)
+                        readimagefile("reds_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    if(colour1==7)
+                        readimagefile("blues_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    if(colour1==11)
+                        readimagefile("greens_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    if(colour1==12)
+                        readimagefile("yellows_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    }
+                     else if(strcmp(language, "romanian")==0)
+                            {
+                            if(colour1==4)
+                                readimagefile("reds_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            if(colour1==7)
+                                readimagefile("blues_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            if(colour1==11)
+                                readimagefile("greens_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            if(colour1==12)
+                                readimagefile("yellows_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            }
+    }
+    else
+    {
+          if(strcmp(language, "english")==0)
+            {
+            if(colour2==4)
+                readimagefile("reds_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            if(colour2==7)
+                readimagefile("blues_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            if(colour2==11)
+                readimagefile("greens_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            if(colour2==12)
+                readimagefile("yellows_turn_e.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+            }
+            else if(strcmp(language, "french")==0)
+                    {
+                    if(colour2==4)
+                        readimagefile("reds_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    if(colour2==7)
+                        readimagefile("blues_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    if(colour2==11)
+                        readimagefile("greens_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    if(colour2==12)
+                        readimagefile("yellows_turn_f.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                    }
+                     else if(strcmp(language, "romanian")==0)
+                            {
+                            if(colour2==4)
+                                readimagefile("reds_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            if(colour2==7)
+                                readimagefile("blues_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            if(colour2==11)
+                                readimagefile("greens_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            if(colour2==12)
+                                readimagefile("yellows_turn_r.jpg", 7*dx, 18*dy, 47*dx, 36*dy);
+                            }
+    }
 
-    if(colour2==4)
-        readimagefile("reds_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    if(colour2==7)
-        readimagefile("blues_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    if(colour2==11)
-        readimagefile("greens_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
-    if(colour2==12)
-        readimagefile("yellows_turn_e.jpg", 9*dx, 18*dy, 49*dx, 36*dy);
 }
 
 void computerplay(){
@@ -687,23 +717,30 @@ void computerplay(){
 
     moves=0;
 
-    if(firstPlayer==1)
-            selected_colour();
+    selected_colour();
 
-    if(firstPlayer==2)
-            selected_colour();
-
-    bool done=true, undo=1, b1_status=0, b2_status=0;
+    bool done=true, undo=1;
     int linia, col, last_line, last_column, lastline, lastcol;
-    button B1, B2;
-
-    B1.mx=150; B1.my=400; strcpy(B1.text, "Restart");
-    B2.mx=150; B2.my=470; strcpy(B2.text, "Menu");
-
-    drawbutton(B1);
-    drawbutton(B2);
 
     moves=0;
+
+    if(strcmp(language, "english")==0)
+    {
+        readimagefile("menu_e.jpg", 11*dx, 45*dy, 34*dx, 55*dy);
+        readimagefile("restart.jpg", 11*dx, 57*dy, 34*dx, 67*dy);
+    }
+
+    if(strcmp(language, "french")==0)
+    {
+        readimagefile("menu_f.jpg", 11*dx, 45*dy, 34*dx, 55*dy);
+        readimagefile("restart_f.jpg", 11*dx, 57*dy, 34*dx, 67*dy);
+    }
+
+    if(strcmp(language, "romanian")==0)
+    {
+        readimagefile("menu_r.jpg",11*dx, 45*dy, 34*dx, 55*dy);
+        readimagefile("restart.jpg", 11*dx, 57*dy, 34*dx, 67*dy);
+    }
 
     clock_t duration;
     clock_t start;
@@ -734,7 +771,7 @@ void computerplay(){
                     if(winner)
                     {
                         player=winner;
-                        done=true;
+                        done=false;
                         timer(start, moves);
                         endgame();
                     }
@@ -757,7 +794,7 @@ void computerplay(){
                         if(winner)
                         {
                             player=winner;
-                            done=true;
+                            done=false;
                             timer(start, moves);
                             endgame();
                         }
@@ -765,54 +802,28 @@ void computerplay(){
                 }
             }
             else
-                if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
+                if(x>=9*dx && x<=36*dx && y>=58*dy && y<=68*dy)
                 {
                     if(player==culoare)
                         player=1;
                     else
                         player=2;
-                    done=1;
+                    done=false;
                     initializare();
                     drawboard();
                     computerplay();
                 }
                 else
-                    if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
+                    if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy)
                 {
-                    done=1;
-                }
-        }
-        else
-        {
-            if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
-            {
-                if(b1_status==0)
-                {
-                    drawbutton(B1, 4);
-                    b1_status=1;
-                }
-            }
-            else
-                if(b1_status==1)
-                {
-                    drawbutton(B1, 4,LIGHTBLUE);
-                    drawbutton(B1);
-                    b1_status=0;
-                }
-            if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
-            {
-                if(b2_status==0)
-                {
-                    drawbutton(B2, 4);
-                    b2_status=1;
-                }
-            }
-            else
-                if(b2_status==1)
-                {
-                drawbutton(B2, 4, LIGHTBLUE);
-                drawbutton(B2);
-                b2_status=0;
+                 done=false;
+
+                   if(strcmp(language, "english")==0)
+                        menu_english();
+                    if(strcmp(language, "french")==0)
+                        menu_french();
+                    if(strcmp(language, "romana")==0)
+                        menu_romanian();
                 }
         }
 
@@ -854,10 +865,12 @@ void mediumlevel(int &linia, int &col){
 
     if(moves==0)
         easylevel(linia, col);
+
     else
         {
             int mutare=0;
-            if((board[linia][col-1]!=player) && (board[linia][col+1]!=0))
+
+            if((board[linia][col-1]!=player) && (board[linia][col+1]!=player))
             {
                 for(int i=1; i<=boardsize; i++)
                 {
@@ -876,7 +889,7 @@ void mediumlevel(int &linia, int &col){
                 }
             }
                 else
-                    if((board[linia-1][col]!=player) && (board[linia+1][col!=player]))
+                    if((board[linia-1][col]!=player) && (board[linia+1][col]!=player)) // !!!!
                         {
                             for(int i=1; i<=boardsize;i++)
                             {
@@ -886,7 +899,7 @@ void mediumlevel(int &linia, int &col){
                                         mutare=1;
                                         col=col-i;
                                     }
-                                if((board[linia][col+i]==0) && (mutare==0) && (col+i>0))
+                                if((board[linia][col+i]==0) && (mutare==0) && (col+i<2*boardsize+1))
                                     {
                                         board[linia][col+i]=player;
                                         mutare=1;
@@ -900,7 +913,7 @@ void mediumlevel(int &linia, int &col){
 }
 
 void hardlevel(int lastline, int lastcol, int &linia, int &col){
-    int queuei[100]={0}, queuej[100]={0}, k=1;
+    int queuei[100]={0}, queuej[100]={0}, n=1;
     int di[4]={0, 0, 1, -1};
     int dj[4]={1, -1, 0, 0};
     queuei[1]=lastline;
@@ -915,52 +928,152 @@ void hardlevel(int lastline, int lastcol, int &linia, int &col){
                 int miscare=0;
                 if((board[lastline][lastcol-1]==player) && (board[lastline][lastcol+1]==player))
                     {
-                        queuej[++k]=lastcol-1;
-                        queuei[k]=lastline;
-                        queuej[++k]=lastcol+1;
-                        queuei[k]=lastline;
+                        queuej[++n]=lastcol-1;
+                        queuei[n]=lastline;
+                        queuej[++n]=lastcol+1;
+                        queuei[n]=lastline;
                     }
                 if((board[lastline-1][lastcol]==player) && (board[lastline+1][lastcol]==player))
                     {
-                        queuei[++k]=lastline-1;
-                        queuej[k]=lastcol;
-                        queuei[++k]=lastline+1;
-                        queuej[k]=lastcol;
+                        queuei[++n]=lastline-1;
+                        queuej[n]=lastcol;
+                        queuei[++n]=lastline+1;
+                        queuej[n]=lastcol;
                     }
-                k=1;
-                while((miscare==0) && (queuei[k]!=0) && (queuej[k]!=0))
+                n=1;
+                while((miscare==0) && (queuei[n]!=0) && (queuej[n]!=0))
                     {
                        for(int i=0; i<=3; i++)
-                            if((board[queuei[k]+di[i]][queuej[k]+dj[i]]==player) && (queuei[k]+di[i]>i) && (queuei[k]+di[i]<=2*boardsize) && (queuej[k]+dj[i]>i) && (queuej[k]+dj[i]<=2*boardsize))
+                            if((board[queuei[n]+di[i]][queuej[n]+dj[i]]==player) && (queuei[n]+di[i]>0) && (queuei[n]+di[i]<=2*boardsize) && (queuej[n]+dj[i]>0) && (queuej[n]+dj[i]<=2*boardsize))
                                {
-                                    queuei[++k]=queuei[k]+di[i];
-                                    queuej[k]=queuei[k]+dj[i];
+                                    queuei[++n]=queuei[n]+di[i];
+                                    queuej[n]=queuej[n]+dj[i];
                                }
                        for(int i=0; i<=3; i++)
-                            if((board[queuei[k]+di[i]][queuej[k]+dj[i]]==0))
+                            if((board[queuei[n]+di[i]][queuej[n]+dj[i]]==0))
                                 {
-                                    board[queuei[k]+di[i]][queuej[k]+dj[i]]=player;
-                                    linia=queuei[k];
-                                    col=queuej[k];
+                                    board[queuei[n]+di[i]][queuej[n]+dj[i]]=player;
+                                    linia=queuei[n];
+                                    col=queuej[n];
                                     miscare=1;
                                 }
-                                    k++;
+                                    n++;
                     }
                 if(miscare==0)
                     mediumlevel(linia, col);
             }
 }
 
+void butoane_victory(){
+
+    if(player==2)
+        {
+            if(strcmp(language, "english")==0)
+            {
+                if(colour1==7)
+                    readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==4)
+                    readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==12)
+                    readimagefile("yellow_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==11)
+                    readimagefile("green_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            }
+
+            if(strcmp(language, "french")==0)
+            {
+                if(colour1==7)
+                    readimagefile("blue_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==4)
+                    readimagefile("red_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==12)
+                    readimagefile("yellow_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==11)
+                    readimagefile("green_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            }
+
+            if(strcmp(language, "romanian")==0)
+            {
+                if(colour1==7)
+                    readimagefile("blue_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==4)
+                    readimagefile("red_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==12)
+                    readimagefile("yellow_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour1==11)
+                    readimagefile("green_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            }
+        }
+        else
+        {
+            if(strcmp(language, "english")==0)
+            {
+                if(colour2==7)
+                    readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==4)
+                    readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==12)
+                    readimagefile("yellow_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==11)
+                    readimagefile("green_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            }
+
+            if(strcmp(language, "french")==0)
+            {
+                if(colour2==7)
+                    readimagefile("blue_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==4)
+                    readimagefile("red_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==12)
+                    readimagefile("yellow_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==11)
+                    readimagefile("green_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            }
+
+            if(strcmp(language, "romanian")==0)
+            {
+                if(colour2==7)
+                    readimagefile("blue_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==4)
+                    readimagefile("red_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==12)
+                    readimagefile("yellow_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+                if(colour2==11)
+                    readimagefile("green_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
+            }
+        }
+
+        if(strcmp(language, "english")==0)
+        {
+            readimagefile("menu_e.jpg", getmaxwidth()/2 - dx*12, dy*65, getmaxwidth()/2 + dx*12, dy*75);
+            readimagefile("playagain_e.jpg", getmaxwidth()/2 - dx*12, dy*77, getmaxwidth()/2 + dx*12, dy*87);
+        }
+        else if(strcmp(language, "french")==0)
+                {
+                    readimagefile("menu_f.jpg", getmaxwidth()/2 - dx*12, dy*65, getmaxwidth()/2 + dx*12, dy*75);
+                    readimagefile("playagain_f.jpg", getmaxwidth()/2 - dx*12, dy*77, getmaxwidth()/2 + dx*12, dy*87);
+                }
+                else if(strcmp(language, "romanian")==0)
+                        {
+                            readimagefile("menu_r.jpg", getmaxwidth()/2 - dx*12, dy*65, getmaxwidth()/2 + dx*12, dy*75);
+                            readimagefile("playagain_r.jpg", getmaxwidth()/2 - dx*12, dy*77, getmaxwidth()/2 + dx*12, dy*87);
+                        }
+
+}
+
 int victory(int linia, int col){
 
     int queuei[50]={0}, queuej[50]={0}, first=1, last=1, i, j, aux[12][12]={0};
+
     queuei[first]=linia;
     queuej[first]=col;
+
     while(first<=last)
         {
             i=queuei[first];
             j=queuej[first];
             aux[i][j]=1;
+
             if((abs(board[i][j+1])==abs(board[i][j])) && (aux[i][j+1]!=1) && (i!=2*boardsize) && (i!=0) && (j+1!=0) && (j+1!=2*boardsize))
                 {
                     aux[i][j+1]=1;
@@ -992,7 +1105,7 @@ int victory(int linia, int col){
             first++;
         }
 
-        if(player==2)//rosu
+        if(player==2)
         {
             int cond1=0, cond2=0;
             for(int i=1; i<=last; i++)
@@ -1007,7 +1120,7 @@ int victory(int linia, int col){
                     return player;
                 }
         }
-        if(player==1)//galben
+        if(player==1)
         {
             int cond1=0, cond2=0;
             for(int j=1; j<=last; j++)
@@ -1032,118 +1145,7 @@ void endgame(){
     clearviewport();
     readimagefile("Chenar_joc.jpg", 0, 0, windowWidth, windowHeight);
 
-    if(player==2)
-    {
-        if(strcmp(language, "english")==0)
-        {
-            if(colour1==7)
-                readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==4)
-                readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==12)
-                readimagefile("yellow_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==11)
-                readimagefile("green_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-        }
-
-        if(strcmp(language, "french")==0)
-        {
-            if(colour1==7)
-                readimagefile("blue_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==4)
-                readimagefile("red_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==12)
-                readimagefile("yellow_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==11)
-                readimagefile("green_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-        }
-
-        if(strcmp(language, "romanian")==0)
-        {
-            if(colour1==7)
-                readimagefile("blue_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==4)
-                readimagefile("red_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==12)
-                readimagefile("yellow_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour1==11)
-                readimagefile("green_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-        }
-    }
-    else
-    {
-        if(strcmp(language, "english")==0)
-        {
-            if(colour2==7)
-                readimagefile("blue_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==4)
-                readimagefile("red_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==12)
-                readimagefile("yellow_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==11)
-                readimagefile("green_won_e.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-        }
-
-        if(strcmp(language, "french")==0)
-        {
-            if(colour2==7)
-                readimagefile("blue_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==4)
-                readimagefile("red_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==12)
-                readimagefile("yellow_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==11)
-                readimagefile("green_won_f.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-        }
-
-        if(strcmp(language, "romanian")==0)
-        {
-            if(colour2==7)
-                readimagefile("blue_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==4)
-                readimagefile("red_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==12)
-                readimagefile("yellow_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-            if(colour2==11)
-                readimagefile("green_won_r.jpg", getmaxwidth()/2 - dx*35, dy*10, getmaxwidth()/2 + dx*35, dy*65);
-        }
-    }
-
-    button B1, B2, B3;
-
-    if(strcmp(language, "english")==0)
-    {
-        B1.mx= getmaxwidth()/2 - textwidth("Play again")/2;
-        B1.my=71*dy;
-        strcpy(B1.text, "Play again");
-        B2.mx= getmaxwidth()/2 - textwidth("Exit")/2;
-        B2.my=80*dy;
-        strcpy(B2.text, "Exit");
-    }
-
-    if(strcmp(language, "french")==0)
-    {
-        B1.mx= getmaxwidth()/2 - textwidth("Play again")/2;
-        B1.my=71*dy;
-        strcpy(B1.text, "Play again");
-        B2.mx= getmaxwidth()/2 - textwidth("Page d'accueil")/2;
-        B2.my=80*dy;
-        strcpy(B2.text, "Page d'accueil");
-    }
-
-    if(strcmp(language, "romanian")==0)
-    {
-        B1.mx= getmaxwidth()/2 - textwidth("Joaca din nou")/2;
-        B1.my=71*dy;
-        strcpy(B1.text, "Joaca din nou");
-        B2.mx= getmaxwidth()/2 - textwidth("Pagina de pornire")/2;
-        B2.my=80*dy;
-        strcpy(B2.text, "Pagina de pornire");
-    }
-
-
-    drawbutton(B1);
-    drawbutton(B2);
+    butoane_victory();
 
     bool done=true;
     int x, y;
@@ -1155,7 +1157,7 @@ void endgame(){
         {
             clearmouseclick(WM_LBUTTONDOWN);
 
-            if(x>=B1.x1 && x<=B1.x2 && y>=B1.y1 && y<=B1.y2)
+            if(x>=getmaxwidth()/2 - dx*12 && x<=getmaxwidth()/2 + dx*12 && y>=dy*77 && y<=dy*87)
                 {
                     done=false;
 
@@ -1173,7 +1175,7 @@ void endgame(){
                         play();
                 }
                 else
-                    if(x>=B2.x1 && x<=B2.x2 && y>=B2.y1 && y<=B2.y2)
+                    if(x>=getmaxwidth()/2 - dx*12 && x<=getmaxwidth()/2 + dx*12 && y>=dy*65 && y<=dy*75)
                 {
                     done=false;
 

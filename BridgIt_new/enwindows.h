@@ -7,6 +7,8 @@ void menu_english()
     // PAGINA DE PORNIRE
         clearviewport();
     readimagefile("menu_english.jpg", 0, 0, windowWidth, windowHeight);
+
+    std::cout<<language;
 }
 
 void info_english()
