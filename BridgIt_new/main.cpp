@@ -26,6 +26,7 @@ int main()
     while(true)
     {
         when_left_click();
+
         if(lastWindow==16 || lastWindow==17)
         {
             if(strcmp(language, "english")==0)
