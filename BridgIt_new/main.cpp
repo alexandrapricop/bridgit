@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <cstdlib>
 #include <cstring>
+#include <thread>
 #include "variables.h"
 #include "enwindows.h"
 #include "rowindows.h"

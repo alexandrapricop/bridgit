@@ -4,7 +4,7 @@
 #define border 14*dy
 
 int board[12][12];
-int left, up, width, height, culoare=colour1, player=firstPlayer, playerline=firstPlayer, moves=0;
+int left, up, width, height, culoare=colour1, player=firstPlayer, playerline=firstPlayer, moves=0, minute;
 void initializare();
 void tabla_consola();
 void drawboard();
@@ -445,11 +445,31 @@ void play_images(){
     }
 }
 
+void timer(clock_t start, int moves){
+
+    char chartime[19], charmoves[19];
+    int timepassed;
+
+    settextstyle(4, HORIZ_DIR, 3);
+        setcolor(BLACK);
+
+        clock_t duration;
+        duration=difftime(clock(), start);
+        timepassed=(int)duration/1000;
+
+        itoa(timepassed, chartime, 10);
+        itoa(moves, charmoves, 10);
+
+        outtextxy(20*dx, 75*dy, charmoves);
+        outtextxy(20*dx, 79.5*dy, chartime);
+}
+
 void play() {
 
     // FUNCTIA CARE DA START JOCULUI PLAYER VS PLAYER
 
     moves=0;
+    player=playerline=firstPlayer;
 
     // INSEREAZA IMAGINILE CU BUTOANE
 
@@ -476,10 +496,19 @@ void play() {
     bool done=true;
     int linia, col, x, y, last_line, last_column;
 
-    moves=0;
     clock_t duration;
     clock_t start;
     start=clock();
+
+     if(strcmp(language, "english")==0)
+        readimagefile("playb_e.jpg", 11*dx,72*dy, 25*dx, 85*dy);
+        else if(strcmp(language, "french")==0)
+                readimagefile("playb_f.jpg", 5*dx,72*dy, 19*dx, 85*dy);
+                    else if(strcmp(language, "romanian")==0)
+                        readimagefile("playb_r.jpg", 5*dx,72*dy, 19*dx, 85*dy);
+
+    timer(start, moves);
+
 
     while(done)
     {
@@ -497,15 +526,17 @@ void play() {
                 {
                     last_line=linia;
                     last_column=col;
-                    play_images();
-                    drawline(linia, col);
                     moves++;
+                    play_images();
+                    timer(start, moves);
+                    drawline(linia, col);
+
+
                     int winner=victory(linia, col);
                     if(winner)
                     {
                         winner=player;
                         done=false;
-                        timer(start, moves);
                         endgame();
                     }
                 }
@@ -538,28 +569,12 @@ void play() {
     }
 }
 
-void timer(clock_t start, int numarmutari){
-    char charscor[19];
-    int scor, penalty;
-    clock_t duration;
-    duration=difftime(clock(), start);
-    scor=(int)duration + moves;
-
-    penalty=1000-scor;
-    if(penalty<0)
-        penalty=0;
-    itoa(penalty, charscor, 10);
-    setcolor(BLACK);
-
-    outtextxy(150, 700, "SCOR :");
-    outtextxy(textwidth("SCOR :")+120, 700, charscor);
-}
-
 void computerplay(){
 
     // FUNCTIA CARE DA START JOCULUI PLAYER VS COMPUTER
 
     moves=0;
+    player=playerline=firstPlayer;
 
      //  INSEREAZA IMAGINILE CU BUTOANE
 
@@ -590,6 +605,15 @@ void computerplay(){
     clock_t start;
     start=clock();
 
+    if(strcmp(language, "english")==0)
+        readimagefile("playb_e.jpg", 11*dx,72*dy, 25*dx, 85*dy);
+        else if(strcmp(language, "french")==0)
+                readimagefile("playb_f.jpg", 5*dx,72*dy, 19*dx, 85*dy);
+                    else if(strcmp(language, "romanian")==0)
+                        readimagefile("playb_r.jpg", 5*dx,72*dy, 19*dx, 85*dy);
+
+    timer(start, moves);
+
     while(done)
     {
         int x=mousex();
@@ -598,79 +622,157 @@ void computerplay(){
         if(ismouseclick(WM_LBUTTONDOWN))
         {
             clearmouseclick(WM_LBUTTONDOWN);
+            timer(start, moves);
 
-            if(x>=left && x<=left+width && y>=up && y<=up+height)
-            {
-                linia=(y-up+dy*4)/(border/2);
-                col=(x-left+dx*3)/(border/2);
-
-                if(board[linia][col]==0)
+                if(x>=left && x<=left+width && y>=up && y<=up+height)
                 {
-                    last_line=linia;
-                    last_column=col;
-                    play_images();
-                    drawline(linia, col);
-                    moves++;
-                    int winner=victory(linia, col);
+                    linia=(y-up+dy*4)/(border/2);
+                    col=(x-left+dx*3)/(border/2);
 
-                    if(winner)
+                    if(board[linia][col]==0)
                     {
-                        player=winner;
-                        done=false;
-                        timer(start, moves);
-                        endgame();
-                    }
-                    else
-                    {
-                        if(difficulty==1)
-                            easylevel(linia, col);
-                        else
-                            if(difficulty==2)
-                                mediumlevel(linia, col);
-                            else
-                                hardlevel(lastline, lastcol, linia, col);
-
-                        lastline=linia;
-                        lastcol=col;
-                        drawline(linia, col);
+                        last_line=linia;
+                        last_column=col;
                         moves++;
+                        timer(start, moves);
+                        play_images();
+                        drawline(linia, col);
 
-                        winner=victory(linia, col);
+                        int winner=victory(linia, col);
+
                         if(winner)
                         {
                             player=winner;
                             done=false;
-                            timer(start, moves);
                             endgame();
+                        }
+                        else
+                        {
+                            if(difficulty==1)
+                                easylevel(linia, col);
+                            else
+                                if(difficulty==2)
+                                    mediumlevel(linia, col);
+                                else
+                                    hardlevel(lastline, lastcol, linia, col);
+
+                            lastline=linia;
+                            lastcol=col;
+                            drawline(linia, col);
+
+                            winner=victory(linia, col);
+                            if(winner)
+                            {
+                                player=winner;
+                                done=false;
+                                endgame();
+                            }
                         }
                     }
                 }
-            }
-            else
-                if(x>=9*dx && x<=36*dx && y>=58*dy && y<=68*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE RESTART
-                {
-                    if(player==culoare)
-                        player=1;
-                    else
-                        player=2;
-                    done=false;
-                    initializare();
-                    drawboard();
-                    computerplay();
-                }
                 else
-                    if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE MENIU SI, IN FUNCTIE DE LIMBA SELECTATA, INSEREAZA IMAGINEA
-                {
-                 done=false;
+                    if(x>=9*dx && x<=36*dx && y>=58*dy && y<=68*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE RESTART
+                    {
+                        if(player==culoare)
+                            player=1;
+                        else
+                            player=2;
+                        done=false;
+                        initializare();
+                        drawboard();
+                        computerplay();
+                    }
+                    else
+                        if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE MENIU SI, IN FUNCTIE DE LIMBA SELECTATA, INSEREAZA IMAGINEA
+                    {
+                     done=false;
 
-                    if(strcmp(language, "english")==0)
-                        menu_english();
-                    if(strcmp(language, "french")==0)
-                        menu_french();
-                    if(strcmp(language, "romanian")==0)
-                        menu_romanian();
+                        if(strcmp(language, "english")==0)
+                            menu_english();
+                        if(strcmp(language, "french")==0)
+                            menu_french();
+                        if(strcmp(language, "romanian")==0)
+                            menu_romanian();
+                    }
+            }
+            /*
+            else
+                {
+                        linia=(y-up+dy*4)/(border/2);
+                        col=(x-left+dx*3)/(border/2);
+
+                        if(difficulty==1)
+                            easylevel(linia, col);
+                                else
+                                    if(difficulty==2)
+                                        mediumlevel(linia, col);
+                                    else
+                                        hardlevel(lastline, lastcol, linia, col);
+
+                        lastline=linia;
+                        lastcol=col;
+                        drawline(linia, col);
+                        int winner=victory(linia, col);
+
+                        if(winner)
+                        {
+                            player=winner;
+                            done=false;
+                            endgame();
+                        }
+                        else
+                                if(x>=left && x<=left+width && y>=up && y<=up+height)
+                                {
+                                    linia=(y-up+dy*4)/(border/2);
+                                    col=(x-left+dx*3)/(border/2);
+
+                                    if(board[linia][col]==0)
+                                    {
+                                        last_line=linia;
+                                        last_column=col;
+                                        moves++;
+                                        timer(start, moves);
+                                        play_images();
+                                        drawline(linia, col);
+
+                                        int winner=victory(linia, col);
+
+                                        if(winner)
+                                        {
+                                            player=winner;
+                                            done=false;
+                                            endgame();
+                                        }
+                                    }
+                                }
+                                else
+                                    if(x>=9*dx && x<=36*dx && y>=58*dy && y<=68*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE RESTART
+                                    {
+                                        if(player==culoare)
+                                            player=1;
+                                        else
+                                            player=2;
+
+                                        done=false;
+                                        initializare();
+                                        drawboard();
+                                        computerplay();
+                                    }
+                                    else
+                                        if(x>=9*dx && x<=36*dx && y>=45*dy && y<=55*dy) // VERIFICA DACA ESTE APASAT BUTONUL DE MENIU SI, IN FUNCTIE DE LIMBA SELECTATA, INSEREAZA IMAGINEA
+                                        {
+                                            done=false;
+
+                                            if(strcmp(language, "english")==0)
+                                                menu_english();
+                                            if(strcmp(language, "french")==0)
+                                                menu_french();
+                                            if(strcmp(language, "romanian")==0)
+                                                menu_romanian();
+                                        }
                 }
-        }
+                */
+
     }
 }
 
@@ -1043,7 +1145,46 @@ void maindraw(){
 }
 
 
+   /* vector<int> timepassed;
+    dimens.push_back(minute);
+    dimens.push_back(secunde);
+    std::thread t1(timer, timepassed);
 
+void timer(vector<int> timepassed)
+{
+    int secunde = timepassed[3];
+
+    settextstyle(3, HORIZ_DIR, 4);
+
+    while(true)
+    {
+        std::string s = std::to_string(minute);
+        char chr_m;
+        strcpy(chr_m,(char)s.c_str());
+        outtextxy(x1, y1, chr_m);
+
+        outtextxy(x2, y2, ":");
+
+        s = std::to_string(secunde);
+        char chr_s;
+        strcpy(chr_s,(char)s.c_str());
+        outtextxy(x3, y3, chr_s);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+        secunde --;
+        if(secunde == 0 && minute == 0)
+            break;
+
+
+        if(secunde <= 0)
+        {
+            secunde = 120;
+            minute--;
+        }
+    }
+
+}*/
 
 
 
